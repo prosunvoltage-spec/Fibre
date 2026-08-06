@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt – Musterbau GmbH</title>
+  <meta name="description" content="Kontakt zur Musterbau GmbH: Adresse, Telefon, E-Mail, Öffnungszeiten und Anfrageformular. Wir freuen uns auf Ihr Projekt.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="index.html" class="logo">
+          <svg viewBox="0 0 24 24"><path d="M12 2 L2 8 v14 h6 v-8 h8 v8 h6 V8 z"/></svg>
+          Musterbau GmbH
+        </a>
+        <button class="nav-toggle" aria-label="Menü öffnen">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="index.html">Startseite</a></li>
+          <li><a href="referenzen.html">Referenzen</a></li>
+          <li><a href="ueber-uns.html">Über uns</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <h1>Kontakt aufnehmen</h1>
+      <p>Wir freuen uns auf Ihre Anfrage. Ein Bauexperte meldet sich innerhalb von 24 Stunden bei Ihnen zurück.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section>
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Contact info -->
+        <div class="contact-info">
+          <h3>So erreichen Sie uns</h3>
+
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2 C7 2 3 6 3 11 c0 6 9 11 9 11 s9-5 9-11 c0-5-4-9-9-9 z M12 14 a3 3 0 1 1 0-6 a3 3 0 0 1 0 6 z"/></svg>
+            <div>
+              <strong>Adresse</strong>
+              <span>Musterstraße 12<br>12345 Musterstadt</span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8 c1.4 2.8 3.8 5.1 6.6 6.6 l2.2-2.2 c0.3-0.3 0.7-0.4 1-0.2 1.1 0.4 2.3 0.6 3.6 0.6 0.6 0 1 0.4 1 1 V20 c0 0.6-0.4 1-1 1 -9.4 0-17-7.6-17-17 0-0.6 0.4-1 1-1 h3.5 c0.6 0 1 0.4 1 1 0 1.2 0.2 2.5 0.6 3.6 0.1 0.4 0 0.7-0.2 1 z"/></svg>
+            <div>
+              <strong>Telefon</strong>
+              <a href="tel:01234567890">01234 / 567 890</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M20 4 H4 c-1.1 0-2 0.9-2 2 v12 c0 1.1 0.9 2 2 2 h16 c1.1 0 2-0.9 2-2 V6 c0-1.1-0.9-2-2-2 z m0 4-8 5-8-5 V6 l8 5 8-5 v2 z"/></svg>
+            <div>
+              <strong>E-Mail</strong>
+              <a href="mailto:info@musterbau-gmbh.de">info@musterbau-gmbh.de</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2 a10 10 0 1 0 0 20 a10 10 0 0 0 0-20 z m1 11 H7 v-2 h4 V6 h2 z"/></svg>
+            <div>
+              <strong>Öffnungszeiten</strong>
+              <span>Mo – Fr: 07:30 – 17:00 Uhr<br>Sa: nach Vereinbarung</span>
+            </div>
+          </div>
+
+          <div class="map-placeholder">
+            📍 Hier könnte Ihre Google-Maps-Karte eingebunden werden
+          </div>
+        </div>
+
+        <!-- Contact form -->
+        <div class="contact-form">
+          <h3>Anfrageformular</h3>
+          <p style="color:var(--color-text-muted);font-size:0.95rem;">Beschreiben Sie uns Ihr Projekt – wir melden uns mit einem individuellen Angebot.</p>
+
+          <div id="formMessage" class="form-message"></div>
+
+          <form id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-Mail *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Telefon</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+
+            <div class="form-group">
+              <label for="topic">Betreff</label>
+              <select id="topic" name="topic">
+                <option>Allgemeine Anfrage</option>
+                <option>Neubau (Hochbau)</option>
+                <option>Umbau / Sanierung</option>
+                <option>Tiefbau / Erschließung</option>
+                <option>Kostenschätzung</option>
+                <option>Karriere / Ausbildung</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Ihre Nachricht *</label>
+              <textarea id="message" name="message" required placeholder="Beschreiben Sie Ihr Projekt: Art des Vorhabens, Standort, Umfang, gewünschter Zeitrahmen ..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;">Anfrage senden</button>
+
+            <p style="font-size:0.85rem;color:var(--color-text-muted);margin-top:1rem;margin-bottom:0;">* Pflichtfelder. Ihre Daten werden vertraulich behandelt und ausschließlich zur Beantwortung Ihrer Anfrage verwendet.</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <svg viewBox="0 0 24 24" style="fill:#f5a623;"><path d="M12 2 L2 8 v14 h6 v-8 h8 v8 h6 V8 z"/></svg>
+            Musterbau GmbH
+          </a>
+          <p>Ihr zuverlässiger Partner für Hochbau, Tiefbau und Sanierung. Qualität am Bau seit 1982.</p>
+        </div>
+        <div>
+          <h4>Leistungen</h4>
+          <ul>
+            <li><a href="index.html#leistungen">Hochbau</a></li>
+            <li><a href="index.html#leistungen">Tiefbau</a></li>
+            <li><a href="index.html#leistungen">Sanierung</a></li>
+            <li><a href="index.html#leistungen">Schlüsselfertigbau</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Unternehmen</h4>
+          <ul>
+            <li><a href="ueber-uns.html">Über uns</a></li>
+            <li><a href="referenzen.html">Referenzen</a></li>
+            <li><a href="kontakt.html">Kontakt</a></li>
+            <li><a href="kontakt.html">Karriere</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Kontakt</h4>
+          <ul>
+            <li>Musterstraße 12</li>
+            <li>12345 Musterstadt</li>
+            <li>Tel: 01234 / 567 890</li>
+            <li>info@musterbau-gmbh.de</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Musterbau GmbH · Alle Rechte vorbehalten · <a href="#">Impressum</a> · <a href="#">Datenschutz</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
