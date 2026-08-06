@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Govanni-Bau — Helder Santos GmbH & Co. KG</title>
-  <meta name="description" content="Govanni-Bau · Helder Santos GmbH & Co. KG. Straßen- und Tiefbau, Glasfaserausbau, Pflasterarbeiten. Kompetent, schnell, zuverlässig.">
+  <meta name="description" content="Govanni-Bau · Helder Santos GmbH & Co. KG aus Nottuln. Straßen- und Tiefbau, Glasfaserausbau, Pflasterarbeiten. Kompetent, schnell, zuverlässig.">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
   <header class="site-header">
     <nav class="nav">
       <a href="index.html" class="logo">
-        <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="6" fill="#059669"/><text x="20" y="27" text-anchor="middle" font-family="Inter,sans-serif" font-size="18" font-weight="700" fill="#fff">GB</text></svg>
+        <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="6" fill="#dc2626"/><text x="20" y="27" text-anchor="middle" font-family="Inter,sans-serif" font-size="18" font-weight="700" fill="#fff">GB</text></svg>
         Govanni-Bau
       </a>
       <button class="nav-toggle" aria-label="Menü öffnen">
@@ -31,14 +31,65 @@
 
   <!-- Hero -->
   <section class="hero">
-    <p class="eyebrow">Helder Santos GmbH &amp; Co. KG</p>
+    <p class="eyebrow">Helder Santos GmbH &amp; Co. KG · Nottuln</p>
     <h1>Govanni-Bau.</h1>
     <p class="lead">Kompetent. Schnell. Zuverlässig.<br>Ihr Partner für Straßen- und Tiefbau in der Region.</p>
     <div class="hero-links">
       <a href="kontakt.html" class="btn btn-primary">Beratung anfragen</a>
       <a href="index.html#leistungen" class="link">Leistungen entdecken</a>
     </div>
-    <div class="hero-visual"></div>
+
+    <!-- 3D animated hero -->
+    <div class="hero-visual">
+
+      <!-- Animated fiber-optic streaks -->
+      <svg class="hero-fibers" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,120 C300,80 500,200 800,160 S1200,220 1400,180"/>
+        <path d="M0,240 C250,300 550,240 850,290 S1200,340 1400,300"/>
+        <path d="M0,360 C300,420 550,340 900,400 S1200,440 1400,420"/>
+        <path d="M0,480 C280,440 600,500 900,470 S1200,510 1400,490"/>
+        <path d="M0,60 C400,180 700,60 1050,140 S1300,80 1400,120"/>
+      </svg>
+
+      <!-- Ambient particles -->
+      <div class="particles" aria-hidden="true">
+        <span class="particle"></span><span class="particle"></span>
+        <span class="particle"></span><span class="particle"></span>
+        <span class="particle"></span><span class="particle"></span>
+        <span class="particle"></span><span class="particle"></span>
+      </div>
+
+      <!-- Rotating 3D cube -->
+      <div class="hero-3d" aria-hidden="true">
+        <div class="cube-scene">
+          <div class="cube-face cube-face--front">
+            <svg viewBox="0 0 64 64"><path d="M4 52 h56 v-4 H4 z M8 46 c0-8 6-14 14-14 h20 c8 0 14 6 14 14 z M14 40 h6 v-6 h-6 z M26 40 h6 v-6 h-6 z M38 40 h6 v-6 h-6 z"/></svg>
+            <span>Straßenbau</span>
+          </div>
+          <div class="cube-face cube-face--back">
+            <svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="32" r="12" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="32" cy="32" r="4"/><path d="M12 32 h6 M46 32 h6 M32 12 v6 M32 46 v6" stroke="currentColor" stroke-width="2"/></svg>
+            <span>Glasfaser</span>
+          </div>
+          <div class="cube-face cube-face--right">
+            <svg viewBox="0 0 64 64"><rect x="8" y="8" width="20" height="20" rx="2"/><rect x="34" y="8" width="20" height="20" rx="2"/><rect x="8" y="34" width="20" height="20" rx="2"/><rect x="34" y="34" width="20" height="20" rx="2"/></svg>
+            <span>Pflaster</span>
+          </div>
+          <div class="cube-face cube-face--left">
+            <svg viewBox="0 0 64 64"><path d="M12 12 L52 12 L46 30 L18 30 z" fill="none" stroke="currentColor" stroke-width="3"/><rect x="20" y="30" width="24" height="14"/><circle cx="20" cy="52" r="6"/><circle cx="44" cy="52" r="6"/></svg>
+            <span>Tiefbau</span>
+          </div>
+          <div class="cube-face cube-face--top">
+            <svg viewBox="0 0 64 64"><path d="M8 32 h48 M14 32 v14 M26 32 v14 M38 32 v14 M50 32 v14" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="14" cy="20" r="3"/><circle cx="32" cy="14" r="3"/><circle cx="50" cy="20" r="3"/></svg>
+            <span>Netze</span>
+          </div>
+          <div class="cube-face cube-face--bottom">
+            <svg viewBox="0 0 64 64"><path d="M32 4 L38 24 L58 24 L42 36 L48 56 L32 44 L16 56 L22 36 L6 24 L26 24 z"/></svg>
+            <span>Qualität</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </section>
 
   <!-- Personal welcome (Govanni's tone) -->
@@ -61,7 +112,7 @@
       <p class="lead">Von der Tiefbauleistung bis zur Hausanschlussmontage — wir bringen Glasfaser bis in Ihr Wohnzimmer. Erfahren, zertifiziert und termintreu.</p>
       <div class="hero-links" style="margin-top: 12px;">
         <a href="kontakt.html" class="btn btn-primary">Projekt anfragen</a>
-        <a href="referenzen.html" class="link" style="color:#10b981;">Referenzen ansehen</a>
+        <a href="referenzen.html" class="link" style="color:#f87171;">Referenzen ansehen</a>
       </div>
     </div>
   </div>
@@ -76,7 +127,7 @@
 
       <div class="service-card">
         <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 20 h18 v-2 H3 z M5 17 c0-4 3-7 7-7 s7 3 7 7 z M11 6 h2 v3 h-2 z M18.4 8.6 l1.4-1.4 l-2.1-2.1 l-1.4 1.4 z M4.2 8.6 l1.4-1.4 l-2.1-2.1 l-1.4 1.4 z"/></svg>
+          <svg viewBox="0 0 48 48"><path d="M4 40 h40 v-3 H4 z M8 37 c0-6 4-10 10-10 h12 c6 0 10 4 10 10 z M12 32 h4 v-4 h-4 z M22 32 h4 v-4 h-4 z M32 32 h4 v-4 h-4 z M20 15 h14 l-4-8 h-6 z" stroke="currentColor" stroke-width="1" fill="currentColor"/></svg>
         </div>
         <h3>Straßen- und Tiefbau</h3>
         <p>Straßenbau, Erschließung, Erdarbeiten und Kanalarbeiten für Kommunen und Privatkunden.</p>
@@ -85,7 +136,7 @@
 
       <div class="service-card">
         <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2 C7 2 3 6 3 11 h2 c0-4 3-7 7-7 s7 3 7 7 h2 c0-5-4-9-9-9 z M12 6 c-3 0-5 2-5 5 h2 c0-2 1-3 3-3 s3 1 3 3 h2 c0-3-2-5-5-5 z M12 10 c-1 0-1.5 0.5-1.5 1.5 v9 c0 0.3 0.2 0.5 0.5 0.5 h2 c0.3 0 0.5-0.2 0.5-0.5 v-9 c0-1-0.5-1.5-1.5-1.5 z"/></svg>
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="24" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="24" r="3" fill="currentColor"/><path d="M6 24 h6 M36 24 h6 M24 6 v6 M24 36 v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </div>
         <h3>Glasfaserausbau</h3>
         <p>FTTH-Hausanschlüsse, Kabelverlegung, Spleißen, Messen — vom Bagger bis zur Aktivierung.</p>
@@ -94,7 +145,7 @@
 
       <div class="service-card">
         <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M3 3 h8 v8 H3 z M13 3 h8 v8 h-8 z M3 13 h8 v8 H3 z M13 13 h8 v8 h-8 z"/></svg>
+          <svg viewBox="0 0 48 48"><rect x="6" y="6" width="16" height="16" rx="1.5" fill="currentColor"/><rect x="26" y="6" width="16" height="16" rx="1.5" fill="currentColor"/><rect x="6" y="26" width="16" height="16" rx="1.5" fill="currentColor"/><rect x="26" y="26" width="16" height="16" rx="1.5" fill="currentColor"/></svg>
         </div>
         <h3>Pflasterarbeiten</h3>
         <p>Hof- und Wegepflaster, Einfahrten, Plätze — hochwertig verlegt und dauerhaft schön.</p>
@@ -103,7 +154,7 @@
 
       <div class="service-card">
         <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M4 20 h16 v-2 H4 z M6 16 h12 v-2 H6 z M8 12 l4-8 4 8 z"/></svg>
+          <svg viewBox="0 0 48 48"><path d="M8 36 L24 8 L40 36 z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M14 30 h20 M18 24 h12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
         </div>
         <h3>Erdarbeiten</h3>
         <p>Aushub, Baugruben, Verfüllen, Planieren — mit modernem Maschinenpark und geschultem Personal.</p>
@@ -112,7 +163,7 @@
 
       <div class="service-card">
         <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2 C7 2 3 5 3 10 c0 3 2 5 4 6 v4 c0 1 1 2 2 2 h6 c1 0 2-1 2-2 v-4 c2-1 4-3 4-6 c0-5-4-8-9-8 z M12 6 c2 0 4 2 4 4 s-2 4-4 4 s-4-2-4-4 s2-4 4-4 z"/></svg>
+          <svg viewBox="0 0 48 48"><ellipse cx="24" cy="12" rx="18" ry="6" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M6 12 v24 c0 3.3 8 6 18 6 s18-2.7 18-6 V12" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M6 24 c0 3.3 8 6 18 6 s18-2.7 18-6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
         </div>
         <h3>Kanalbau</h3>
         <p>Hauptkanäle, Hausanschlüsse, Regenwasserleitungen — fachgerecht, geprüft, dokumentiert.</p>
@@ -121,7 +172,7 @@
 
       <div class="service-card">
         <div class="service-icon">
-          <svg viewBox="0 0 24 24"><path d="M20 6 h-2 V4 c0-1-1-2-2-2H8C7 2 6 3 6 4v2H4c-1 0-2 1-2 2v11c0 1 1 2 2 2h16c1 0 2-1 2-2V8c0-1-1-2-2-2zM8 4h8v2H8V4z"/></svg>
+          <svg viewBox="0 0 48 48"><path d="M24 4 L44 40 H4 z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><rect x="22" y="20" width="4" height="12" fill="currentColor"/><circle cx="24" cy="36" r="2" fill="currentColor"/></svg>
         </div>
         <h3>Baustelleneinrichtung</h3>
         <p>Absicherung, Verkehrsführung, Baustellenlogistik — sauber geplant, sauber ausgeführt.</p>
@@ -147,8 +198,29 @@
             <li><strong>Termintreu</strong>. Vereinbarte Fristen sind bindend.</li>
           </ul>
         </div>
-        <div class="col-visual">
-          <svg viewBox="0 0 24 24" style="fill:#10b981;"><path d="M12 2 l3 7 h7 l-5.5 4.5 L18.5 21 L12 16 l-6.5 5 2-7.5 L2 9 h7 z"/></svg>
+        <div class="col-visual" style="background:linear-gradient(135deg,#1c1917 0%,#0c0a09 100%);">
+          <svg viewBox="0 0 200 150" style="width:80%;height:auto;">
+            <!-- Excavator illustration -->
+            <g fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linejoin="round">
+              <!-- Boom & arm -->
+              <path d="M40 70 L80 40 L120 60 L110 90"/>
+              <!-- Bucket -->
+              <path d="M110 90 L100 105 L130 105 L120 90 z" fill="#dc2626"/>
+              <!-- Cabin -->
+              <rect x="35" y="55" width="30" height="30" rx="3" fill="#dc2626" fill-opacity="0.15"/>
+              <line x1="42" y1="62" x2="58" y2="62"/>
+              <line x1="42" y1="70" x2="58" y2="70"/>
+              <!-- Body -->
+              <rect x="20" y="85" width="60" height="15" rx="3"/>
+              <!-- Tracks -->
+              <ellipse cx="30" cy="115" rx="10" ry="7" fill="#dc2626" fill-opacity="0.2"/>
+              <ellipse cx="55" cy="115" rx="10" ry="7" fill="#dc2626" fill-opacity="0.2"/>
+              <ellipse cx="70" cy="115" rx="8" ry="6" fill="#dc2626" fill-opacity="0.2"/>
+              <line x1="20" y1="115" x2="80" y2="115" stroke-width="4"/>
+              <!-- Ground -->
+              <line x1="0" y1="130" x2="200" y2="130" stroke="#57534e" stroke-dasharray="4 4"/>
+            </g>
+          </svg>
         </div>
       </div>
     </div>
@@ -187,7 +259,7 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-disclaimer">
-        Helder Santos GmbH &amp; Co. KG · Sitz und Gerichtsstand: Musterstadt · Handelsregister: HRA 12345 · USt-IdNr.: DE123456789
+        Helder Santos GmbH &amp; Co. KG · Siemensstr. 5a · 48301 Nottuln · USt-IdNr.: DE316116171
       </div>
       <div class="footer-grid">
         <div class="footer-brand">
@@ -215,18 +287,17 @@
         <div>
           <h4>Kontakt</h4>
           <ul>
-            <li>Musterstraße 12, 12345 Musterstadt</li>
-            <li>01234 / 567 890</li>
-            <li>info@govanni-bau.de</li>
+            <li>Siemensstr. 5a<br>48301 Nottuln</li>
+            <li>+49 (0)176 / 820 269 89</li>
+            <li>santos@govanni-bau.de</li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© 2026 Helder Santos GmbH &amp; Co. KG. Alle Rechte vorbehalten.</span>
         <ul class="footer-links">
-          <li><a href="#">Impressum</a></li>
-          <li><a href="#">Datenschutz</a></li>
-          <li><a href="#">AGB</a></li>
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
         </ul>
       </div>
     </div>
