@@ -3,27 +3,27 @@
    ============================================ */
 
 :root {
-  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  /* Neutrals */
+  /* Neutrals — warm stone palette */
   --color-bg: #ffffff;
-  --color-bg-soft: #fbfbfd;
-  --color-bg-tile: #f5f5f7;
-  --color-bg-dark: #000000;
-  --color-bg-dark-tile: #1d1d1f;
+  --color-bg-soft: #fafaf9;
+  --color-bg-tile: #f5f5f4;
+  --color-bg-dark: #0c0a09;
+  --color-bg-dark-tile: #1c1917;
 
   /* Text */
-  --color-text: #1d1d1f;
-  --color-text-secondary: #6e6e73;
-  --color-text-tertiary: #86868b;
-  --color-text-inverse: #f5f5f7;
+  --color-text: #0c0a09;
+  --color-text-secondary: #57534e;
+  --color-text-tertiary: #78716c;
+  --color-text-inverse: #fafaf9;
 
-  /* Accent */
-  --color-blue: #0071e3;
-  --color-blue-hover: #0077ed;
+  /* Accent — emerald green */
+  --color-blue: #059669;
+  --color-blue-hover: #047857;
 
   /* Lines */
-  --color-border: #d2d2d7;
+  --color-border: #e7e5e4;
 
   /* Layout */
   --nav-height: 48px;
@@ -399,8 +399,8 @@ section {
 
 .tile-dark h2,
 .tile-dark h3,
-.tile-dark .eyebrow { color: #f5f5f7; }
-.tile-dark p { color: #a1a1a6; }
+.tile-dark .eyebrow { color: #fafaf9; }
+.tile-dark p { color: #a8a29e; }
 
 .tile .eyebrow {
   font-size: 21px;
@@ -408,7 +408,7 @@ section {
   color: var(--color-text);
 }
 
-.tile-dark .eyebrow { color: #f5f5f7; }
+.tile-dark .eyebrow { color: #fafaf9; }
 
 .tile h2 {
   margin-bottom: 12px;
@@ -699,8 +699,8 @@ section {
   color: var(--color-text-inverse);
 }
 
-.feature-tile-dark h2 { color: #f5f5f7; }
-.feature-tile-dark p { color: #a1a1a6; }
+.feature-tile-dark h2 { color: #fafaf9; }
+.feature-tile-dark p { color: #a8a29e; }
 
 .two-col {
   display: grid;
@@ -717,7 +717,7 @@ section {
 .col-visual {
   aspect-ratio: 4/3;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, #86868b 0%, #4a4a4d 100%);
+  background: linear-gradient(135deg, #44403c 0%, #1c1917 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -915,12 +915,12 @@ section {
 }
 
 .cta-banner h2 {
-  color: #f5f5f7;
+  color: #fafaf9;
   margin-bottom: 16px;
 }
 
 .cta-banner p {
-  color: #a1a1a6;
+  color: #a8a29e;
   font-size: 21px;
   max-width: 600px;
   margin: 0 auto 28px;
