@@ -287,6 +287,50 @@ p { font-size: 17px; line-height: 1.47; color: inherit; }
 }
 
 /* ============================================
+   Texture Overlays — for less digital, more filmic feel
+   ============================================ */
+
+/* Feinkörniges SVG-Rauschen, blendet sich mit dem Untergrund */
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.14;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.9 0 0 0 0 0.9 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+  z-index: 3;
+}
+
+/* Weichere Papier-Variante für helle Kacheln */
+.grain-overlay--light {
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+}
+
+/* Kino-Vignette — dunkle Ränder, konzentriert die Aufmerksamkeit */
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.55) 100%);
+  z-index: 2;
+}
+
+/* Warmes Filmlicht — leichter goldener Schimmer oben rechts */
+.film-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(220,38,38,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 15% 85%, rgba(120,113,108,0.22) 0%, transparent 60%);
+  z-index: 1;
+  mix-blend-mode: screen;
+}
+
+/* ============================================
    Hero
    ============================================ */
 
@@ -329,6 +373,38 @@ p { font-size: 17px; line-height: 1.47; color: inherit; }
   background:
     radial-gradient(ellipse at 50% 40%, rgba(220,38,38,0.18) 0%, transparent 65%),
     linear-gradient(180deg, #1c1917 0%, #0c0a09 100%);
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.4);
+}
+
+/* Optional: echtes Hintergrund-Video (siehe Kommentar in index.html) */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.55;
+  animation: hero-kenburns 30s ease-in-out infinite alternate;
+}
+
+/* Sanfte Ken-Burns-Bewegung für den Hero-Hintergrund — auch ohne Video */
+.hero-visual .hero-3d {
+  animation: hero-kenburns-subtle 24s ease-in-out infinite alternate;
+}
+
+@keyframes hero-kenburns {
+  0%   { transform: scale(1.05) translate(-1%, 0); }
+  100% { transform: scale(1.12) translate(1%, -1%); }
+}
+
+@keyframes hero-kenburns-subtle {
+  0%   { transform: scale(1) translateY(0); }
+  100% { transform: scale(1.04) translateY(-6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video, .hero-visual .hero-3d { animation: none; }
 }
 
 .hero-visual::after {
@@ -528,6 +604,41 @@ section {
   text-align: center;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+}
+
+/* Automatischer Grain-Overlay auf allen Kacheln — wärmer, weniger digital */
+.tile::after,
+.cta-banner::after,
+.feature-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.9 0 0 0 0 0.9 0 0 0 0.7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+}
+
+.tile-dark::after,
+.cta-banner::after,
+.feature-tile-dark::after {
+  opacity: 0.14;
+  mix-blend-mode: overlay;
+}
+
+.tile-light::after,
+.feature-tile:not(.feature-tile-dark)::after {
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+}
+
+/* Content der Kacheln über dem Grain halten */
+.tile > *,
+.cta-banner > *,
+.feature-tile > * {
+  position: relative;
+  z-index: 1;
 }
 
 .tile-light {
@@ -848,6 +959,9 @@ section {
   padding: 60px 40px;
   border-radius: var(--radius-tile);
   background: var(--color-bg-tile);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .feature-tile-dark {
@@ -1068,6 +1182,9 @@ section {
   background: var(--color-bg-dark);
   color: var(--color-text-inverse);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .cta-banner h2 {

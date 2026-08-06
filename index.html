@@ -42,6 +42,20 @@
     <!-- 3D animated hero -->
     <div class="hero-visual">
 
+      <!--
+        HERO-VIDEO: Ersetze den unten stehenden Kommentar durch dieses Element,
+        sobald du eine echte Baustellen-/Glasfaser-MP4 im Ordner img/ hast.
+        Empfehlung: 5–10 Sek. Loop, max. 3 MB, 1920x1080, stumm.
+
+        <video class="hero-video" autoplay loop muted playsinline preload="auto"
+               poster="img/hero-poster.jpg">
+          <source src="img/hero-baustelle.mp4" type="video/mp4">
+        </video>
+      -->
+
+      <!-- Warmes Filmlicht — subtiler Farbverlauf über der Szene -->
+      <div class="film-light"></div>
+
       <!-- Animated fiber-optic streaks -->
       <svg class="hero-fibers" viewBox="0 0 1400 600" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0,120 C300,80 500,200 800,160 S1200,220 1400,180"/>
@@ -88,6 +102,10 @@
           </div>
         </div>
       </div>
+
+      <!-- Kino-Vignette + Filmkorn — für weniger digital, mehr filmisch -->
+      <div class="vignette"></div>
+      <div class="grain-overlay"></div>
 
     </div>
   </section>
