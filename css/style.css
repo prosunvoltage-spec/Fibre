@@ -344,65 +344,106 @@ p { font-size: 17px; line-height: 1.47; color: inherit; }
 }
 
 /* ============================================
-   3D Hero Animation
+   Hero Animation — CAT Excavator on construction site
    ============================================ */
 
-.hero-3d {
+.hero-scene {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 1400px;
-  perspective-origin: 50% 50%;
+  overflow: hidden;
 }
 
-.cube-scene {
-  width: 220px;
-  height: 220px;
-  transform-style: preserve-3d;
-  animation: cube-rotate 22s linear infinite;
+.hero-scene svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-@keyframes cube-rotate {
-  0%   { transform: rotateX(-20deg) rotateY(0deg); }
-  100% { transform: rotateX(-20deg) rotateY(360deg); }
+/* Sky/scene background lives on hero-visual itself; we override for the scene */
+.hero-visual.hero-visual--scene {
+  background:
+    linear-gradient(180deg,
+      #1c1917 0%,
+      #292524 60%,
+      #44403c 100%);
 }
 
-.cube-face {
-  position: absolute;
-  width: 220px;
-  height: 220px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 12px;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: #fafaf9;
-  background: linear-gradient(135deg, #1c1917 0%, #292524 100%);
-  border: 1px solid rgba(220,38,38,0.3);
-  box-shadow:
-    inset 0 0 40px rgba(220,38,38,0.08),
-    0 0 30px rgba(220,38,38,0.15);
+.hero-visual.hero-visual--scene::after {
+  /* Reduce the grid overlay for a natural sky feel */
+  opacity: 0.4;
+  mask-image: linear-gradient(180deg, black 0%, transparent 55%);
+  -webkit-mask-image: linear-gradient(180deg, black 0%, transparent 55%);
 }
 
-.cube-face svg {
-  width: 64px;
-  height: 64px;
-  fill: #dc2626;
-  filter: drop-shadow(0 0 12px rgba(220,38,38,0.5));
+/* --- Excavator part animations ---
+   Each rotating group has its own pivot placed via nested SVG translate,
+   so CSS transform-origin can stay at 0 0. */
+
+.exc-cab       { animation: exc-cab-swing 14s ease-in-out infinite; transform-origin: 0 0; transform-box: fill-box; }
+.exc-boom      { animation: exc-boom-lift 5s ease-in-out infinite; transform-origin: 0 0; transform-box: fill-box; }
+.exc-arm       { animation: exc-arm-swing 5s ease-in-out infinite; transform-origin: 0 0; transform-box: fill-box; }
+.exc-bucket    { animation: exc-bucket-tilt 5s ease-in-out infinite; transform-origin: 0 0; transform-box: fill-box; }
+.exc-wheel     { animation: exc-wheel-spin 4s linear infinite; transform-origin: center; transform-box: fill-box; }
+.exc-dust      { animation: exc-dust-puff 5s ease-in-out infinite; transform-origin: center; opacity: 0; }
+.exc-body-move { animation: exc-body-roll 22s ease-in-out infinite; }
+
+@keyframes exc-cab-swing {
+  0%, 100% { transform: rotate(0deg); }
+  40%      { transform: rotate(-8deg); }
+  55%      { transform: rotate(-8deg); }
+  95%      { transform: rotate(0deg); }
 }
 
-.cube-face--front  { transform: translateZ(110px); }
-.cube-face--back   { transform: rotateY(180deg) translateZ(110px); }
-.cube-face--right  { transform: rotateY(90deg)  translateZ(110px); }
-.cube-face--left   { transform: rotateY(-90deg) translateZ(110px); }
-.cube-face--top    { transform: rotateX(90deg)  translateZ(110px); }
-.cube-face--bottom { transform: rotateX(-90deg) translateZ(110px); }
+@keyframes exc-boom-lift {
+  0%, 100% { transform: rotate(0deg); }
+  30%      { transform: rotate(12deg); }
+  60%      { transform: rotate(-4deg); }
+}
+
+@keyframes exc-arm-swing {
+  0%, 100% { transform: rotate(0deg); }
+  30%      { transform: rotate(-22deg); }
+  60%      { transform: rotate(8deg); }
+}
+
+@keyframes exc-bucket-tilt {
+  0%, 100% { transform: rotate(0deg); }
+  30%      { transform: rotate(35deg); }
+  55%      { transform: rotate(-20deg); }
+  85%      { transform: rotate(0deg); }
+}
+
+@keyframes exc-wheel-spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes exc-dust-puff {
+  0%, 100% { opacity: 0; transform: translateY(0) scale(0.6); }
+  35%      { opacity: 0.55; transform: translateY(-14px) scale(1); }
+  60%      { opacity: 0; transform: translateY(-32px) scale(1.4); }
+}
+
+@keyframes exc-body-roll {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(-40px); }
+}
+
+/* Clouds drift slowly */
+.hero-cloud { animation: cloud-drift 45s linear infinite; }
+.hero-cloud--2 { animation-duration: 60s; animation-delay: -20s; }
+.hero-cloud--3 { animation-duration: 80s; animation-delay: -40s; }
+
+@keyframes cloud-drift {
+  0%   { transform: translateX(-200px); }
+  100% { transform: translateX(1600px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exc-cab, .exc-boom, .exc-arm, .exc-bucket,
+  .exc-wheel, .exc-dust, .exc-body-move,
+  .hero-cloud { animation: none; }
+}
 
 /* Ambient floating particles around the cube */
 .particles {
@@ -736,12 +777,24 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .project-image svg {
   width: 60%;
   height: 60%;
   opacity: 0.9;
+}
+
+/* Photo slot — img is placed on top of SVG fallback.
+   If image fails to load, onerror removes it and SVG remains visible. */
+.project-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }
 
 .project-card:hover .project-image {
@@ -817,6 +870,17 @@ section {
   font-size: 42px;
   font-weight: 500;
   letter-spacing: -0.02em;
+  position: relative;
+  overflow: hidden;
+}
+
+.team-photo-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .team-card h3 {
