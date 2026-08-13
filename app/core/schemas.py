@@ -289,6 +289,10 @@ class RulePlanSchema(_Strict):
     version: str = ""
     beschreibung: str = ""
 
+    # Herkunftsnachweis (optional; nützlich wenn aus Referenz-PDF extrahiert)
+    source_file: str | None = None
+    source_page: int | None = None
+
     plan_pdf_path: str
     preview_png_path: str
 

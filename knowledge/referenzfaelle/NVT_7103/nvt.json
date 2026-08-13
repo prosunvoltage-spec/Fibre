@@ -1,0 +1,18 @@
+{
+  "nvt_number": "7103",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 5,
+  "address": {
+    "street": "Auf dem Dorn",
+    "house_number": "10",
+    "postal_code": "48161",
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": "B1/15",
+  "special_case": null,
+  "notes": "Sackgasse — Vollsperrung, Gehweg über Straße",
+  "lageplan_pages": [],
+  "extracted_at": "2026-08-13T21:36:08.870691+00:00",
+  "kind": "reference"
+}

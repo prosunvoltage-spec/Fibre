@@ -48,3 +48,12 @@ dist/
 
 # Testartefakte
 tests/tmp/
+
+# Wissensbasis: Metadaten (json / md) getrackt, Binärdateien nicht
+knowledge/**/*.pdf
+knowledge/**/*.png
+knowledge/**/*.jpg
+knowledge/**/*.jpeg
+knowledge/**/*.tif
+knowledge/**/*.tiff
+knowledge/**/*.docx

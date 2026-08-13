@@ -1,0 +1,20 @@
+{
+  "nvt_number": "7125",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 49,
+  "address": {
+    "street": "Korbmacherweg",
+    "house_number": "14A",
+    "postal_code": "48161",
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": "VZP1",
+  "special_case": null,
+  "notes": "zusätzlicher Streetview-Ausschnitt",
+  "lageplan_pages": [
+    50
+  ],
+  "extracted_at": "2026-08-13T21:36:13.171776+00:00",
+  "kind": "reference"
+}

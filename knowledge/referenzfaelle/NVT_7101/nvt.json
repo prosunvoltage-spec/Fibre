@@ -1,0 +1,18 @@
+{
+  "nvt_number": "7101",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 3,
+  "address": {
+    "street": "Havixbecker Straße",
+    "house_number": null,
+    "postal_code": "48161",
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": "B2/2",
+  "special_case": null,
+  "notes": "Straße mit Radweg, Ortsrand",
+  "lageplan_pages": [],
+  "extracted_at": "2026-08-13T21:36:08.507101+00:00",
+  "kind": "reference"
+}

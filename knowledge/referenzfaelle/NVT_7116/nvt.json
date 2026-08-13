@@ -1,0 +1,20 @@
+{
+  "nvt_number": "7116",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 31,
+  "address": {
+    "street": "Lindenstraße",
+    "house_number": "2A",
+    "postal_code": "48161",
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": "VZP1",
+  "special_case": null,
+  "notes": "Gehweg-Situation",
+  "lageplan_pages": [
+    32
+  ],
+  "extracted_at": "2026-08-13T21:36:11.612739+00:00",
+  "kind": "reference"
+}

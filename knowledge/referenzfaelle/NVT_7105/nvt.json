@@ -1,0 +1,20 @@
+{
+  "nvt_number": "7105",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 9,
+  "address": {
+    "street": "Brockkamp",
+    "house_number": "16",
+    "postal_code": "48161",
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": null,
+  "special_case": "nur innerhalb Stadtnetze-Gelände",
+  "notes": "7105 + 7106 kombiniert; Betriebsgelände",
+  "lageplan_pages": [
+    10
+  ],
+  "extracted_at": "2026-08-13T21:36:09.400652+00:00",
+  "kind": "reference"
+}
