@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtuelle Umgebungen
+.venv/
+venv/
+env/
+
+# Env-Dateien
+.env
+.env.local
+.env.*.local
+
+# Datenbank & Runtime-Daten
+data/dev.db
+data/dev.db-*
+data/projects/
+data/uploads/
+data/analyses/
+data/exports/
+data/audit.jsonl
+
+# Node / Frontend (Phase 7)
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Alembic-generated (nichts hier eigentlich; Migrations werden getrackt)
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Build-Artefakte
+build/
+dist/
+*.egg
+
+# Testartefakte
+tests/tmp/
