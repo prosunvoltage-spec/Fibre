@@ -10,6 +10,7 @@ from fastapi import FastAPI
 from app import __version__
 from app.api.schemas import HealthOut
 from app.api import analyze as analyze_routes
+from app.api import decide as decide_routes
 from app.api import nvt as nvt_routes
 from app.api import projects as project_routes
 from app.api import uploads as upload_routes
@@ -43,6 +44,7 @@ def create_app() -> FastAPI:
     app.include_router(upload_routes.router)
     app.include_router(nvt_routes.router)
     app.include_router(analyze_routes.router)
+    app.include_router(decide_routes.router)
 
     return app
 
