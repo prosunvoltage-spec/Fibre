@@ -13,13 +13,13 @@ from pathlib import Path
 # Erlaubt Aufruf via `python scripts/create_sample_project.py`
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from sqlalchemy import select  # noqa: E402
+from sqlalchemy import select
 
-from app.config import get_settings  # noqa: E402
-from app.core.db import session_scope  # noqa: E402
-from app.core.models import Project  # noqa: E402
-from app.core.repositories import NvtRepo, ProjectRepo  # noqa: E402
-from app.core.schemas import AddressSchema, LocationSchema, NvtCreate, ProjectCreate  # noqa: E402
+from app.config import get_settings
+from app.core.db import session_scope
+from app.core.models import Project
+from app.core.repositories import NvtRepo, ProjectRepo
+from app.core.schemas import AddressSchema, LocationSchema, NvtCreate, ProjectCreate
 
 SAMPLE_NAME = "Roxel Einblasarbeiten – Beispiel"
 

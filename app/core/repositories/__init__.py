@@ -6,6 +6,7 @@ from app.core.repositories.nvt_repo import (
     InvalidStateTransition,
     NvtRepo,
 )
+from app.core.repositories.photo_repo import PhotoRepo
 from app.core.repositories.project_repo import ProjectRepo
 
 __all__ = [
@@ -13,5 +14,6 @@ __all__ = [
     "DuplicateNvtNumberError",
     "InvalidStateTransition",
     "NvtRepo",
+    "PhotoRepo",
     "ProjectRepo",
 ]

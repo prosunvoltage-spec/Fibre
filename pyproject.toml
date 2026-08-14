@@ -77,7 +77,20 @@ extend-exclude = ["alembic/versions"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM", "N", "RUF"]
-ignore = ["E501"]  # line-length wird ohnehin durch line-length gesteuert
+ignore = [
+    "E501",   # line-length wird ohnehin durch line-length gesteuert
+    "UP042",  # str-Enum-Pattern ist bewusst gewählt (JSON-Serialisierbarkeit)
+    "N818",   # Exception-Namen ohne 'Error'-Suffix sind sprachlich sinnvoll (z.B. InvalidStateTransition)
+    "B008",   # FastAPI-Idiom: Depends()/File()/Form() als Default
+    "RUF001", # en-dash "–" bewusst in Regex-Zeichenklassen (Hausnummer 12–14)
+    "RUF003", # en-dash in Kommentaren bewusst zur Sprachpflege
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = [
+    "N806",   # SessionLocal in Test-Fixtures folgt SQLAlchemy-Konvention
+    "RUF059", # SessionLocal-Unpacking in Fixture-Tupeln ist explizit
+]
 
 [tool.mypy]
 python_version = "3.11"

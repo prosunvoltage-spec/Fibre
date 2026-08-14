@@ -32,9 +32,9 @@ from pathlib import Path
 # Aufruf per `python scripts/...`
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import pymupdf as fitz  # noqa: E402  (PyMuPDF; alias `fitz` beibehalten für Doku)
+import pymupdf as fitz
 
-from app.config import get_settings  # noqa: E402
+from app.config import get_settings
 
 DEFAULT_PDF = Path(
     "/root/.claude/uploads/d9e3fd37-3923-50ea-9834-fe63e445f86e/"

@@ -9,10 +9,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import Session, sessionmaker
 
-from app.core.db import Base
-
 # Modelle importieren, damit Base.metadata gefüllt ist
 import app.core.models  # noqa: F401
+from app.core.db import Base
 
 
 @pytest.fixture()

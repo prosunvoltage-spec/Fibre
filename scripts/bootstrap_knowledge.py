@@ -19,7 +19,7 @@ from pathlib import Path
 # Aufruf per `python scripts/bootstrap_knowledge.py`
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from app.config import get_settings  # noqa: E402
+from app.config import get_settings
 
 SOURCE_FILE = "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf"
 
