@@ -14,6 +14,7 @@ from app.api import decide as decide_routes
 from app.api import exports as export_routes
 from app.api import nvt as nvt_routes
 from app.api import projects as project_routes
+from app.api import review as review_routes
 from app.api import uploads as upload_routes
 from app.api import visualize as visualize_routes
 from app.config import get_settings
@@ -48,6 +49,7 @@ def create_app() -> FastAPI:
     app.include_router(analyze_routes.router)
     app.include_router(decide_routes.router)
     app.include_router(visualize_routes.router)
+    app.include_router(review_routes.router)
     app.include_router(export_routes.router)
 
     return app
