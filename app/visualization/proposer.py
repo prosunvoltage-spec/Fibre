@@ -77,22 +77,27 @@ def _bulli_footprint() -> OverlayShapeSchema:
 
 
 def _barrier_polygon(pos: NvtPosition) -> OverlayShapeSchema:
-    """Grober Absperrbereich, abhängig von der NVT-Lage."""
+    """Absperrbereich als Trapez (perspektivische Näherung): die fernere
+    Kante (kleineres y) ist schmaler als die nähere Kante (größeres y), wie
+    bei einer rechteckigen Bodenfläche, die perspektivisch fotografiert
+    wird. Kein echtes 3D-Modell/keine Kamera-Kalibrierung — nur eine
+    einfache visuelle Annäherung, damit die Fläche nicht flach/verzerrt
+    wirkt."""
     if pos in (NvtPosition.AT_ROADSIDE, NvtPosition.IN_INTERSECTION_AREA):
         # Länglicher Bereich entlang der Fahrbahnkante
         return OverlayShapeSchema(
             kind="polygon",
             points=[
-                _pt(0.25, 0.55), _pt(0.70, 0.55),
-                _pt(0.70, 0.85), _pt(0.25, 0.85),
+                _pt(0.30, 0.55), _pt(0.65, 0.55),   # fern: schmaler
+                _pt(0.70, 0.85), _pt(0.25, 0.85),   # nah: breiter
             ],
         )
     # Standard: kompakter Bereich um den NVT
     return OverlayShapeSchema(
         kind="polygon",
         points=[
-            _pt(0.30, 0.60), _pt(0.65, 0.60),
-            _pt(0.65, 0.82), _pt(0.30, 0.82),
+            _pt(0.34, 0.60), _pt(0.61, 0.60),       # fern: schmaler
+            _pt(0.65, 0.82), _pt(0.30, 0.82),       # nah: breiter
         ],
     )
 

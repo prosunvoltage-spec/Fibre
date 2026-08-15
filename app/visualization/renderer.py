@@ -42,6 +42,17 @@ _BARRIER_OUTLINE = (150, 0, 0, 255)
 _BULLI_YELLOW = (255, 200, 0, 140)
 _BULLI_OUTLINE = (200, 140, 0, 255)
 
+# Perspektivische Näherung (kein echtes 3D/keine Kamera-Kalibrierung):
+# Symbole weiter oben im Bild (kleineres y, "ferner") werden kleiner
+# gezeichnet, Symbole weiter unten ("näher") größer. Linear interpoliert.
+_PERSPECTIVE_MIN_SCALE = 0.55  # bei y=0.0 (oberer Bildrand)
+_PERSPECTIVE_MAX_SCALE = 1.15  # bei y=1.0 (unterer Bildrand)
+
+
+def _perspective_factor(y: float) -> float:
+    y = max(0.0, min(1.0, y))
+    return _PERSPECTIVE_MIN_SCALE + (_PERSPECTIVE_MAX_SCALE - _PERSPECTIVE_MIN_SCALE) * y
+
 
 def _abs(pt: OverlayPointSchema, w: int, h: int) -> tuple[int, int]:
     return int(float(pt.x) * w), int(float(pt.y) * h)
@@ -112,8 +123,10 @@ def _paste_symbol(
         return False
 
     scale = max(0.1, float(symbol.scale))
-    # Basisgröße relativ zur Bildhöhe: ein Symbol soll ~12 % der Bildhöhe belegen
-    target_h = int(canvas.height * 0.18 * scale)
+    persp = _perspective_factor(float(symbol.y))
+    # Basisgröße relativ zur Bildhöhe (~18%), perspektivisch skaliert:
+    # Symbole weiter oben im Bild (ferner) werden kleiner gezeichnet.
+    target_h = max(1, int(canvas.height * 0.18 * scale * persp))
     ratio = target_h / img.height
     target_w = max(1, int(img.width * ratio))
     scaled = img.resize((target_w, target_h), Image.LANCZOS)
@@ -123,8 +136,10 @@ def _paste_symbol(
 
     cx = int(float(symbol.x) * canvas.width)
     cy = int(float(symbol.y) * canvas.height)
+    # Anker am unteren Rand (Bodenkontaktpunkt), nicht Bildmitte — passend
+    # zur perspektivischen Skalierung (Objekt "steht" auf dem y-Punkt).
     x = cx - scaled.width // 2
-    y = cy - scaled.height // 2
+    y = cy - scaled.height
 
     canvas.alpha_composite(scaled, dest=(x, y))
     return True
