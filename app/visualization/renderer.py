@@ -10,7 +10,7 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from pathlib import Path
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 from app.core.enums import OverlaySymbolType
 from app.core.schemas import (
@@ -54,7 +54,9 @@ def _draw_shape(
     h: int,
     is_bulli: bool,
 ) -> None:
-    fill = _BULLI_YELLOW if is_bulli else _BARRIER_RED
+    """Bulli-Fläche als gefülltes Rechteck, Absperrbereich nur als Umriss
+    (keine flächige Rot-Füllung — die Absperrung markiert die Grenze, nicht
+    eine gesperrte Fläche)."""
     outline = _BULLI_OUTLINE if is_bulli else _BARRIER_OUTLINE
     coords = [_abs(p, w, h) for p in shape.points]
 
@@ -65,12 +67,36 @@ def _draw_shape(
         x0, y0 = coords[0]
         x1, y1 = coords[1]
         rect = (min(x0, x1), min(y0, y1), max(x0, x1), max(y0, y1))
+        fill = _BULLI_YELLOW if is_bulli else None
         draw.rectangle(rect, fill=fill, outline=outline, width=4)
         return
-    # polygon
-    draw.polygon(coords, fill=fill, outline=outline)
-    # Umriss verdicken (Pillow zeichnet dünn)
-    draw.line(coords + [coords[0]], fill=outline, width=5)
+    # polygon (Absperrbereich): nur Umriss, keine Füllung
+    draw.line(coords + [coords[0]], fill=outline, width=6)
+
+
+_TEXT_FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+
+
+def _draw_text_label(canvas: Image.Image, symbol: OverlaySymbolSchema) -> None:
+    """Zeichnet eine Textbox (z.B. 'Regelplan: VZP1') an normalisierter Position."""
+    draw = ImageDraw.Draw(canvas)
+    try:
+        font_size = max(14, int(canvas.height * 0.03 * float(symbol.scale)))
+        font = ImageFont.truetype(_TEXT_FONT_PATH, font_size)
+    except OSError:
+        font = ImageFont.load_default()
+
+    text = symbol.label or ""
+    cx = int(float(symbol.x) * canvas.width)
+    cy = int(float(symbol.y) * canvas.height)
+
+    bbox = draw.textbbox((0, 0), text, font=font)
+    text_w, text_h = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    pad = 8
+    box = (cx - text_w // 2 - pad, cy - text_h // 2 - pad, cx + text_w // 2 + pad, cy + text_h // 2 + pad)
+
+    draw.rectangle(box, fill=(255, 255, 255, 235), outline=(0, 0, 0, 255), width=2)
+    draw.text((cx - text_w // 2 - bbox[0], cy - text_h // 2 - bbox[1]), text, fill=(0, 0, 0, 255), font=font)
 
 
 def _paste_symbol(
@@ -137,7 +163,10 @@ def render_overlay(
 
     rendered_symbols = 0
     for sym in visualization.symbols:
-        if _paste_symbol(canvas, sym, reg, warnings):
+        if sym.type == OverlaySymbolType.TEXT and sym.label:
+            _draw_text_label(canvas, sym)
+            rendered_symbols += 1
+        elif _paste_symbol(canvas, sym, reg, warnings):
             rendered_symbols += 1
 
     output_path.parent.mkdir(parents=True, exist_ok=True)

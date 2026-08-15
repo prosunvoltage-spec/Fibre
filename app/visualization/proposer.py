@@ -167,6 +167,15 @@ def propose_visualization(
             "Kein Symbol aus allowed_symbols verwendbar — Overlay bleibt leer"
         )
 
+    if ruleplan is not None:
+        symbols.append(
+            OverlaySymbolSchema(
+                type=OverlaySymbolType.TEXT,
+                x=_dec(0.5), y=_dec(0.08),
+                label=f"Regelplan: {ruleplan.schema.id}",
+            )
+        )
+
     shapes: list[OverlayShapeSchema] = [
         _bulli_footprint(),
         _barrier_polygon(NvtPosition(env.nvt_position)),
