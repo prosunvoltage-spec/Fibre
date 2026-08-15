@@ -123,22 +123,19 @@ def test_cul_de_sac_triggers_warning(
 
 
 @pytest.mark.regression
-def test_no_incomplete_ruleplan_causes_auto_freigabe(
+def test_no_auto_freigabe_from_generic_synthetic_env(
     reference_cases: list[ReferenceCase], ruleplans: RulePlanLibrary
 ) -> None:
-    """Solange die 4 Regelplan-Metadaten leer sind, darf NIEMAND automatisch
-    freigegeben werden — auch wenn Confidence hoch ist."""
-    assert all(not e.schema.is_complete for e in ruleplans.all()), (
-        "Regressionstest davon abhängig, dass Regelpläne noch nicht fachlich "
-        "gepflegt sind. Wenn Fachanwender die Metadaten pflegt, bitte diesen "
-        "Test aktualisieren."
-    )
+    """Die generischen Synthetic-Envs dieses Tests setzen keine Fahrbahnbreite
+    (remaining_roadway_ge liefert UNKNOWN), daher darf selbst der bereits
+    gepflegte VZP1-Regelplan (siehe test_knowledge_bootstrap.py) hier nie zu
+    AUTO_FREIGABE_VORBEREITET führen — die Voraussetzung bleibt offen."""
     for case in reference_cases:
         env = _synthetic_env_for(case)
         outcome = decide(env, ruleplans.all())
         assert outcome.code != DecisionCode.AUTO_FREIGABE_VORBEREITET, (
-            f"NVT {case.nvt_number}: unerwartete AUTO_FREIGABE trotz "
-            f"unvollständiger Metadaten (code={outcome.code})"
+            f"NVT {case.nvt_number}: unerwartete AUTO_FREIGABE ohne "
+            f"bestätigte Fahrbahnbreite (code={outcome.code})"
         )
 
 

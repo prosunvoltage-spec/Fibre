@@ -79,13 +79,24 @@ def test_ruleplan_library_has_four_entries(ruleplan_lib: RulePlanLibrary) -> Non
     assert set(ruleplan_lib.ids()) == {"VZP1", "B1/2", "B2/2", "B1/15"}
 
 
-def test_all_ruleplans_are_incomplete_initially(ruleplan_lib: RulePlanLibrary) -> None:
-    """Solange Fachanwender die Metadaten nicht gepflegt hat, is_complete=False."""
-    for entry in ruleplan_lib:
+def test_pending_ruleplans_are_still_incomplete(ruleplan_lib: RulePlanLibrary) -> None:
+    """B1/2, B2/2, B1/15 warten noch auf Fachanwender-Pflege (VZP1 ist bereits gepflegt)."""
+    for rp_id in ("B1/2", "B2/2", "B1/15"):
+        entry = ruleplan_lib.get(rp_id)
+        assert entry is not None
         assert entry.schema.is_complete is False, (
-            f"{entry.schema.id} ist unerwartet as complete markiert; "
+            f"{rp_id} ist unerwartet als complete markiert; "
             "der Loader muss die Vollständigkeit selbst berechnen"
         )
+
+
+def test_vzp1_is_complete_and_fachlich_gepflegt(ruleplan_lib: RulePlanLibrary) -> None:
+    """VZP1 wurde vom Fachanwender befüllt (Gehweg-Vollsperrung, max. 50m)."""
+    entry = ruleplan_lib.get("VZP1")
+    assert entry is not None
+    assert entry.schema.is_complete is True
+    assert entry.schema.verkehrsraum == ["gehweg"]
+    assert any(r["predicate"] == "has_sidewalk" for r in entry.schema.geeignet_fuer)
 
 
 def test_ruleplan_source_pages_53_to_56(ruleplan_lib: RulePlanLibrary) -> None:
