@@ -42,6 +42,22 @@ _BARRIER_OUTLINE = (150, 0, 0, 255)
 _BULLI_YELLOW = (255, 200, 0, 140)
 _BULLI_OUTLINE = (200, 140, 0, 255)
 
+# Absperrung: rot-weiße "Flatterband"-Streifen statt einer dünnen Linie,
+# damit die Absperrung im Foto klar als solche erkennbar ist.
+_BARRIER_STRIPE_RED = (204, 0, 0, 255)
+_BARRIER_STRIPE_WHITE = (255, 255, 255, 255)
+_BARRIER_STRIPE_WIDTH = 14
+_BARRIER_STRIPE_LEN = 16
+_BARRIER_POST = (60, 60, 60, 255)
+
+# Bulli als einfache 3D-Box (Vorderfläche + Dach + zwei Seitenflächen), damit
+# erkennbar ist, dass ein Fahrzeug auf der Fläche steht (kein echtes 3D-Modell,
+# nur eine schattierte Quader-Näherung in Bild-Koordinaten).
+_BULLI_FRONT = (255, 200, 0, 235)
+_BULLI_TOP = (255, 226, 140, 220)
+_BULLI_SIDE = (176, 124, 0, 220)
+_BULLI_EDGE = (110, 74, 0, 255)
+
 # Perspektivische Näherung (kein echtes 3D/keine Kamera-Kalibrierung):
 # Symbole weiter oben im Bild (kleineres y, "ferner") werden kleiner
 # gezeichnet, Symbole weiter unten ("näher") größer. Linear interpoliert.
@@ -58,6 +74,65 @@ def _abs(pt: OverlayPointSchema, w: int, h: int) -> tuple[int, int]:
     return int(float(pt.x) * w), int(float(pt.y) * h)
 
 
+def _draw_barrier_line(draw: ImageDraw.ImageDraw, coords: list[tuple[int, int]]) -> None:
+    """Zeichnet eine Absperrung als rot-weiß gestreiftes Flatterband mit
+    Pfosten an den Endpunkten — deutlich erkennbar, auch vor unruhigem
+    Hintergrund (Hecke, Schatten etc.)."""
+    for (x0, y0), (x1, y1) in zip(coords, coords[1:]):
+        length = ((x1 - x0) ** 2 + (y1 - y0) ** 2) ** 0.5
+        if length < 1:
+            continue
+        ux, uy = (x1 - x0) / length, (y1 - y0) / length
+        steps = max(1, int(length // _BARRIER_STRIPE_LEN))
+        for i in range(steps):
+            t0 = i * length / steps
+            t1 = (i + 1) * length / steps
+            seg = [(x0 + ux * t0, y0 + uy * t0), (x0 + ux * t1, y0 + uy * t1)]
+            color = _BARRIER_STRIPE_RED if i % 2 == 0 else _BARRIER_STRIPE_WHITE
+            draw.line(seg, fill=color, width=_BARRIER_STRIPE_WIDTH)
+    for x, y in (coords[0], coords[-1]):
+        r = _BARRIER_STRIPE_WIDTH // 2 + 3
+        draw.ellipse([x - r, y - r, x + r, y + r], fill=_BARRIER_POST)
+
+
+def _draw_bulli_box3d(
+    draw: ImageDraw.ImageDraw,
+    top_left: tuple[int, int],
+    bottom_right: tuple[int, int],
+    canvas_h: int,
+) -> None:
+    """Zeichnet die Bulli-Standfläche als schattierten Quader (Front, Dach,
+    zwei Seiten-Keile) statt als flaches Rechteck, damit erkennbar ist, dass
+    dort ein Fahrzeug steht. Keine echte 3D-Rekonstruktion — die Vorderkante
+    (``bottom_right``-Fläche) bestimmt Breite/Höhe des Fahrzeugs, die Tiefe
+    (Dach-Versatz) ist proportional zur Breite, nicht an die (oft sehr weit
+    entfernte) Rückkante des Eingabe-Rechtecks gekoppelt, damit die Box
+    kompakt bleibt statt turmartig in die Länge gezogen zu wirken."""
+    x0, y0 = top_left       # nur zur Ordnung genutzt, nicht als Fahrzeug-Rückkante
+    x1, y1 = bottom_right   # Bodenkontakt vorne (Referenz für Breite/Höhe)
+    if x1 < x0:
+        x0, x1 = x1, x0
+    if y1 < y0:
+        y0, y1 = y1, y0
+
+    front_w = x1 - x0
+    height = max(8, int(canvas_h * 0.10 * _perspective_factor(y1 / canvas_h)))
+    depth = max(6, int(front_w * 0.35))
+    shrink = front_w * 0.12
+
+    front_bl, front_br = (x0, y1), (x1, y1)
+    front_tl, front_tr = (x0, y1 - height), (x1, y1 - height)
+    back_tl = (x0 + shrink, y1 - height - depth)
+    back_tr = (x1 - shrink, y1 - height - depth)
+
+    # Seiten-Keile zuerst (dunkler, wirken wie Schattierung), dann Dach,
+    # dann Front zuletzt (am stärksten sichtbar).
+    draw.polygon([front_bl, front_tl, back_tl], fill=_BULLI_SIDE, outline=_BULLI_EDGE)
+    draw.polygon([front_br, front_tr, back_tr], fill=_BULLI_SIDE, outline=_BULLI_EDGE)
+    draw.polygon([front_tl, back_tl, back_tr, front_tr], fill=_BULLI_TOP, outline=_BULLI_EDGE)
+    draw.polygon([front_bl, front_br, front_tr, front_tl], fill=_BULLI_FRONT, outline=_BULLI_EDGE)
+
+
 def _draw_shape(
     draw: ImageDraw.ImageDraw,
     shape: OverlayShapeSchema,
@@ -65,24 +140,26 @@ def _draw_shape(
     h: int,
     is_bulli: bool,
 ) -> None:
-    """Bulli-Fläche als gefülltes Rechteck, Absperrbereich nur als Umriss
-    (keine flächige Rot-Füllung — die Absperrung markiert die Grenze, nicht
-    eine gesperrte Fläche)."""
-    outline = _BULLI_OUTLINE if is_bulli else _BARRIER_OUTLINE
+    """Bulli-Fläche als schattierter Quader (siehe ``_draw_bulli_box3d``),
+    Absperrbereich als rot-weißes Flatterband (siehe ``_draw_barrier_line``) —
+    keine flächige Rot-Füllung, die Absperrung markiert die Grenze, nicht
+    eine gesperrte Fläche."""
     coords = [_abs(p, w, h) for p in shape.points]
 
+    if is_bulli and shape.kind == "rect" and len(coords) >= 2:
+        _draw_bulli_box3d(draw, coords[0], coords[1], h)
+        return
     if shape.kind == "line":
-        draw.line(coords, fill=outline, width=6)
+        _draw_barrier_line(draw, coords)
         return
     if shape.kind == "rect" and len(coords) >= 2:
         x0, y0 = coords[0]
         x1, y1 = coords[1]
         rect = (min(x0, x1), min(y0, y1), max(x0, x1), max(y0, y1))
-        fill = _BULLI_YELLOW if is_bulli else None
-        draw.rectangle(rect, fill=fill, outline=outline, width=4)
+        draw.rectangle(rect, outline=_BARRIER_OUTLINE, width=4)
         return
-    # polygon (Absperrbereich): nur Umriss, keine Füllung
-    draw.line(coords + [coords[0]], fill=outline, width=6)
+    # polygon (Absperrbereich): als Flatterband-Umriss, keine Füllung
+    _draw_barrier_line(draw, coords + [coords[0]])
 
 
 _TEXT_FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
