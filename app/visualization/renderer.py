@@ -37,26 +37,14 @@ class RenderResult:
 
 
 # Farb-Konstanten (RGBA)
-_BARRIER_RED = (204, 0, 0, 220)
 _BARRIER_OUTLINE = (150, 0, 0, 255)
-_BULLI_YELLOW = (255, 200, 0, 140)
-_BULLI_OUTLINE = (200, 140, 0, 255)
 
-# Absperrung: rot-weiße "Flatterband"-Streifen statt einer dünnen Linie,
-# damit die Absperrung im Foto klar als solche erkennbar ist.
-_BARRIER_STRIPE_RED = (204, 0, 0, 255)
-_BARRIER_STRIPE_WHITE = (255, 255, 255, 255)
-_BARRIER_STRIPE_WIDTH = 14
-_BARRIER_STRIPE_LEN = 16
-_BARRIER_POST = (60, 60, 60, 255)
-
-# Bulli als einfache 3D-Box (Vorderfläche + Dach + zwei Seitenflächen), damit
-# erkennbar ist, dass ein Fahrzeug auf der Fläche steht (kein echtes 3D-Modell,
-# nur eine schattierte Quader-Näherung in Bild-Koordinaten).
-_BULLI_FRONT = (255, 200, 0, 235)
-_BULLI_TOP = (255, 226, 140, 220)
-_BULLI_SIDE = (176, 124, 0, 220)
-_BULLI_EDGE = (110, 74, 0, 255)
+# Absperrkante: kräftige durchgezogene rote Linie wie in den freigegebenen
+# Referenz-VRA (Roxel S. 3–52). Die Linienbreite skaliert perspektivisch mit
+# der Bildhöhe, damit nahe Abschnitte dicker wirken als ferne.
+_BARRIER_RED = (227, 27, 35, 255)
+_BARRIER_WIDTH_NEAR = 13
+_BARRIER_WIDTH_FAR = 7
 
 # Perspektivische Näherung (kein echtes 3D/keine Kamera-Kalibrierung):
 # Symbole weiter oben im Bild (kleineres y, "ferner") werden kleiner
@@ -74,63 +62,27 @@ def _abs(pt: OverlayPointSchema, w: int, h: int) -> tuple[int, int]:
     return int(float(pt.x) * w), int(float(pt.y) * h)
 
 
-def _draw_barrier_line(draw: ImageDraw.ImageDraw, coords: list[tuple[int, int]]) -> None:
-    """Zeichnet eine Absperrung als rot-weiß gestreiftes Flatterband mit
-    Pfosten an den Endpunkten — deutlich erkennbar, auch vor unruhigem
-    Hintergrund (Hecke, Schatten etc.)."""
-    for (x0, y0), (x1, y1) in zip(coords, coords[1:]):
-        length = ((x1 - x0) ** 2 + (y1 - y0) ** 2) ** 0.5
-        if length < 1:
-            continue
-        ux, uy = (x1 - x0) / length, (y1 - y0) / length
-        steps = max(1, int(length // _BARRIER_STRIPE_LEN))
-        for i in range(steps):
-            t0 = i * length / steps
-            t1 = (i + 1) * length / steps
-            seg = [(x0 + ux * t0, y0 + uy * t0), (x0 + ux * t1, y0 + uy * t1)]
-            color = _BARRIER_STRIPE_RED if i % 2 == 0 else _BARRIER_STRIPE_WHITE
-            draw.line(seg, fill=color, width=_BARRIER_STRIPE_WIDTH)
-    for x, y in (coords[0], coords[-1]):
-        r = _BARRIER_STRIPE_WIDTH // 2 + 3
-        draw.ellipse([x - r, y - r, x + r, y + r], fill=_BARRIER_POST)
-
-
-def _draw_bulli_box3d(
-    draw: ImageDraw.ImageDraw,
-    top_left: tuple[int, int],
-    bottom_right: tuple[int, int],
-    canvas_h: int,
+def _draw_barrier_line(
+    draw: ImageDraw.ImageDraw, coords: list[tuple[int, int]], canvas_h: int
 ) -> None:
-    """Zeichnet die Bulli-Standfläche als schattierten Quader (Front, Dach,
-    zwei Seiten-Keile) statt als flaches Rechteck, damit erkennbar ist, dass
-    dort ein Fahrzeug steht. Keine echte 3D-Rekonstruktion — die Vorderkante
-    (``bottom_right``-Fläche) bestimmt Breite/Höhe des Fahrzeugs, die Tiefe
-    (Dach-Versatz) ist proportional zur Breite, nicht an die (oft sehr weit
-    entfernte) Rückkante des Eingabe-Rechtecks gekoppelt, damit die Box
-    kompakt bleibt statt turmartig in die Länge gezogen zu wirken."""
-    x0, y0 = top_left       # nur zur Ordnung genutzt, nicht als Fahrzeug-Rückkante
-    x1, y1 = bottom_right   # Bodenkontakt vorne (Referenz für Breite/Höhe)
-    if x1 < x0:
-        x0, x1 = x1, x0
-    if y1 < y0:
-        y0, y1 = y1, y0
+    """Zeichnet die Absperrkante als durchgezogene rote Linie, wie in den
+    freigegebenen Referenz-VRA.
 
-    front_w = x1 - x0
-    height = max(8, int(canvas_h * 0.10 * _perspective_factor(y1 / canvas_h)))
-    depth = max(6, int(front_w * 0.35))
-    shrink = front_w * 0.12
+    Die Linie liegt in der Bodenebene: jedes Teilstück wird entsprechend
+    seiner Bildhöhe skaliert (nah = dicker, fern = dünner), und die Ecken
+    werden mit Kreisen gefüllt, damit der Polygonzug an den Knicken nicht
+    aufreißt. Das erzeugt die räumliche Wirkung ohne Kamera-Kalibrierung."""
+    def width_at(y: int) -> int:
+        t = _perspective_factor(y / canvas_h)
+        span = _PERSPECTIVE_MAX_SCALE - _PERSPECTIVE_MIN_SCALE
+        frac = (t - _PERSPECTIVE_MIN_SCALE) / span if span else 0.5
+        return max(2, int(_BARRIER_WIDTH_FAR + (_BARRIER_WIDTH_NEAR - _BARRIER_WIDTH_FAR) * frac))
 
-    front_bl, front_br = (x0, y1), (x1, y1)
-    front_tl, front_tr = (x0, y1 - height), (x1, y1 - height)
-    back_tl = (x0 + shrink, y1 - height - depth)
-    back_tr = (x1 - shrink, y1 - height - depth)
-
-    # Seiten-Keile zuerst (dunkler, wirken wie Schattierung), dann Dach,
-    # dann Front zuletzt (am stärksten sichtbar).
-    draw.polygon([front_bl, front_tl, back_tl], fill=_BULLI_SIDE, outline=_BULLI_EDGE)
-    draw.polygon([front_br, front_tr, back_tr], fill=_BULLI_SIDE, outline=_BULLI_EDGE)
-    draw.polygon([front_tl, back_tl, back_tr, front_tr], fill=_BULLI_TOP, outline=_BULLI_EDGE)
-    draw.polygon([front_bl, front_br, front_tr, front_tl], fill=_BULLI_FRONT, outline=_BULLI_EDGE)
+    for (x0, y0), (x1, y1) in zip(coords, coords[1:]):
+        draw.line([(x0, y0), (x1, y1)], fill=_BARRIER_RED, width=width_at((y0 + y1) // 2))
+    for x, y in coords:
+        r = width_at(y) // 2
+        draw.ellipse([x - r, y - r, x + r, y + r], fill=_BARRIER_RED)
 
 
 def _draw_shape(
@@ -140,26 +92,22 @@ def _draw_shape(
     h: int,
     is_bulli: bool,
 ) -> None:
-    """Bulli-Fläche als schattierter Quader (siehe ``_draw_bulli_box3d``),
-    Absperrbereich als rot-weißes Flatterband (siehe ``_draw_barrier_line``) —
-    keine flächige Rot-Füllung, die Absperrung markiert die Grenze, nicht
-    eine gesperrte Fläche."""
+    """Zeichnet die Absperrkante. Flächen werden nie gefüllt — die Absperrung
+    markiert eine Grenze, keinen eingefärbten Bereich (so auch in allen
+    Referenz-VRA). ``rect``-Shapes werden als geschlossener Kantenzug
+    gezeichnet, ``polygon`` ebenfalls geschlossen, ``line`` offen."""
     coords = [_abs(p, w, h) for p in shape.points]
 
-    if is_bulli and shape.kind == "rect" and len(coords) >= 2:
-        _draw_bulli_box3d(draw, coords[0], coords[1], h)
-        return
     if shape.kind == "line":
-        _draw_barrier_line(draw, coords)
+        _draw_barrier_line(draw, coords, h)
         return
     if shape.kind == "rect" and len(coords) >= 2:
         x0, y0 = coords[0]
         x1, y1 = coords[1]
-        rect = (min(x0, x1), min(y0, y1), max(x0, x1), max(y0, y1))
-        draw.rectangle(rect, outline=_BARRIER_OUTLINE, width=4)
+        rect = [(x0, y0), (x1, y0), (x1, y1), (x0, y1), (x0, y0)]
+        _draw_barrier_line(draw, rect, h)
         return
-    # polygon (Absperrbereich): als Flatterband-Umriss, keine Füllung
-    _draw_barrier_line(draw, coords + [coords[0]])
+    _draw_barrier_line(draw, coords + [coords[0]], h)
 
 
 _TEXT_FONT_PATH = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
@@ -178,13 +126,17 @@ def _draw_text_label(canvas: Image.Image, symbol: OverlaySymbolSchema) -> None:
     cx = int(float(symbol.x) * canvas.width)
     cy = int(float(symbol.y) * canvas.height)
 
-    bbox = draw.textbbox((0, 0), text, font=font)
+    # multiline_textbbox deckt auch einzeilige Labels korrekt ab
+    bbox = draw.multiline_textbbox((0, 0), text, font=font, spacing=4, align="center")
     text_w, text_h = bbox[2] - bbox[0], bbox[3] - bbox[1]
     pad = 8
     box = (cx - text_w // 2 - pad, cy - text_h // 2 - pad, cx + text_w // 2 + pad, cy + text_h // 2 + pad)
 
     draw.rectangle(box, fill=(255, 255, 255, 235), outline=(0, 0, 0, 255), width=2)
-    draw.text((cx - text_w // 2 - bbox[0], cy - text_h // 2 - bbox[1]), text, fill=(0, 0, 0, 255), font=font)
+    draw.multiline_text(
+        (cx - text_w // 2 - bbox[0], cy - text_h // 2 - bbox[1]),
+        text, fill=(0, 0, 0, 255), font=font, spacing=4, align="center",
+    )
 
 
 def _paste_symbol(
@@ -246,20 +198,23 @@ def render_overlay(
     overlay_layer = Image.new("RGBA", base.size, (0, 0, 0, 0))
     draw = ImageDraw.Draw(overlay_layer)
 
-    # Zuerst Bulli-Rechteck (heuristisch: einziges Shape mit kind="rect")
-    shapes_sorted = sorted(visualization.shapes, key=lambda s: 0 if s.kind == "rect" else 1)
-    for shape in shapes_sorted:
-        _draw_shape(draw, shape, w, h, is_bulli=(shape.kind == "rect"))
+    for shape in visualization.shapes:
+        _draw_shape(draw, shape, w, h, is_bulli=False)
 
     canvas = Image.alpha_composite(base, overlay_layer)
 
+    # Baken zuerst, Textlabels zuletzt — Labels sollen nie von einem Symbol
+    # überdeckt werden (so auch in den Referenz-VRA).
     rendered_symbols = 0
+    text_symbols = []
     for sym in visualization.symbols:
         if sym.type == OverlaySymbolType.TEXT and sym.label:
-            _draw_text_label(canvas, sym)
-            rendered_symbols += 1
+            text_symbols.append(sym)
         elif _paste_symbol(canvas, sym, reg, warnings):
             rendered_symbols += 1
+    for sym in text_symbols:
+        _draw_text_label(canvas, sym)
+        rendered_symbols += 1
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     canvas.convert("RGB").save(str(output_path), "JPEG", quality=quality)

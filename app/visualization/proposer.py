@@ -1,7 +1,34 @@
 """Vorschlag eines Overlays anhand von Environment + Regelplan.
 
-Erzeugt bewusst konservativ: eine schmale rote Absperrfläche und zwei Leitbaken
-links/rechts des NVT. Der Reviewer verschiebt die Symbole in der UI (Phase 7).
+Absperr-Algorithmus (abgeleitet aus den Referenz-VRA Roxel, Seiten 3–52 —
+u.a. NVT 7101, 7103, 7104, 7115, 7116, 7117; siehe docs/REFERENCE_CASES.md)
+------------------------------------------------------------------------
+Die vom Fachanwender freigegebenen Referenzbilder folgen durchgehend
+demselben Muster. Dieses Muster ist hier deterministisch nachgebaut:
+
+1. **Die Absperrung ist eine offene rote Polylinie, keine gefüllte Fläche.**
+   Gezeichnet wird die *Kante* der Absperrung entlang des Bodens, nicht der
+   gesperrte Bereich selbst. In keinem Referenzfall ist eine Fläche
+   eingefärbt.
+2. **Die Polylinie liegt in der Bodenebene** und folgt der Geometrie des
+   Verkehrsraums (Gehwegkante, NVT-Ecke, Bordstein). Sie hat typischerweise
+   3 Stützpunkte: vom Gebäude/der Hecke abgehend, entlang der Arbeitsfläche,
+   dann zur Fahrbahn hin abknickend. Dadurch wirkt sie räumlich, obwohl kein
+   3D-Modell existiert.
+3. **Leitbaken stehen an den Endpunkten der Polylinie**, nicht an Ecken einer
+   gedachten Rechteckfläche. In den Referenzen sind es 2 Baken (bei
+   Vollsperrung/Sackgasse mehr, s. NVT 7103), immer mit Bodenkontakt am
+   jeweiligen Endpunkt.
+4. **Der Bulli wird nicht als Objekt gezeichnet**, sondern als Textlabel
+   „Standort Einblasbulli inkl. Einblasgerätschaft" innerhalb des
+   abgesperrten Bereichs. Ein gezeichnetes Fahrzeug würde eine Genauigkeit
+   suggerieren, die das Foto nicht hergibt.
+5. **Der NVT selbst wird bei Bedarf per Textlabel markiert** („NVT <Nr>
+   Standort", s. NVT 7115).
+
+Die konkreten Bildkoordinaten sind bewusst grobe Startwerte, die der
+Reviewer in der UI (Phase 7) verschiebt — sie sind ein Vorschlag, keine
+Vermessung.
 
 Halluzinations-Schutz: Es werden nur Symbole vorgeschlagen, die im gewählten
 Regelplan (`allowed_symbols` in metadata.json) belegt sind. Ist die Liste leer
@@ -33,6 +60,8 @@ _FALLBACK_ALLOWED: set[OverlaySymbolType] = {
     OverlaySymbolType.ARROW,
     OverlaySymbolType.TEXT,
 }
+
+_BULLI_LABEL = "Standort Einblasbulli\ninkl. Einblasgerätschaft"
 
 
 @dataclass
@@ -68,55 +97,57 @@ def _pt(x: float, y: float) -> OverlayPointSchema:
     return OverlayPointSchema(x=_dec(x), y=_dec(y))
 
 
-def _bulli_footprint() -> OverlayShapeSchema:
-    """Rechteck für die Bulli-Standfläche neben dem NVT."""
-    return OverlayShapeSchema(
-        kind="rect",
-        points=[_pt(0.32, 0.55), _pt(0.62, 0.85)],
-    )
+def _barrier_polyline(pos: NvtPosition) -> list[tuple[float, float]]:
+    """Stützpunkte der Absperrkante in Bildkoordinaten (Regel 1–2 oben).
 
-
-def _barrier_polygon(pos: NvtPosition) -> OverlayShapeSchema:
-    """Absperrbereich als Trapez (perspektivische Näherung): die fernere
-    Kante (kleineres y) ist schmaler als die nähere Kante (größeres y), wie
-    bei einer rechteckigen Bodenfläche, die perspektivisch fotografiert
-    wird. Kein echtes 3D-Modell/keine Kamera-Kalibrierung — nur eine
-    einfache visuelle Annäherung, damit die Fläche nicht flach/verzerrt
-    wirkt."""
+    Die Punkte liegen in der Bodenebene: kleineres y = weiter entfernt. Der
+    Verlauf knickt zur Fahrbahn hin ab, wie in den Referenzfotos, statt ein
+    achsparalleles Rechteck zu bilden.
+    """
     if pos in (NvtPosition.AT_ROADSIDE, NvtPosition.IN_INTERSECTION_AREA):
-        # Länglicher Bereich entlang der Fahrbahnkante
-        return OverlayShapeSchema(
-            kind="polygon",
-            points=[
-                _pt(0.30, 0.55), _pt(0.65, 0.55),   # fern: schmaler
-                _pt(0.70, 0.85), _pt(0.25, 0.85),   # nah: breiter
-            ],
-        )
-    # Standard: kompakter Bereich um den NVT
+        # NVT direkt an der Fahrbahnkante: Absperrung greift weiter in die
+        # Fahrbahn aus (Referenz NVT 7101, 7116).
+        return [(0.30, 0.52), (0.34, 0.66), (0.60, 0.70), (0.66, 0.62)]
+    # Standard (NVT auf/hinter dem Gehweg): Absperrung bleibt im Gehwegbereich
+    # und knickt am Ende zur Fahrbahn ab (Referenz NVT 7115, 7117).
+    return [(0.33, 0.50), (0.35, 0.63), (0.57, 0.67), (0.62, 0.60)]
+
+
+def _barrier_shape(pos: NvtPosition) -> OverlayShapeSchema:
     return OverlayShapeSchema(
-        kind="polygon",
-        points=[
-            _pt(0.34, 0.60), _pt(0.61, 0.60),       # fern: schmaler
-            _pt(0.65, 0.82), _pt(0.30, 0.82),       # nah: breiter
-        ],
+        kind="line",
+        points=[_pt(x, y) for x, y in _barrier_polyline(pos)],
     )
 
 
-def _leitbake_pair(
-    allowed: set[OverlaySymbolType],
+def _leitbaken_at_ends(
+    allowed: set[OverlaySymbolType], polyline: list[tuple[float, float]]
 ) -> list[OverlaySymbolSchema]:
-    """Zwei Leitbaken an den beiden Enden der Absperrfläche."""
-    result: list[OverlaySymbolSchema] = []
+    """Leitbaken an den beiden Endpunkten der Absperrkante (Regel 3 oben)."""
     typ = OverlaySymbolType.LEITBAKE if OverlaySymbolType.LEITBAKE in allowed else None
     if typ is None:
         typ = OverlaySymbolType.WARNBAKE if OverlaySymbolType.WARNBAKE in allowed else None
     if typ is None:
-        return result
-    for x, y in [(0.27, 0.62), (0.68, 0.62)]:
-        result.append(OverlaySymbolSchema(
-            type=typ, x=_dec(x), y=_dec(y), rotation=_dec(0), scale=_dec(1),
-        ))
-    return result
+        return []
+    return [
+        OverlaySymbolSchema(type=typ, x=_dec(x), y=_dec(y), rotation=_dec(0), scale=_dec(0.55))
+        for x, y in (polyline[0], polyline[-1])
+    ]
+
+
+def _bulli_label(polyline: list[tuple[float, float]]) -> OverlaySymbolSchema:
+    """Textlabel statt gezeichnetem Fahrzeug (Regel 4 oben), mittig im
+    abgesperrten Bereich."""
+    cx = sum(x for x, _ in polyline) / len(polyline)
+    # Oberhalb des höchsten Polylinien-Punkts absetzen, damit das Label weder
+    # die Absperrkante noch die Leitbaken an den Endpunkten überdeckt.
+    cy = min(y for _, y in polyline) - 0.09
+    return OverlaySymbolSchema(
+        type=OverlaySymbolType.TEXT,
+        x=_dec(round(cx, 3)), y=_dec(round(cy, 3)),
+        label=_BULLI_LABEL,
+        scale=_dec(0.7),
+    )
 
 
 def _halt_signs(
@@ -135,17 +166,6 @@ def _halt_signs(
     ]
 
 
-def _arrow_maybe(allowed: set[OverlaySymbolType]) -> list[OverlaySymbolSchema]:
-    if OverlaySymbolType.ARROW not in allowed:
-        return []
-    return [
-        OverlaySymbolSchema(
-            type=OverlaySymbolType.ARROW, x=_dec(0.48), y=_dec(0.75),
-            rotation=_dec(0), scale=_dec(0.8),
-        )
-    ]
-
-
 def propose_visualization(
     *,
     nvt_id,  # type: ignore[no-untyped-def]
@@ -153,7 +173,8 @@ def propose_visualization(
     env: EnvironmentAnalysisSchema,
     ruleplan: RulePlanEntry | None,
 ) -> ProposalResult:
-    """Erzeugt einen initialen Overlay-Vorschlag."""
+    """Erzeugt einen initialen Overlay-Vorschlag nach dem oben dokumentierten
+    Absperr-Algorithmus."""
     if Ternary(env.private_property) == Ternary.YES:
         return ProposalResult(
             visualization=None,
@@ -161,16 +182,18 @@ def propose_visualization(
         )
 
     allowed, warnings = _allowed_symbols(ruleplan)
+    polyline = _barrier_polyline(NvtPosition(env.nvt_position))
 
     symbols: list[OverlaySymbolSchema] = []
-    symbols.extend(_leitbake_pair(allowed))
+    symbols.extend(_leitbaken_at_ends(allowed, polyline))
     symbols.extend(_halt_signs(allowed, env))
-    symbols.extend(_arrow_maybe(allowed))
 
     if not symbols:
         warnings.append(
             "Kein Symbol aus allowed_symbols verwendbar — Overlay bleibt leer"
         )
+
+    symbols.append(_bulli_label(polyline))
 
     if ruleplan is not None:
         symbols.append(
@@ -181,10 +204,7 @@ def propose_visualization(
             )
         )
 
-    shapes: list[OverlayShapeSchema] = [
-        _bulli_footprint(),
-        _barrier_polygon(NvtPosition(env.nvt_position)),
-    ]
+    shapes: list[OverlayShapeSchema] = [_barrier_shape(NvtPosition(env.nvt_position))]
 
     viz = VisualizationSchema(
         nvt_id=nvt_id,
