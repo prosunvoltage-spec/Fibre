@@ -37,7 +37,15 @@
       "notes": "Ausführungsvorgabe für die Baustelle, keine Vision-prüfbare Umgebungseigenschaft."
     }
   ],
-  "ausschlusskriterien": [],
+  "ausschlusskriterien": [
+    {
+      "condition": "Arbeitsstelle beansprucht die Fahrbahn (z.B. Standplatz des Einblasfahrzeugs am Fahrbahnrand)",
+      "machine_predicate": "road_affected",
+      "source_document": "VZP-1-Zeichnung (Regelplan-Bibliothek)",
+      "source_reference": "Zeichnung stellt ausschließlich den Gehweg dar; die Fahrbahn ist nicht Teil des Absperrbereichs",
+      "notes": "Macht die bereits in der beschreibung festgehaltene Einschränkung maschinell prüfbar. Wird die Fahrbahn gebraucht, ist ein Fahrbahn-Regelplan (z.B. B1/2) heranzuziehen."
+    }
+  ],
   "fussverkehr": {
     "fuehrung": "Gehweg im Absperrbereich vollständig gesperrt; Umleitungsbeschilderung (Fußgänger-Pfeil) beidseitig erforderlich"
   },
