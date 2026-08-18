@@ -1,0 +1,70 @@
+{
+  "id": "B1/2",
+  "name": "Regelplan B I/2 modifiziert",
+  "quelle": "RSA 21 Teil D",
+  "version": "08.21",
+  "beschreibung": "Baufeld am Fahrbahnrand auf einer Straße mit geringer Verkehrsstärke oder in geschwindigkeitsreduziertem Bereich, mit deutlicher Einengung. Analog anwendbar bei Richtungsfahrbahn oder Einbahnstraße. Verbleibende Fahrbahnbreite mindestens 3,00 m.",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 54,
+  "verkehrsraum": ["fahrbahn"],
+  "geeignet_fuer": [
+    {
+      "predicate": "road_affected",
+      "value": "yes"
+    },
+    {
+      "predicate": "is_main_road",
+      "value": "no"
+    }
+  ],
+  "voraussetzungen": [
+    {
+      "condition": "Verbleibende Fahrbahnbreite ≥ 3,00 m",
+      "machine_predicate": "remaining_roadway_ge",
+      "args": { "min_m": 3.0 },
+      "source_document": "Regelplan B I/2 modifiziert (Zeichnung)",
+      "source_reference": "Bemaßung 'min. 3,00 m' in der Zeichnung",
+      "notes": "Restbreite neben dem Baufeld für den fließenden Verkehr."
+    },
+    {
+      "condition": "Baufeldlänge max. 50 m (nicht in Einbahnstraßen)",
+      "machine_predicate": null,
+      "source_document": "Regelplan B I/2 modifiziert (Zeichnung)",
+      "source_reference": "Bemaßung 'max. 50 m / nicht in Einbahnstraßen'",
+      "notes": "Keine automatische Prüfung möglich — Längenmessung nicht Teil der Vision-Pipeline."
+    },
+    {
+      "condition": "Z123 (Arbeitsstelle) 30–50 m vor dem Baufeld aufgestellt",
+      "machine_predicate": null,
+      "source_document": "Regelplan B I/2 modifiziert (Zeichnung)",
+      "source_reference": "Bemaßung '123 / -30 bis -50 m'",
+      "notes": "Bei Einbahnstraßen und Richtungsfahrbahnen entfällt die Beschilderung der Gegenrichtung (Fußnote *) der Zeichnung)."
+    },
+    {
+      "condition": "Längsabsperrung zur Fahrbahn durch doppelseitige Leitbaken, Abstand max. 9 m; Absperrschrankengitter am fahrbahnseitigen Baufeldrand",
+      "machine_predicate": null,
+      "source_document": "Regelplan B I/2 modifiziert (Zeichnung)",
+      "source_reference": "Textblock 'Längsabsperrung zur Fahrbahn'",
+      "notes": "Bei Einbahnstraßen und Richtungsfahrbahnen einseitige Leitbaken. RSA Teil B, Abschnitt 2.2.5 Absatz 3 ist zu beachten."
+    },
+    {
+      "condition": "Querabsperrung durch Absperrschrankengitter mit mindestens 3 einseitigen gelben Warnleuchten sowie doppelseitiger Leitbake mit doppelseitiger gelber Warnleuchte",
+      "machine_predicate": null,
+      "source_document": "Regelplan B I/2 modifiziert (Zeichnung)",
+      "source_reference": "Textblock 'Querabsperrung'",
+      "notes": "Bei Richtungsfahrbahnen oder Einbahnstraßen: einseitige Leitbake mit einseitiger gelber Warnleuchte."
+    }
+  ],
+  "ausschlusskriterien": [],
+  "fussverkehr": {},
+  "radverkehr": {},
+  "fahrverkehr": {
+    "hinweis": "Einengung auf mindestens 3,00 m verbleibende Fahrbahnbreite; nur bei geringer Verkehrsstärke oder in geschwindigkeitsreduziertem Bereich"
+  },
+  "besondere_hinweise": [
+    "RSA Teil B, Abschnitt 2.2.5 Absatz 3 ist zu beachten",
+    "Bei Einbahnstraßen und Richtungsfahrbahnen: einseitige statt doppelseitiger Leitbaken",
+    "Längenbegrenzung max. 50 m gilt nicht in Einbahnstraßen"
+  ],
+  "allowed_symbols": ["leitbake", "absperrschranke", "absperrgitter", "z_123"]
+}

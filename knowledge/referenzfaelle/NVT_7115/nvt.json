@@ -1,0 +1,20 @@
+{
+  "nvt_number": "7115",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 29,
+  "address": {
+    "street": "Goldaper Straße",
+    "house_number": "4",
+    "postal_code": "48161",
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": "B1/2",
+  "special_case": null,
+  "notes": "Wohnstraße, NVT im Seitenbereich",
+  "lageplan_pages": [
+    30
+  ],
+  "extracted_at": "2026-08-13T21:36:11.409866+00:00",
+  "kind": "reference"
+}

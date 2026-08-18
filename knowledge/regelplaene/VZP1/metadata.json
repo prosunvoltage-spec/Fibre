@@ -1,0 +1,53 @@
+{
+  "id": "VZP1",
+  "name": "Verkehrszeichenplan 1 – Stadt Münster",
+  "quelle": "Stadt Münster / Referenz-VRA Roxel",
+  "version": "2026",
+  "beschreibung": "Kurzzeitige punktuelle Vollsperrung eines Gehweg-Abschnitts (max. 50 m), symmetrisch für beide Gehrichtungen abgesichert. Fahrbahn/Radweg nicht dargestellt/betroffen.",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 53,
+  "verkehrsraum": ["gehweg"],
+  "geeignet_fuer": [
+    {
+      "predicate": "has_sidewalk",
+      "value": "yes"
+    }
+  ],
+  "voraussetzungen": [
+    {
+      "condition": "Fahrbahnbreite ≥ 6,00 m",
+      "machine_predicate": "remaining_roadway_ge",
+      "args": { "min_m": 6.0 },
+      "source_document": "VZP-1-Zeichnung (Regelplan-Bibliothek)",
+      "source_reference": "Bemaßung 'min. 6,00m' in der Zeichnung",
+      "notes": "Vom Nutzer bestätigt: Der Wert bezeichnet die Mindest-Fahrbahnbreite."
+    },
+    {
+      "condition": "Absperrbereich max. 50 m Länge",
+      "machine_predicate": null,
+      "source_document": "VZP-1-Zeichnung (Regelplan-Bibliothek)",
+      "source_reference": "Bemaßung 'max. 50' in der Zeichnung",
+      "notes": "Keine automatische Prüfung möglich (keine Längenmessung in der Vision-Pipeline) — manuell zu bestätigen."
+    },
+    {
+      "condition": "Vorwarnschild Z123 (Arbeitsstelle) 70–100 m vor Absperrbeginn aufgestellt, beidseitig",
+      "machine_predicate": null,
+      "source_document": "VZP-1-Zeichnung (Regelplan-Bibliothek)",
+      "source_reference": "Bemaßung '70-100' in der Zeichnung",
+      "notes": "Ausführungsvorgabe für die Baustelle, keine Vision-prüfbare Umgebungseigenschaft."
+    }
+  ],
+  "ausschlusskriterien": [],
+  "fussverkehr": {
+    "fuehrung": "Gehweg im Absperrbereich vollständig gesperrt; Umleitungsbeschilderung (Fußgänger-Pfeil) beidseitig erforderlich"
+  },
+  "radverkehr": {},
+  "fahrverkehr": {
+    "hinweis": "Fahrbahn in der Zeichnung nicht dargestellt; Mindest-Fahrbahnbreite 6,00 m ist Voraussetzung, nicht Teil des Absperrbereichs"
+  },
+  "besondere_hinweise": [
+    "Eingeschränktes Haltverbot (Z286) Mo–Fr 8:00–18:00 Uhr im Bereich der Absperrung",
+    "4 Leitbaken mit gelben Warnleuchten an den Ecken des Absperrbereichs"
+  ],
+  "allowed_symbols": ["leitbake", "z_123", "z_286", "arrow"]
+}

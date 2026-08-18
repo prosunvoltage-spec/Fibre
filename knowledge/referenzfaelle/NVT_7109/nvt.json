@@ -1,0 +1,20 @@
+{
+  "nvt_number": "7109",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 17,
+  "address": {
+    "street": "Große Helkamp",
+    "house_number": "19B",
+    "postal_code": "48161",
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": null,
+  "special_case": "Privatfläche",
+  "notes": "keine öffentliche VRA nötig",
+  "lageplan_pages": [
+    18
+  ],
+  "extracted_at": "2026-08-13T21:36:10.255591+00:00",
+  "kind": "reference"
+}

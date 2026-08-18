@@ -1,0 +1,20 @@
+{
+  "nvt_number": "7120",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 39,
+  "address": {
+    "street": "Alte Landstraße",
+    "house_number": "10",
+    "postal_code": "48161",
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": "B1/2",
+  "special_case": null,
+  "notes": "Zufahrt/Gewerbegebiet",
+  "lageplan_pages": [
+    40
+  ],
+  "extracted_at": "2026-08-13T21:36:12.479641+00:00",
+  "kind": "reference"
+}

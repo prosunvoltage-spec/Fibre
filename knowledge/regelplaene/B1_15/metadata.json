@@ -1,0 +1,19 @@
+{
+  "id": "B1/15",
+  "name": "Regelplan B I/15",
+  "quelle": "RSA 21 Teil D",
+  "version": "05.21",
+  "beschreibung": "Sperrung einer Straße",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 56,
+  "verkehrsraum": [],
+  "geeignet_fuer": [],
+  "voraussetzungen": [],
+  "ausschlusskriterien": [],
+  "fussverkehr": {},
+  "radverkehr": {},
+  "fahrverkehr": {},
+  "besondere_hinweise": [],
+  "allowed_symbols": [],
+  "_todo": "Fachanwender: Pflichtfelder aus RSA 21 nachtragen (verkehrsraum, geeignet_fuer, voraussetzungen, allowed_symbols). Bis dahin bleibt is_complete=false und dieser Regelplan wird niemals AUTO_VORSCHLAG."
+}
