@@ -202,8 +202,54 @@ def _add_overview_table(doc: Document, nvts: list[Nvt]) -> None:
     doc.add_page_break()
 
 
+_OVERLAY_WIDTH = Inches(5.5)
+
+
+def _add_editable_overlay(doc: Document, nvt: Nvt, base_photo: Path) -> list[str]:
+    """Originalfoto + Absperrung als bewegliche Word-Zeichenobjekte.
+
+    Statt des fertig gerenderten ``*_proposal.jpg`` wird hier das unveränderte
+    Foto eingebettet und die Absperrung darüber als eigenständige Formen
+    gelegt, damit der Fachanwender sie in Word verschieben kann.
+    """
+    from app.core.schemas import VisualizationSchema
+    from app.documents.word_overlay import (
+        add_movable_overlay,
+        photo_placement,
+    )
+
+    viz = nvt.visualization
+    schema = VisualizationSchema(
+        nvt_id=nvt.id,
+        base_photo_id=viz.base_photo_id,
+        symbols=list(viz.symbols or []),
+        shapes=list(viz.shapes or []),
+        rendered_photo_id=viz.rendered_photo_id,
+        final_photo_id=viz.final_photo_id,
+        edited_by_user=viz.edited_by_user,
+        edited_at=viz.edited_at,
+    )
+
+    para = doc.add_paragraph()
+    para.add_run().add_picture(str(base_photo), width=_OVERLAY_WIDTH)
+    placement = photo_placement(base_photo, int(_OVERLAY_WIDTH))
+    warnings = add_movable_overlay(
+        doc, para, visualization=schema, placement=placement,
+    )
+
+    hint = doc.add_paragraph(
+        "Hinweis: Absperrkante, Baken und Beschriftungen sind bewegliche "
+        "Zeichenobjekte — in Word anklicken und verschieben. Das Foto darunter "
+        "bleibt unverändert."
+    )
+    for r in hint.runs:
+        r.font.size = Pt(8)
+        r.italic = True
+    return warnings
+
+
 def _add_nvt_section(
-    doc: Document, nvt: Nvt, library: RulePlanLibrary
+    doc: Document, nvt: Nvt, library: RulePlanLibrary, *, editable_overlay: bool = False
 ) -> list[str]:
     warnings: list[str] = []
     doc.add_heading(f"NVT {nvt.nvt_number}", level=1)
@@ -255,7 +301,12 @@ def _add_nvt_section(
     proposal = _first_photo(nvt, PhotoKind.FINAL) or _first_photo(nvt, PhotoKind.PROPOSAL)
     if proposal and Path(proposal.stored_path).is_file():
         doc.add_heading("Absicherungs-Darstellung", level=2)
-        doc.add_picture(str(proposal.stored_path), width=Inches(5.5))
+        if editable_overlay and nvt.visualization is not None and original:
+            warnings.extend(
+                _add_editable_overlay(doc, nvt, Path(original.stored_path))
+            )
+        else:
+            doc.add_picture(str(proposal.stored_path), width=Inches(5.5))
     else:
         code = DecisionCode(nvt.decision.code) if nvt.decision else None
         if code != DecisionCode.PRIVATFLAECHE:
@@ -283,7 +334,16 @@ def build_word_anlage(
     nvts: list[Nvt],
     ruleplan_library: RulePlanLibrary,
     output_path: Path,
+    *,
+    editable_overlay: bool = False,
 ) -> WordBuildResult:
+    """Erzeugt die technische Anlage zur VRA.
+
+    ``editable_overlay=True`` bettet statt des fertig gerenderten
+    Absicherungs-Fotos das Originalfoto plus bewegliche Word-Zeichenobjekte
+    ein, damit der Fachanwender die Absperrung direkt in Word verschieben
+    kann (siehe ``app/documents/word_overlay.py``).
+    """
     output_path.parent.mkdir(parents=True, exist_ok=True)
     doc = Document()
 
@@ -308,7 +368,9 @@ def build_word_anlage(
     skipped: list[str] = []
     for nvt in nvts:
         try:
-            warns = _add_nvt_section(doc, nvt, ruleplan_library)
+            warns = _add_nvt_section(
+                doc, nvt, ruleplan_library, editable_overlay=editable_overlay
+            )
             warnings.extend(warns)
             included.append(str(nvt.id))
         except Exception as exc:  # pragma: no cover — defensiv

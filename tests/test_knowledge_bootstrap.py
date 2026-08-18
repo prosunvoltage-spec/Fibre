@@ -80,8 +80,8 @@ def test_ruleplan_library_has_four_entries(ruleplan_lib: RulePlanLibrary) -> Non
 
 
 def test_pending_ruleplans_are_still_incomplete(ruleplan_lib: RulePlanLibrary) -> None:
-    """B1/2, B2/2, B1/15 warten noch auf Fachanwender-Pflege (VZP1 ist bereits gepflegt)."""
-    for rp_id in ("B1/2", "B2/2", "B1/15"):
+    """B2/2 und B1/15 warten noch auf Fachanwender-Pflege (VZP1 und B1/2 sind gepflegt)."""
+    for rp_id in ("B2/2", "B1/15"):
         entry = ruleplan_lib.get(rp_id)
         assert entry is not None
         assert entry.schema.is_complete is False, (
@@ -97,6 +97,20 @@ def test_vzp1_is_complete_and_fachlich_gepflegt(ruleplan_lib: RulePlanLibrary) -
     assert entry.schema.is_complete is True
     assert entry.schema.verkehrsraum == ["gehweg"]
     assert any(r["predicate"] == "has_sidewalk" for r in entry.schema.geeignet_fuer)
+
+
+def test_b1_2_is_complete_and_fachlich_gepflegt(ruleplan_lib: RulePlanLibrary) -> None:
+    """B1/2 wurde aus der Regelplan-Zeichnung befüllt (Baufeld am Fahrbahnrand)."""
+    entry = ruleplan_lib.get("B1/2")
+    assert entry is not None
+    assert entry.schema.is_complete is True
+    assert entry.schema.verkehrsraum == ["fahrbahn"]
+    assert any(r["predicate"] == "road_affected" for r in entry.schema.geeignet_fuer)
+    # Restfahrbahnbreite 3,00 m ist die maschinell prüfbare Voraussetzung
+    assert any(
+        v.machine_predicate == "remaining_roadway_ge" and v.args.get("min_m") == 3.0
+        for v in entry.schema.voraussetzungen
+    )
 
 
 def test_ruleplan_source_pages_53_to_56(ruleplan_lib: RulePlanLibrary) -> None:

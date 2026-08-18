@@ -35,6 +35,10 @@ def create_export(
     project_id: UUID,
     dry_run: bool = Query(default=False),
     require_review: bool = Query(default=True),
+    editable_overlay: bool = Query(
+        default=False,
+        description="Absperrung als bewegliche Word-Zeichenobjekte statt eingebranntem Foto",
+    ),
     user: str | None = Query(default=None),
     db: Session = DbSession,
     settings: Settings = SettingsDep,
@@ -45,7 +49,10 @@ def create_export(
 
     library = RulePlanLibrary(settings.knowledge_path / "regelplaene").load()
     service = ExportService(db, library=library, storage_root=settings.storage_path, user=user)
-    summary = service.export_project(project, require_review=require_review, dry_run=dry_run)
+    summary = service.export_project(
+        project, require_review=require_review, dry_run=dry_run,
+        editable_overlay=editable_overlay,
+    )
     return ExportOut(**summary.__dict__)
 
 

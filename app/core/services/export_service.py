@@ -51,7 +51,8 @@ class ExportService:
         self._audit = AuditRepo(session)
 
     def export_project(
-        self, project: Project, *, require_review: bool = True, dry_run: bool = False
+        self, project: Project, *, require_review: bool = True, dry_run: bool = False,
+        editable_overlay: bool = False,
     ) -> ExportSummary:
         nvts = self._nvt_repo.list_for_project(project.id)
 
@@ -116,7 +117,9 @@ class ExportService:
         docx_path = out_dir / f"VRA_NVT_Gesamt_{date_str}_v{version_count}.docx"
         html_path = out_dir / f"analysis_report_{date_str}_v{version_count}.html"
 
-        word_result = build_word_anlage(project, nvts, self.library, docx_path)
+        word_result = build_word_anlage(
+            project, nvts, self.library, docx_path, editable_overlay=editable_overlay
+        )
         build_html_report(project, nvts, self._audit, html_path)
 
         # Export-Row schreiben
