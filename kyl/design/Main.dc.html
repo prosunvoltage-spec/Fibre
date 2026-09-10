@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; background: #f2efe8; }
+    a { color: #1f4b47; text-decoration: none; }
+    a:hover { color: #16332f; }
+    .serif { font-family: "Instrument Serif", "Iowan Old Style", Georgia, serif; font-weight: 400; }
+    .sans { font-family: "Public Sans", "Helvetica Neue", Helvetica, sans-serif; }
+    .rule { height: 1px; background: #161a16; opacity: 0.16; }
+  </style>
+</helmet>
+
+<div class="sans" style="width: 1440px; background: #f2efe8; color: #161a16; padding: 0 0 120px;">
+
+  <!-- Kopfzeile: schmale Meta-Leiste statt Button-Navigation -->
+  <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 48px; padding: 28px 80px 20px;">
+    <div style="display: flex; align-items: baseline; gap: 14px;">
+      <span class="serif" style="font-size: 28px; letter-spacing: 0.01em;">KYL</span>
+      <span style="font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.65;">Facility Management &amp; Services</span>
+    </div>
+    <div style="display: flex; align-items: baseline; gap: 36px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;">
+      <span>Leistungen</span>
+      <span>Arbeiten</span>
+      <span>Haus</span>
+      <span style="border-bottom: 1px solid {{accent}}; padding-bottom: 3px; color: {{accent}};">Anfrage</span>
+    </div>
+  </div>
+  <div class="rule" style="margin: 0 80px;"></div>
+
+  <!-- Hero: asymmetrisches Raster, Text traegt die Flaeche -->
+  <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; padding: 96px 80px 0;">
+    <div style="grid-column: span 8;">
+      <div style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.65; margin-bottom: 40px;">Greven · seit 2024</div>
+      <h1 class="serif" style="margin: 0; font-size: 132px; line-height: 0.92; letter-spacing: -0.02em;">
+        Ihr Gebäude.
+      </h1>
+      <h1 class="serif" style="margin: 0 0 0 128px; font-size: 132px; line-height: 0.98; letter-spacing: -0.02em;">
+        <em style="font-style: italic;">Unsere</em> Mission.
+      </h1>
+    </div>
+    <div style="grid-column: span 4; display: flex; flex-direction: column; justify-content: flex-end; gap: 28px; padding-bottom: 12px;">
+      <p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 30ch;">
+        Reinigung, Grünpflege, Hausmeisterservice, Gebäudemanagement und
+        Effizienz — betreut von einem Haus, für Privat- und Gewerbeobjekte.
+      </p>
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <span style="font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; border-bottom: 1px solid {{accent}}; color: {{accent}}; padding-bottom: 4px;">Anfrage schreiben</span>
+        <span style="font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.62;">0176 60916450</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gezeichnete Fassade statt Foto-Platzhalter: flache Flaechen, kein Verlauf -->
+  <div style="padding: 88px 80px 0;">
+    <svg viewBox="0 0 1280 340" width="1280" height="340" role="img" aria-label="Abstrahierte Gebäudefassade mit gereinigten Glasflächen">
+      <rect x="0" y="0" width="1280" height="340" fill="#e7e2d7"></rect>
+      <g fill="#161a16" opacity="0.9">
+        <rect x="0" y="300" width="1280" height="40"></rect>
+      </g>
+      <g fill="#dcd6c8">
+        <rect x="72" y="40" width="392" height="260"></rect>
+        <rect x="496" y="96" width="312" height="204"></rect>
+        <rect x="840" y="16" width="368" height="284"></rect>
+      </g>
+      <g fill="#f2efe8">
+        <rect x="96" y="64" width="160" height="96"></rect>
+        <rect x="272" y="64" width="168" height="96"></rect>
+        <rect x="96" y="180" width="160" height="96"></rect>
+        <rect x="272" y="180" width="168" height="96"></rect>
+        <rect x="520" y="120" width="264" height="72"></rect>
+        <rect x="520" y="208" width="264" height="68"></rect>
+        <rect x="864" y="40" width="320" height="112"></rect>
+        <rect x="864" y="168" width="320" height="108"></rect>
+      </g>
+      <g fill="{{accent}}">
+        <rect x="272" y="64" width="168" height="96" opacity="0.14"></rect>
+        <rect x="864" y="40" width="320" height="112" opacity="0.1"></rect>
+      </g>
+      <g stroke="#161a16" stroke-width="1" opacity="0.22">
+        <line x1="72" y1="40" x2="72" y2="300"></line>
+        <line x1="464" y1="40" x2="464" y2="300"></line>
+        <line x1="808" y1="96" x2="808" y2="300"></line>
+        <line x1="1208" y1="16" x2="1208" y2="300"></line>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Kennzahlenzeile, gesetzt wie eine Bildunterschrift -->
+  <div style="display: flex; gap: 64px; padding: 28px 80px 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.65;">
+    <span>Privat- und Gewerbeobjekte</span>
+    <span>Individuelle Angebote</span>
+    <span>Schnelle Terminvergabe</span>
+  </div>
+
+  <!-- Leistungen: nummerierte Liste mit Haarlinien statt Karten-Raster -->
+  <div style="padding: 120px 80px 0;">
+    <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 32px; margin-bottom: 56px;">
+      <h2 class="serif" style="grid-column: span 7; margin: 0; font-size: 64px; line-height: 1.02; letter-spacing: -0.015em;">
+        Sechs Bereiche,<br>ein Ansprechpartner.
+      </h2>
+      <p style="grid-column: 9 / span 4; margin: 0; align-self: end; font-size: 15px; line-height: 1.65; opacity: 0.75;">
+        Was sonst vier Firmen und vier Rechnungen bedeutet, läuft hier über
+        einen Vertrag und eine Nummer.
+      </p>
+    </div>
+
+    <div class="rule"></div>
+
+    <sc-for list="{{services}}" as="s" hint-placeholder-count="6">
+      <div style="display: grid; grid-template-columns: 64px 5fr 6fr; gap: 32px; align-items: start; padding: 34px 0;">
+        <span class="serif" style="font-size: 20px; opacity: 0.62; padding-top: 8px;">{{s.no}}</span>
+        <h3 class="serif" style="margin: 0; font-size: 38px; line-height: 1.1; letter-spacing: -0.01em;">{{s.title}}</h3>
+        <p style="margin: 0; padding-top: 10px; font-size: 16px; line-height: 1.6; max-width: 52ch; opacity: 0.72;">{{s.text}}</p>
+      </div>
+      <div class="rule"></div>
+    </sc-for>
+  </div>
+
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#1f4b47","options":["#1f4b47","#2f3a6b","#7a3b2a","#161a16"],"section":"Farbe"}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      accent: this.props.accent ?? '#1f4b47',
+      services: [
+        { no: '01', title: 'Reinigungsdienstleistungen', text: 'Unterhalts-, Glas- und Sonderreinigung für Privat- und Gewerbeobjekte. Gründlich, nach Plan, zu festen Zeiten.' },
+        { no: '02', title: 'Garten- und Grünpflege', text: 'Die Außenanlage ist das Erste, was Ihre Besucher sehen. Wir halten sie das ganze Jahr über in Form.' },
+        { no: '03', title: 'Hausmeisterservice', text: 'Laufende Betreuung, kleine Reparaturen, Kontrollgänge. Ordnung und Funktion ohne Ihr Zutun.' },
+        { no: '04', title: 'Gebäudemanagement', text: 'Ein Überblick über alle relevanten Bereiche, damit der Betrieb reibungslos läuft und nichts liegen bleibt.' },
+        { no: '05', title: 'Gebäudeeffizienz', text: 'Energieverbrauch und Betriebskosten senken, etwa mit Wärmepumpen und Photovoltaik.' },
+        { no: '06', title: 'Sonstige Services', text: 'Was sonst niemand übernimmt: individuelle Zusatzleistungen rund um Ihre Immobilie.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

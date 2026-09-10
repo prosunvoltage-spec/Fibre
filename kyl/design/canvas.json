@@ -1,0 +1,39 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "title": "Richtung A · Editorial",
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 2320
+    },
+    {
+      "file": "Werkstatt.dc.html",
+      "title": "Richtung B · Werkstatt",
+      "x": 1600,
+      "y": 0,
+      "w": 1440,
+      "h": 1920
+    }
+  ],
+  "annotations": [
+    {
+      "id": "richtung-a",
+      "x": 0,
+      "y": -380,
+      "w": 620,
+      "text": "Richtung A — Editorial\n\nGroße Serife, asymmetrisches Raster, Leistungen als nummerierte Liste statt Karten. Text trägt die Fläche, nicht der Schatten.\n\nStärke: wirkt hochwertig und ruhig, hebt KYL aus dem Handwerker-Umfeld heraus.\nKompromiss: lebt von guten Fotos. Ohne echte Bilder bleibt viel Weißraum zu füllen."
+    },
+    {
+      "id": "richtung-b",
+      "x": 1600,
+      "y": -380,
+      "w": 620,
+      "text": "Richtung B — Werkstatt\n\nSchwere Groteske, harte Kanten, Sandton und Terrakotta, alles auf Linienraster. Keine Schatten, keine runden Ecken.\n\nStärke: unverwechselbar, greifbar, klingt nach Betrieb statt nach Agentur.\nKompromiss: polarisiert. Bei konservativen Gewerbekunden ist Richtung A die sichere Wahl."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}

@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&display=swap">
+  <style>
+    body { margin: 0; background: #ece4d5; }
+    a { color: #ab4026; text-decoration: none; }
+    a:hover { color: #7d2f1c; }
+    .arch { font-family: "Archivo", "Helvetica Neue", Helvetica, sans-serif; }
+    .label { font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+  </style>
+</helmet>
+
+<div class="arch" style="width: 1440px; background: #ece4d5; color: #17130f;">
+
+  <!-- Kopf: harte Kanten, kein Schatten, kein Blur -->
+  <div style="display: flex; align-items: stretch; justify-content: space-between; border-bottom: 3px solid #17130f;">
+    <div style="display: flex; align-items: center; gap: 20px; padding: 20px 40px; border-right: 3px solid #17130f;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; background: #17130f; color: #ece4d5; font-weight: 900; font-size: 17px; letter-spacing: -0.03em;">KYL</span>
+      <span class="label" style="line-height: 1.3; max-width: 15ch;">Facility Management<br>&amp; Services · Greven</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 40px; padding: 0 40px;">
+      <span class="label">Leistungen</span>
+      <span class="label">Arbeiten</span>
+      <span class="label">Betrieb</span>
+    </div>
+    <div style="display: flex; align-items: center; padding: 0 40px; background: {{accent}}; color: #ece4d5; border-left: 3px solid #17130f;">
+      <span class="label">Angebot anfragen</span>
+    </div>
+  </div>
+
+  <!-- Hero: Schrift als Flaeche, ein hartes Farbfeld -->
+  <div style="display: grid; grid-template-columns: 7fr 5fr; gap: 0; border-bottom: 3px solid #17130f;">
+    <div style="padding: 64px 48px 56px; border-right: 3px solid #17130f;">
+      <div class="label" style="color: {{accent}}; margin-bottom: 36px;">Seit 2024 · Vorher KYL Facility Cleaning</div>
+      <h1 style="margin: 0; font-size: 104px; font-weight: 900; line-height: 0.9; letter-spacing: -0.035em; text-transform: uppercase;">
+        Ihr<br>Gebäude.<br><span style="color: {{accent}};">Unsere</span><br>Mission.
+      </h1>
+      <div style="display: flex; gap: 16px; margin-top: 48px;">
+        <span style="display: inline-flex; align-items: center; padding: 16px 28px; background: #17130f; color: #ece4d5; font-size: 15px; font-weight: 700;">Kontakt aufnehmen</span>
+        <span style="display: inline-flex; align-items: center; padding: 16px 28px; border: 3px solid #17130f; font-size: 15px; font-weight: 700;">Leistungen ansehen</span>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column;">
+      <!-- Gezeichnete Werkzeug-Flaeche: flache Formen, keine Verlaeufe -->
+      <div style="flex-grow: 1; background: {{accent}}; border-bottom: 3px solid #17130f; display: flex; align-items: center; justify-content: center; padding: 40px;">
+        <svg viewBox="0 0 320 320" width="320" height="320" role="img" aria-label="Grafische Darstellung einer gereinigten Glasfläche">
+          <rect x="20" y="20" width="280" height="280" fill="#ece4d5"></rect>
+          <rect x="20" y="20" width="280" height="280" fill="none" stroke="#17130f" stroke-width="6"></rect>
+          <line x1="160" y1="20" x2="160" y2="300" stroke="#17130f" stroke-width="6"></line>
+          <line x1="20" y1="160" x2="300" y2="160" stroke="#17130f" stroke-width="6"></line>
+          <path d="M44 132 L120 56" stroke="#17130f" stroke-width="10" stroke-linecap="square"></path>
+          <path d="M44 108 L96 56" stroke="#17130f" stroke-width="10" stroke-linecap="square"></path>
+          <rect x="184" y="184" width="92" height="92" fill="#17130f"></rect>
+        </svg>
+      </div>
+      <div style="padding: 32px 40px; font-size: 17px; line-height: 1.55; font-weight: 500;">
+        Reinigung, Grünpflege, Hausmeister, Gebäudemanagement und Effizienz.
+        Ein Betrieb, eine Rechnung, eine Nummer, unter der jemand rangeht.
+      </div>
+    </div>
+  </div>
+
+  <!-- Versprechen als harte Spalten -->
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 3px solid #17130f;">
+    <div style="padding: 22px 40px; border-right: 3px solid #17130f;" class="label">Alles aus einer Hand</div>
+    <div style="padding: 22px 40px; border-right: 3px solid #17130f;" class="label">Individuelle Angebote</div>
+    <div style="padding: 22px 40px;" class="label">Schnelle Terminvergabe</div>
+  </div>
+
+  <!-- Leistungen: dichte Flaechenbloecke, keine Karten mit Schatten -->
+  <div style="padding: 72px 48px 0;">
+    <h2 style="margin: 0 0 16px; font-size: 68px; font-weight: 900; line-height: 0.94; letter-spacing: -0.035em; text-transform: uppercase; max-width: 18ch;">
+      Was wir übernehmen
+    </h2>
+    <p style="margin: 0 0 48px; font-size: 17px; line-height: 1.55; max-width: 56ch; font-weight: 500;">
+      Sechs Bereiche, die sonst vier Firmen bräuchten. Sie sagen, was ansteht,
+      wir teilen die Leute ein.
+    </p>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 3px solid #17130f;">
+    <sc-for list="{{services}}" as="s" hint-placeholder-count="6">
+      <div style="display: flex; flex-direction: column; gap: 14px; padding: 32px 32px 40px; border-right: 3px solid #17130f; border-bottom: 3px solid #17130f; min-height: 236px;">
+        <span style="font-size: 15px; font-weight: 900; color: {{accent}};">{{s.no}}</span>
+        <h3 style="margin: 0; font-size: 26px; font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; text-transform: uppercase;">{{s.title}}</h3>
+        <p style="margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400;">{{s.text}}</p>
+      </div>
+    </sc-for>
+  </div>
+
+  <!-- Abschlusszeile in der Akzentfarbe -->
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: 40px 48px; background: {{accent}}; color: #ece4d5;">
+    <span style="font-size: 34px; font-weight: 900; letter-spacing: -0.03em; text-transform: uppercase;">Sauber wird es erst, wenn wir gehen.</span>
+    <span style="font-size: 17px; font-weight: 700;">0176 60916450</span>
+  </div>
+
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#ab4026","options":["#ab4026","#8a6a1f","#2c5545","#17130f"],"section":"Farbe"}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      accent: this.props.accent ?? '#ab4026',
+      services: [
+        { no: '01', title: 'Reinigung', text: 'Unterhalts-, Glas- und Sonderreinigung für Privat- und Gewerbeobjekte. Nach Plan, zu festen Zeiten.' },
+        { no: '02', title: 'Garten und Grün', text: 'Rasen, Hecken, Beete, Laub. Die Außenanlage bleibt das ganze Jahr über vorzeigbar.' },
+        { no: '03', title: 'Hausmeister', text: 'Kontrollgänge, kleine Reparaturen, Winterdienst. Jemand, der nach dem Rechten sieht.' },
+        { no: '04', title: 'Gebäudemanagement', text: 'Fristen, Wartungen, Dienstleister. Wir behalten den Überblick, Sie bekommen einen Bericht.' },
+        { no: '05', title: 'Effizienz', text: 'Wärmepumpe, Photovoltaik, Verbrauch. Weniger Betriebskosten, ohne dass Sie sich einlesen müssen.' },
+        { no: '06', title: 'Sonstiges', text: 'Entrümpelung, Umzugsreinigung, Sonderaufträge. Fragen Sie, meistens geht es.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
