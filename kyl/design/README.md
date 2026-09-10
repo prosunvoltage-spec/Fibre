@@ -7,6 +7,7 @@ machen und die Canvas neu erzeugen, nie die erzeugte HTML-Datei bearbeiten.
 |---|---|
 | `Main.dc.html` | Richtung A — Editorial (führender Kandidat) |
 | `Werkstatt.dc.html` | Richtung B — Handwerklich und warm |
+| `Contractor.dc.html` | Richtung C — Service-Marke nach gesendeter Vorlage |
 | `canvas.json` | Anordnung der Artboards, Titel, die beiden Notizzettel |
 
 Jeder Entwurf zeigt Navigation, Hero und die sechs Leistungen bei 1440 px Breite.

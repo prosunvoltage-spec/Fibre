@@ -15,6 +15,14 @@
       "y": 0,
       "w": 1440,
       "h": 1920
+    },
+    {
+      "file": "Contractor.dc.html",
+      "title": "Richtung C · Service-Marke",
+      "x": 3200,
+      "y": 0,
+      "w": 1440,
+      "h": 2010
     }
   ],
   "annotations": [
@@ -31,6 +39,13 @@
       "y": -380,
       "w": 620,
       "text": "Richtung B — Werkstatt\n\nSchwere Groteske, harte Kanten, Sandton und Terrakotta, alles auf Linienraster. Keine Schatten, keine runden Ecken.\n\nStärke: unverwechselbar, greifbar, klingt nach Betrieb statt nach Agentur.\nKompromiss: polarisiert. Bei konservativen Gewerbekunden ist Richtung A die sichere Wahl."
+    },
+    {
+      "id": "richtung-c",
+      "x": 3200,
+      "y": -380,
+      "w": 620,
+      "text": "Richtung C — Service-Marke\n\nNach der gesendeten Vorlage: helle Fläche, Foto-Hero mit runden Ecken, Kennzahlenband, Karten mit Pfeil-Badge. Signatur ist die zweite Headline-Zeile in Kursiv. Akzent ist das Blau der bestehenden Website.\n\nStärke: vertriebsstark, vertraut, funktioniert für Gewerbe- wie Privatkunden.\nKompromiss: lebt komplett von guten Fotos. Die Flächen hier sind gezeichnet, mit echten Bildern sieht die Richtung deutlich anders aus. Außerdem der Look, den viele Dienstleister fahren — weniger eigen als A und B."
     }
   ],
   "launch": {

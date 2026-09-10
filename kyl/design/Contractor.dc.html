@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600;1,700;1,800&display=swap">
+  <style>
+    body { margin: 0; background: #ffffff; }
+    a { color: #0071e3; text-decoration: none; }
+    a:hover { color: #005bb8; }
+    .hg { font-family: "Hanken Grotesk", "Segoe UI", system-ui, sans-serif; }
+    .eyebrow-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 14px; border-radius: 999px; background: #ffffff; border: 1px solid #e6e7ea;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .dot { width: 6px; height: 6px; border-radius: 50%; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 8px 8px 8px 24px; border-radius: 999px;
+      font-size: 16px; font-weight: 600;
+    }
+    .fact:last-child { border-right: none; }
+    .pill-circle {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; border-radius: 50%;
+    }
+  </style>
+</helmet>
+
+<div class="hg" style="width: 1440px; background: #ffffff; color: #14161a;">
+
+  <!-- Navigation: hell, mittige Links, Aktion rechts als Pille -->
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: 22px 48px;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <span style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 12px; background: #14161a; color: #fff; font-weight: 800; font-size: 15px;">KYL</span>
+      <span style="display: flex; flex-direction: column; line-height: 1.15;">
+        <span style="font-size: 17px; font-weight: 800; letter-spacing: -0.01em;">KYL</span>
+        <span style="font-size: 11px; font-weight: 500; color: #6b6f76;">Facility Management</span>
+      </span>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 32px; font-size: 15px; font-weight: 500;">
+      <span style="color: {{accent}}; border-bottom: 2px solid {{accent}}; padding-bottom: 4px;">Start</span>
+      <span>Leistungen</span>
+      <span>Arbeiten</span>
+      <span>Über uns</span>
+      <span>Kontakt</span>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 20px;">
+      <span style="font-size: 15px; font-weight: 600;">0176 60916450</span>
+      <span class="pill" style="background: {{accent}}; color: #fff;">
+        Angebot anfragen
+        <span class="pill-circle" style="background: #fff;">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="{{accent}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Hero: Bildflaeche mit runden Ecken, Text linksbuendig darauf -->
+  <div style="padding: 0 48px;">
+    <div style="position: relative; height: 620px; border-radius: 28px; overflow: hidden; background: #2b3a4a;">
+
+      <!-- PLATZHALTER img/hero.jpg — bis dahin gezeichnete Flaeche, flache Formen -->
+      <svg viewBox="0 0 1344 620" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0; width: 100%; height: 100%;" role="img" aria-label="Gereinigte Glasfassade eines modernen Gebäudes vor blauem Himmel">
+        <rect width="1344" height="620" fill="#5b7f9e"></rect>
+        <rect y="0" width="1344" height="240" fill="#6d92b1"></rect>
+        <circle cx="1130" cy="118" r="58" fill="#8fb2cb"></circle>
+        <g fill="#3f5a72">
+          <rect x="700" y="150" width="300" height="470"></rect>
+          <rect x="1020" y="230" width="324" height="390"></rect>
+        </g>
+        <g fill="#7fa5c2">
+          <rect x="726" y="182" width="118" height="86"></rect>
+          <rect x="862" y="182" width="118" height="86"></rect>
+          <rect x="726" y="292" width="118" height="86"></rect>
+          <rect x="862" y="292" width="118" height="86"></rect>
+          <rect x="726" y="402" width="118" height="86"></rect>
+          <rect x="862" y="402" width="118" height="86"></rect>
+          <rect x="1046" y="262" width="132" height="98"></rect>
+          <rect x="1196" y="262" width="132" height="98"></rect>
+          <rect x="1046" y="386" width="132" height="98"></rect>
+          <rect x="1196" y="386" width="132" height="98"></rect>
+        </g>
+        <g fill="#a9c6dc" opacity="0.55">
+          <polygon points="726,182 844,182 726,268"></polygon>
+          <polygon points="1046,262 1178,262 1046,360"></polygon>
+        </g>
+        <rect x="0" y="560" width="1344" height="60" fill="#2f4356"></rect>
+      </svg>
+
+      <!-- Dunkler Verlauf nur links, damit der Text sitzt -->
+      <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11,17,24,0.86) 0%, rgba(11,17,24,0.72) 38%, rgba(11,17,24,0.12) 72%, rgba(11,17,24,0) 100%);"></div>
+
+      <div style="position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; gap: 26px; padding: 0 64px; max-width: 830px; color: #fff;">
+        <div style="display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 600;">
+          <span style="letter-spacing: 0.02em;">5,0</span>
+          <span style="display: inline-flex; gap: 3px;">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="#f5b301" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.9 5.8 21.1 7 14.2 2 9.3l6.9-1z"></path></svg>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="#f5b301" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.9 5.8 21.1 7 14.2 2 9.3l6.9-1z"></path></svg>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="#f5b301" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.9 5.8 21.1 7 14.2 2 9.3l6.9-1z"></path></svg>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="#f5b301" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.9 5.8 21.1 7 14.2 2 9.3l6.9-1z"></path></svg>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="#f5b301" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.9 5.8 21.1 7 14.2 2 9.3l6.9-1z"></path></svg>
+          </span>
+          <span style="opacity: 0.55;">|</span>
+          <span style="opacity: 0.9;">Aus [ANZAHL] Google-Bewertungen</span>
+        </div>
+
+        <h1 style="margin: 0; font-size: 82px; font-weight: 800; line-height: 1.02; letter-spacing: -0.03em;">
+          Ihr Gebäude.<br>
+          <em style="font-weight: 700; font-style: italic;">Unsere Mission.</em>
+        </h1>
+
+        <p style="margin: 0; max-width: 52ch; font-size: 18px; line-height: 1.6; color: rgba(255,255,255,0.88);">
+          Reinigung, Grünpflege, Hausmeisterservice, Gebäudemanagement und
+          Effizienz für Privat- und Gewerbeobjekte. Ein Ansprechpartner für
+          alles, was Ihre Immobilie braucht.
+        </p>
+
+        <div style="display: flex; gap: 14px; margin-top: 6px;">
+          <span class="pill" style="background: {{accent}}; color: #fff;">
+            Angebot einholen
+            <span class="pill-circle" style="background: #fff;">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="{{accent}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </span>
+          </span>
+          <span class="pill" style="border: 1.5px solid rgba(255,255,255,0.6); color: #fff;">
+            Leistungen ansehen
+            <span class="pill-circle" style="background: {{accent}};">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kennzahlenband: vier Spalten, Haarlinien, Platzhalter klar markiert -->
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 56px 48px 64px;">
+    <sc-for list="{{facts}}" as="f" hint-placeholder-count="4">
+      <div class="fact" style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 24px; border-right: 1px solid #e6e7ea;">
+        <span style="font-size: 46px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; white-space: nowrap;">{{f.value}}</span>
+        <span style="font-size: 15px; color: #6b6f76;">{{f.label}}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <!-- Leistungen: Karten mit Bildflaeche, Titel und rundem Pfeil-Badge -->
+  <div style="background: #f4f4f5; padding: 72px 48px 88px;">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 64px; margin-bottom: 44px;">
+      <div>
+        <span class="eyebrow-pill" style="color: {{accent}};">
+          <span class="dot" style="background: {{accent}};"></span>
+          Unsere Leistungen
+        </span>
+        <h2 style="margin: 20px 0 0; font-size: 52px; font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; max-width: 20ch;">
+          Alles rund ums Gebäude,
+          <em style="font-style: italic; font-weight: 700; color: {{accent}};">aus einer Hand.</em>
+        </h2>
+      </div>
+      <p style="margin: 0 0 8px; max-width: 38ch; font-size: 16px; line-height: 1.65; color: #545860;">
+        Sechs Bereiche, die sonst vier Firmen und vier Rechnungen bedeuten.
+        Sie sagen, was ansteht, wir teilen die Leute ein.
+      </p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+      <sc-for list="{{services}}" as="s" hint-placeholder-count="6">
+        <div style="display: flex; flex-direction: column; background: #fff; border-radius: 22px; overflow: hidden;">
+          <!-- PLATZHALTER: echtes Foto der jeweiligen Leistung -->
+          <div style="position: relative; height: 188px; background: {{s.tint}};">
+            <svg viewBox="0 0 400 188" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%;" role="img" aria-label="{{s.alt}}">
+              <rect width="400" height="188" fill="{{s.tint}}"></rect>
+              <rect x="0" y="120" width="400" height="68" fill="{{s.tintDark}}"></rect>
+              <rect x="42" y="46" width="104" height="74" fill="{{s.tintLight}}"></rect>
+              <rect x="164" y="28" width="86" height="92" fill="{{s.tintLight}}" opacity="0.72"></rect>
+              <rect x="268" y="58" width="92" height="62" fill="{{s.tintLight}}" opacity="0.5"></rect>
+            </svg>
+            <span style="position: absolute; top: 14px; right: 14px; display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; background: {{accent}};">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg>
+            </span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 24px 24px 28px;">
+            <h3 style="margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -0.015em;">{{s.title}}</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #6b6f76;">{{s.text}}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#0071e3","options":["#0071e3","#0f7a5a","#c8322a","#14161a"],"section":"Farbe"}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      accent: this.props.accent ?? '#0071e3',
+      facts: [
+        { value: '[ANZAHL]+', label: 'Betreute Objekte' },
+        { value: '2024', label: 'Seit der Gründung' },
+        { value: '6', label: 'Leistungsbereiche' },
+        { value: '[X] Std.', label: 'Bis zur Rückmeldung' }
+      ],
+      services: [
+        { title: 'Reinigungsdienstleistungen', text: 'Unterhalts-, Glas- und Sonderreinigung für Privat- und Gewerbeobjekte.', alt: 'Gereinigte Glasfläche', tint: '#7f9db6', tintDark: '#5c7a94', tintLight: '#cfe0ee' },
+        { title: 'Garten- und Grünpflege', text: 'Rasen, Hecken, Beete und Laub. Die Außenanlage bleibt das ganze Jahr vorzeigbar.', alt: 'Gepflegte Außenanlage', tint: '#7f9f80', tintDark: '#5c775e', tintLight: '#d3e6d4' },
+        { title: 'Hausmeisterservice', text: 'Kontrollgänge, kleine Reparaturen, Winterdienst. Jemand sieht nach dem Rechten.', alt: 'Hausmeister bei der Arbeit', tint: '#9a9384', tintDark: '#726c60', tintLight: '#e5dfd2' },
+        { title: 'Gebäudemanagement', text: 'Fristen, Wartungen, Dienstleister. Wir behalten den Überblick, Sie bekommen den Bericht.', alt: 'Gebäudetechnik im Betrieb', tint: '#83909f', tintDark: '#5f6a77', tintLight: '#dbe2ea' },
+        { title: 'Gebäudeeffizienz', text: 'Wärmepumpe, Photovoltaik, Verbrauch. Weniger Betriebskosten ohne eigenes Einlesen.', alt: 'Photovoltaikanlage auf einem Dach', tint: '#6f8fa8', tintDark: '#4e6a80', tintLight: '#cbdeec' },
+        { title: 'Sonstige Services', text: 'Entrümpelung, Umzugsreinigung, Sonderaufträge. Fragen Sie, meistens geht es.', alt: 'Sonderauftrag rund um die Immobilie', tint: '#9b8b96', tintDark: '#746570', tintLight: '#e7dce4' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
