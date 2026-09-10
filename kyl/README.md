@@ -1,19 +1,22 @@
 # KYL Facility Management & Services — Website
 
-One-Page-Website im Apple-Stil für KYL Facility Management & Services (Greven).
-Reines HTML/CSS/JS, keine Abhängigkeiten, kein Build-Schritt.
+One-Page-Website für KYL Facility Management & Services (Greven).
+Reines HTML/CSS/JS, keine Abhängigkeiten, kein Build-Schritt, keine externen
+Requests.
 
 ## Struktur
 
 ```
 kyl/
-├── index.html          One-Pager: Hero, Vertrauensleiste, Services, Projekte,
+├── index.html          One-Pager: Hero, Kennzahlen, Leistungen, Arbeiten,
 │                       Über uns, CTA, Kontakt, Footer
 ├── impressum.html      Pflichtangaben nach § 5 DDG
 ├── datenschutz.html    Datenschutzerklärung
-├── css/style.css       Design-System, alle Styles (mobile-first)
-├── js/main.js          Nav-Scroll-State, Mobile-Menü, Scroll-Reveal, Formular
-└── img/                Fotos (siehe img/README.md)
+├── css/style.css       Design-System und alle Styles (mobile-first)
+├── js/main.js          Navi-Zustand, Mobile-Menü, Scroll-Reveal, Formular
+├── fonts/              Hanken Grotesk, selbst gehostet (siehe fonts/README.md)
+├── img/                Fotos (siehe img/README.md)
+└── design/             Entwürfe der drei Gestaltungsrichtungen
 ```
 
 ## Lokal ansehen
@@ -25,41 +28,52 @@ python3 -m http.server 8000
 
 ## Design-System
 
+Umgesetzt ist Richtung C aus `design/`: helle Flächen, Foto-Hero mit runden
+Ecken, Pillen-Buttons mit Pfeil-Kreis, Karten mit rundem Pfeil-Badge. Die
+Signatur ist die zweite Headline-Zeile in Kursiv.
+
 Alle Werte stehen als Custom Properties oben in `css/style.css` unter `:root`:
 
-- **Akzentfarbe** `--c-accent: #0071e3` (Hover `#0055b8`) — an einer Stelle änderbar
-- **Basis** `--c-bg: #fafafa`, Text `--c-dark: #1d1d1f`
-- **Spacing** 8-Punkt-System `--s-1` bis `--s-16`
-- **Container** `--container: 1200px`
-- **Schrift** Systemfont-Stack (SF Pro / Segoe UI / Inter), keine Webfont-Downloads
+| Token | Wert |
+|---|---|
+| `--c-accent` | `#0071e3`, dunkler `#005bb8` |
+| Flächen | `--c-white` `#ffffff`, `--c-surface` `#f4f4f5` |
+| Text | `--c-text` `#14161a`, `--c-text-soft` `#6b6f76` |
+| Radien | 12 px Felder, 22 px Karten, 28 px Hero, Pillen rund |
+| Spacing | 8-Punkt-System `--s-1` bis `--s-12` |
+| Container | `--container` 1360 px |
 
-Breakpoints: 700px (2 Spalten), 900px (Desktop-Navi, zweispaltige Sektionen),
-1024px (3 Spalten).
+Breakpoints: 700 px (zwei Spalten), 900 px (zweispaltige Sektionen),
+1000 px (Desktop-Navi), 1024 px (drei Spalten).
+
+Wiederkehrende Bausteine: `.pill` (vier Varianten), `.eyebrow`, `.card`,
+`.tile`, `.badge-arrow`, `.check-list`. Neue Abschnitte sollten diese
+Bausteine nutzen, statt eigene Muster einzuführen.
 
 ## Noch zu erledigen
 
-- [ ] **Straße und Hausnummer** in `impressum.html` und `datenschutz.html` ergänzen
-      (aktuell `[Straße und Hausnummer]`) — ohne vollständige Anschrift ist das
-      Impressum nicht rechtssicher
+- [ ] **Straße und Hausnummer** in `impressum.html` und `datenschutz.html`
+      ergänzen (aktuell `[Straße und Hausnummer]`) — ohne vollständige
+      Anschrift ist das Impressum nicht rechtssicher
 - [ ] **USt-IdNr.** und **Registernummer** in `impressum.html` eintragen
-      (stehen aktuell als „wird nachgereicht“)
-- [ ] **Echte Fotos** nach `img/` legen, Dateinamen siehe `img/README.md`
-- [ ] **Formular-Backend** anbinden: `js/main.js`, Block 4, TODO-Kommentar im
+- [ ] **Drei Zahlen im Markup** ersetzen, alle mit `PLATZHALTER` kommentiert:
+      Anzahl betreuter Objekte, übliche Reaktionszeit, Anzahl der Bewertungen
+      in der Hero-Zeile. Solange keine echten Werte vorliegen, lieber die
+      betroffenen Elemente entfernen als Zahlen erfinden
+- [ ] **Echte Fotos** nach `img/` legen, Dateinamen siehe `img/README.md`.
+      Diese Gestaltung lebt von Fotos — die Farbflächen sind nur ein Notbehelf
+- [ ] **Formular-Backend** anbinden: `js/main.js`, Block 4, TODO im
       Submit-Handler (Formspree, Netlify Forms oder eigenes Backend)
-- [ ] Datenschutzerklärung rechtlich prüfen lassen, sobald externe Dienste
-      (Formular-Backend, Karte, Analytics) eingebunden sind
+- [ ] Datenschutzerklärung prüfen lassen, sobald externe Dienste dazukommen
 
-Bereits eingepflegt sind Telefon, E-Mail, Ort, Inhaber und der Instagram-Link.
-
-## Erweitern
-
-Für eine eigene Unterseite `impressum.html` kopieren: Header, Footer und die
-Klasse `site-header--solid` sind dort bereits so aufgebaut, dass nur der Inhalt
-zwischen `<main>` und `</main>` ausgetauscht werden muss.
+Eingepflegt sind Telefon, E-Mail, Ort, Inhaber und der Instagram-Link.
 
 ## Barrierefreiheit & Performance
 
 Semantische Landmarks, Skip-Link, sichtbarer Fokus-Ring, Alt-Texte an allen
 Bildern, `aria-expanded` am Menü-Button, Live-Regionen an den Formularfehlern.
-Animationen respektieren `prefers-reduced-motion`. Keine externen Requests:
-Icons sind inline, Schriften kommen vom System, Bilder laden `lazy`.
+Alle Text-Hintergrund-Paare liegen über 4,5:1. Animationen respektieren
+`prefers-reduced-motion`.
+
+Keine externen Requests: Icons sind inline, die Schrift liegt lokal, Bilder
+laden `lazy`. Die vier Schriftdateien wiegen zusammen rund 78 KB.

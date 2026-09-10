@@ -5,15 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KYL Facility Management &amp; Services — Ihr Gebäude. Unsere Mission.</title>
   <meta name="description" content="KYL Facility Management &amp; Services aus Greven: Gebäudereinigung, Garten- &amp; Grünpflege, Hausmeisterservice, Gebäudemanagement und Gebäudeeffizienz — alles aus einer Hand.">
-  <meta name="theme-color" content="#fafafa">
+  <meta name="theme-color" content="#ffffff">
   <link rel="canonical" href="https://www.kyl-fms.de/">
 
-  <!-- Open Graph für Social-Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="KYL Facility Management &amp; Services">
   <meta property="og:description" content="Facility Management &amp; Reinigungsdienstleistungen für Privat- und Gewerbeobjekte – alles aus einer Hand.">
   <meta property="og:locale" content="de_DE">
 
+  <!-- Schrift liegt lokal, siehe fonts/README.md. Vorladen, damit die
+       Headline nicht erst im Fallback erscheint. -->
+  <link rel="preload" href="fonts/hankengrotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,182 +23,240 @@
   <a class="skip-link" href="#main">Zum Hauptinhalt springen</a>
 
   <!-- ======================================================================
-       Navigation — über dem Hero transparent, beim Scrollen mit Blur-Hinterlegung
+       Navigation — hell, Links mittig, Aktion rechts
        ====================================================================== -->
   <header class="site-header">
     <nav class="nav-inner" aria-label="Hauptnavigation">
       <a href="#top" class="logo">
-        <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-          <rect x="1" y="1" width="38" height="38" rx="9" fill="none" stroke="currentColor" stroke-width="1.6"/>
-          <path d="M12 11v18M12 20l9-9M12 20l9 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="28" cy="14" r="2.4" fill="currentColor"/>
-        </svg>
-        <span>KYL</span>
-        <span class="logo-sub">Facility Management &amp; Services</span>
+        <span class="logo-mark" aria-hidden="true">KYL</span>
+        <span class="logo-text">
+          <strong>KYL</strong>
+          <span>Facility Management</span>
+        </span>
       </a>
 
       <ul class="nav-links">
-        <li><a href="#services">Services</a></li>
+        <li><a href="#top" class="is-active">Start</a></li>
+        <li><a href="#services">Leistungen</a></li>
+        <li><a href="#projekte">Arbeiten</a></li>
         <li><a href="#ueber-uns">Über uns</a></li>
-        <li><a href="#projekte">Projekte</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
 
-      <a href="#kontakt" class="btn btn-primary btn-sm nav-cta">Angebot anfragen</a>
+      <div class="nav-actions">
+        <a href="tel:+4917660916450" class="nav-phone">0176 60916450</a>
+        <a href="#kontakt" class="pill pill--primary pill--sm">
+          Angebot anfragen
+          <span class="pill-circle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMobile" aria-label="Menü öffnen">
         <span></span><span></span><span></span>
       </button>
     </nav>
 
-    <!-- Mobiles Overlay-Menü -->
     <div class="nav-mobile" id="navMobile">
-      <a href="#services">Services</a>
+      <a href="#services">Leistungen</a>
+      <a href="#projekte">Arbeiten</a>
       <a href="#ueber-uns">Über uns</a>
-      <a href="#projekte">Projekte</a>
       <a href="#kontakt">Kontakt</a>
-      <a href="#kontakt" class="btn btn-primary">Angebot anfragen</a>
+      <a href="tel:+4917660916450">0176 60916450</a>
+      <a href="#kontakt" class="pill pill--primary">
+        Angebot anfragen
+        <span class="pill-circle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+        </span>
+      </a>
     </div>
   </header>
 
   <main id="main">
 
     <!-- ====================================================================
-         1. Hero
+         1. Hero — Foto-Karte mit runden Ecken
          ==================================================================== -->
     <section class="hero" id="top">
-      <div class="hero-media">
-        <!-- Farbverlauf-Platzhalter, bleibt sichtbar solange kein Foto vorhanden ist -->
-        <div class="ph ph-hero" aria-hidden="true"></div>
-        <!-- PLATZHALTER: img/hero.jpg (Querformat, mind. 2000×1200 px, z.B. saubere
-             moderne Glasfassade oder gepflegte Außenanlage). Sobald die Datei existiert,
-             ersetzt sie den Verlauf automatisch. -->
-        <img src="img/hero.jpg" alt="Moderne Gebäudefassade mit spiegelndem Glas" fetchpriority="high" onerror="this.remove()">
-      </div>
+      <div class="container">
+        <div class="hero-frame">
+          <div class="hero-media">
+            <!-- Farbfläche, bleibt sichtbar solange kein Foto vorhanden ist -->
+            <div class="ph ph-hero" aria-hidden="true"></div>
+            <!-- PLATZHALTER: img/hero.jpg (Querformat, mind. 2000×1200 px,
+                 z.B. gereinigte Glasfassade). Ersetzt die Fläche automatisch. -->
+            <img src="img/hero.jpg" alt="Moderne Gebäudefassade mit spiegelndem Glas" fetchpriority="high" onerror="this.remove()">
+          </div>
 
-      <div class="container hero-content reveal">
-        <h1>Ihr Gebäude.<br>Unsere Mission.</h1>
-        <p class="lead">
-          Facility Management &amp; Reinigungsdienstleistungen für Privat- und
-          Gewerbeobjekte – alles aus einer Hand.
-        </p>
-        <div class="hero-actions">
-          <a href="#kontakt" class="btn btn-primary">Kontakt aufnehmen</a>
-          <a href="#services" class="btn btn-ghost">Services entdecken</a>
+          <div class="hero-content">
+            <!-- PLATZHALTER: echte Bewertungszahl eintragen, sobald sie vorliegt -->
+            <p class="rating">
+              <span>5,0</span>
+              <span class="rating-stars" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.9 5.8 21.1 7 14.2 2 9.3l6.9-1z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.9 5.8 21.1 7 14.2 2 9.3l6.9-1z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.9 5.8 21.1 7 14.2 2 9.3l6.9-1z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.9 5.8 21.1 7 14.2 2 9.3l6.9-1z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.9 5.8 21.1 7 14.2 2 9.3l6.9-1z"/></svg>
+              </span>
+              <span class="rating-sep" aria-hidden="true">|</span>
+              <span class="rating-note">Aus [ANZAHL] Google-Bewertungen</span>
+            </p>
+
+            <h1>
+              Ihr Gebäude.<br>
+              <em class="italic-light">Unsere Mission.</em>
+            </h1>
+
+            <p class="lead">
+              Reinigung, Grünpflege, Hausmeisterservice, Gebäudemanagement und
+              Effizienz für Privat- und Gewerbeobjekte. Ein Ansprechpartner für
+              alles, was Ihre Immobilie braucht.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#kontakt" class="pill pill--primary">
+                Angebot einholen
+                <span class="pill-circle" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+              </a>
+              <a href="#services" class="pill pill--ghost">
+                Leistungen ansehen
+                <span class="pill-circle" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-
-      <a href="#services" class="scroll-hint" aria-label="Weiter zu den Services">Mehr</a>
     </section>
 
     <!-- ====================================================================
-         2. Vertrauensleiste
+         2. Kennzahlenband
+         Zwei Werte sind echt, zwei sind klar markierte Platzhalter.
          ==================================================================== -->
-    <section class="trustbar" aria-label="Unsere Versprechen">
+    <section aria-label="KYL in Zahlen">
       <div class="container">
-        <ul>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            Alles aus einer Hand
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            Individuelle Angebote
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            Schnelle Terminvergabe
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-            Langfristige Zufriedenheit
-          </li>
-        </ul>
+        <div class="facts reveal">
+          <!-- PLATZHALTER: Anzahl betreuter Objekte eintragen -->
+          <div><strong>[ANZAHL]+</strong><span>Betreute Objekte</span></div>
+          <div><strong>2024</strong><span>Seit der Gründung</span></div>
+          <div><strong>6</strong><span>Leistungsbereiche</span></div>
+          <!-- PLATZHALTER: übliche Reaktionszeit eintragen -->
+          <div><strong>[X] Std.</strong><span>Bis zur Rückmeldung</span></div>
+        </div>
       </div>
     </section>
 
     <!-- ====================================================================
-         3. Services — 6 Karten, Icons im Lucide-Linienstil (inline, kein CDN)
+         3. Leistungen
          ==================================================================== -->
-    <section class="section" id="services">
+    <section class="section section--surface" id="services">
       <div class="container">
-        <div class="section-head section-head--center reveal">
-          <p class="eyebrow">Leistungen</p>
-          <h2>Ein Partner für das ganze Objekt.</h2>
+        <div class="section-head section-head--split reveal">
+          <div>
+            <span class="eyebrow">Unsere Leistungen</span>
+            <h2>Alles rund ums Gebäude, <em class="italic-accent">aus einer Hand.</em></h2>
+          </div>
           <p>
-            Von der laufenden Reinigung bis zur Energieoptimierung: Sie haben einen
-            Ansprechpartner, wir haben den Überblick.
+            Sechs Bereiche, die sonst vier Firmen und vier Rechnungen bedeuten.
+            Sie sagen, was ansteht, wir teilen die Leute ein.
           </p>
         </div>
 
         <div class="card-grid">
 
           <article class="card reveal">
-            <span class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>
-                <path d="M19 3v4M17 5h4"/>
-              </svg>
-            </span>
-            <h3>Reinigungsdienstleistungen</h3>
-            <p>Professionelle Reinigung für Privat- und Gewerbeobjekte, zuverlässig und gründlich.</p>
+            <div class="card-media">
+              <div class="ph ph-1" aria-hidden="true"></div>
+              <!-- PLATZHALTER: img/service-reinigung.jpg -->
+              <img src="img/service-reinigung.jpg" alt="Mitarbeiter bei der Glasreinigung" loading="lazy" onerror="this.remove()">
+              <span class="badge-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+              </span>
+            </div>
+            <div class="card-body">
+              <h3>Reinigungsdienstleistungen</h3>
+              <p>Unterhalts-, Glas- und Sonderreinigung für Privat- und Gewerbeobjekte. Gründlich, nach Plan, zu festen Zeiten.</p>
+            </div>
           </article>
 
           <article class="card reveal reveal-delay-1">
-            <span class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M7 20h10"/>
-                <path d="M10 20c5.5-2.5.8-6.4 3-10"/>
-                <path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8Z"/>
-                <path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2Z"/>
-              </svg>
-            </span>
-            <h3>Garten- &amp; Grünpflege</h3>
-            <p>Pflege von Außenanlagen als Aushängeschild jeder Immobilie.</p>
+            <div class="card-media">
+              <div class="ph ph-2" aria-hidden="true"></div>
+              <!-- PLATZHALTER: img/service-gruenpflege.jpg -->
+              <img src="img/service-gruenpflege.jpg" alt="Gepflegte Grünanlage vor einem Gebäude" loading="lazy" onerror="this.remove()">
+              <span class="badge-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+              </span>
+            </div>
+            <div class="card-body">
+              <h3>Garten- &amp; Grünpflege</h3>
+              <p>Rasen, Hecken, Beete und Laub. Die Außenanlage ist das Erste, was Ihre Besucher sehen — sie bleibt das ganze Jahr vorzeigbar.</p>
+            </div>
           </article>
 
           <article class="card reveal reveal-delay-2">
-            <span class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/>
-              </svg>
-            </span>
-            <h3>Hausmeisterservice</h3>
-            <p>Laufende Betreuung für Ordnung und Funktionalität.</p>
+            <div class="card-media">
+              <div class="ph ph-3" aria-hidden="true"></div>
+              <!-- PLATZHALTER: img/service-hausmeister.jpg -->
+              <img src="img/service-hausmeister.jpg" alt="Hausmeister bei einer Reparatur" loading="lazy" onerror="this.remove()">
+              <span class="badge-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+              </span>
+            </div>
+            <div class="card-body">
+              <h3>Hausmeisterservice</h3>
+              <p>Kontrollgänge, kleine Reparaturen, Winterdienst. Jemand sieht regelmäßig nach dem Rechten, ohne dass Sie nachfragen müssen.</p>
+            </div>
           </article>
 
           <article class="card reveal">
-            <span class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/>
-                <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/>
-                <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/>
-                <path d="M10 6h4M10 10h4M10 14h4M10 18h4"/>
-              </svg>
-            </span>
-            <h3>Gebäudemanagement</h3>
-            <p>Überblick über alle relevanten Bereiche für einen reibungslosen Betrieb.</p>
+            <div class="card-media">
+              <div class="ph ph-4" aria-hidden="true"></div>
+              <!-- PLATZHALTER: img/service-gebaeudemanagement.jpg -->
+              <img src="img/service-gebaeudemanagement.jpg" alt="Technikraum eines Gebäudes" loading="lazy" onerror="this.remove()">
+              <span class="badge-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+              </span>
+            </div>
+            <div class="card-body">
+              <h3>Gebäudemanagement</h3>
+              <p>Fristen, Wartungen, Dienstleister. Wir behalten den Überblick über alle relevanten Bereiche, Sie bekommen den Bericht.</p>
+            </div>
           </article>
 
           <article class="card reveal reveal-delay-1">
-            <span class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14Z"/>
-              </svg>
-            </span>
-            <h3>Gebäudeeffizienz</h3>
-            <p>Optimierung von Energieverbrauch und Betriebskosten, etwa bei Wärmepumpen und PV-Anlagen.</p>
+            <div class="card-media">
+              <div class="ph ph-5" aria-hidden="true"></div>
+              <!-- PLATZHALTER: img/service-effizienz.jpg -->
+              <img src="img/service-effizienz.jpg" alt="Wärmepumpe an einem Wohngebäude" loading="lazy" onerror="this.remove()">
+              <span class="badge-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+              </span>
+            </div>
+            <div class="card-body">
+              <h3>Gebäudeeffizienz</h3>
+              <p>Wärmepumpe, Photovoltaik, Verbrauch. Weniger Energie und Betriebskosten, ohne dass Sie sich selbst einlesen müssen.</p>
+            </div>
           </article>
 
           <article class="card reveal reveal-delay-2">
-            <span class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M8 12h8M12 8v8"/>
-              </svg>
-            </span>
-            <h3>Sonstige Services</h3>
-            <p>Flexible, individuelle Zusatzleistungen rund ums Gebäude.</p>
+            <div class="card-media">
+              <div class="ph ph-7" aria-hidden="true"></div>
+              <!-- PLATZHALTER: img/service-sonstiges.jpg -->
+              <img src="img/service-sonstiges.jpg" alt="Sonderauftrag rund um die Immobilie" loading="lazy" onerror="this.remove()">
+              <span class="badge-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+              </span>
+            </div>
+            <div class="card-body">
+              <h3>Sonstige Services</h3>
+              <p>Entrümpelung, Umzugsreinigung, Sonderaufträge. Flexible Zusatzleistungen rund ums Gebäude — fragen Sie einfach.</p>
+            </div>
           </article>
 
         </div>
@@ -204,15 +264,16 @@
     </section>
 
     <!-- ====================================================================
-         4. Projekte / Referenzen
-         Alle Kacheln nutzen Platzhalter-Verläufe. Echte Fotos siehe img/README.md.
+         4. Arbeiten / Projekte
          ==================================================================== -->
-    <section class="section section--soft" id="projekte">
+    <section class="section" id="projekte">
       <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Projekte</p>
-          <h2>Ergebnisse, die man sieht.</h2>
-          <p>Ein Ausschnitt unserer Arbeit – von der Fassade bis zur Photovoltaikanlage.</p>
+        <div class="section-head section-head--split reveal">
+          <div>
+            <span class="eyebrow">Unsere Arbeiten</span>
+            <h2>Ergebnisse, <em class="italic-accent">die man sieht.</em></h2>
+          </div>
+          <p>Ein Ausschnitt unserer Arbeit — von der Fassade bis zur Photovoltaikanlage.</p>
         </div>
 
         <div class="tile-grid">
@@ -223,10 +284,10 @@
               <!-- PLATZHALTER: img/projekt-terrassendach.jpg -->
               <img src="img/projekt-terrassendach.jpg" alt="Gereinigtes Terrassendach aus Glas" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="tile-label">
-              <span>Reinigung</span>
-              <strong>Terrassendach-Reinigung</strong>
-            </div>
+            <span class="badge-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+            <div class="tile-label"><span>Reinigung</span><strong>Terrassendach-Reinigung</strong></div>
           </article>
 
           <article class="tile reveal reveal-delay-1">
@@ -235,10 +296,10 @@
               <!-- PLATZHALTER: img/projekt-wege-flaechen.jpg -->
               <img src="img/projekt-wege-flaechen.jpg" alt="Gereinigte Pflasterfläche vor einem Gebäude" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="tile-label">
-              <span>Außenanlage</span>
-              <strong>Wege- &amp; Flächenreinigung</strong>
-            </div>
+            <span class="badge-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+            <div class="tile-label"><span>Außenanlage</span><strong>Wege- &amp; Flächenreinigung</strong></div>
           </article>
 
           <article class="tile reveal reveal-delay-2">
@@ -247,10 +308,10 @@
               <!-- PLATZHALTER: img/projekt-fensterreinigung.jpg -->
               <img src="img/projekt-fensterreinigung.jpg" alt="Streifenfrei gereinigte Fensterfront" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="tile-label">
-              <span>Reinigung</span>
-              <strong>Fensterreinigung</strong>
-            </div>
+            <span class="badge-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+            <div class="tile-label"><span>Reinigung</span><strong>Fensterreinigung</strong></div>
           </article>
 
           <article class="tile reveal">
@@ -259,10 +320,10 @@
               <!-- PLATZHALTER: img/projekt-pv-reinigung.jpg -->
               <img src="img/projekt-pv-reinigung.jpg" alt="Photovoltaikanlage nach der Reinigung" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="tile-label">
-              <span>Reinigung</span>
-              <strong>PV-Anlagen-Reinigung</strong>
-            </div>
+            <span class="badge-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+            <div class="tile-label"><span>Reinigung</span><strong>PV-Anlagen-Reinigung</strong></div>
           </article>
 
           <article class="tile reveal reveal-delay-1">
@@ -271,10 +332,10 @@
               <!-- PLATZHALTER: img/projekt-waermepumpe.jpg -->
               <img src="img/projekt-waermepumpe.jpg" alt="Installierte Wärmepumpe an einem Wohngebäude" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="tile-label">
-              <span>Gebäudeeffizienz</span>
-              <strong>Wärmepumpe</strong>
-            </div>
+            <span class="badge-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+            <div class="tile-label"><span>Gebäudeeffizienz</span><strong>Wärmepumpe</strong></div>
           </article>
 
           <article class="tile reveal reveal-delay-2">
@@ -283,10 +344,10 @@
               <!-- PLATZHALTER: img/projekt-glasreinigung.jpg -->
               <img src="img/projekt-glasreinigung.jpg" alt="Glasfläche während der professionellen Reinigung" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="tile-label">
-              <span>Reinigung</span>
-              <strong>Glasreinigung</strong>
-            </div>
+            <span class="badge-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+            <div class="tile-label"><span>Reinigung</span><strong>Glasreinigung</strong></div>
           </article>
 
           <article class="tile reveal">
@@ -295,10 +356,10 @@
               <!-- PLATZHALTER: img/projekt-pv-anlage.jpg -->
               <img src="img/projekt-pv-anlage.jpg" alt="Photovoltaikanlage auf einem Hausdach" loading="lazy" onerror="this.remove()">
             </div>
-            <div class="tile-label">
-              <span>Gebäudeeffizienz</span>
-              <strong>PV-Anlage</strong>
-            </div>
+            <span class="badge-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+            </span>
+            <div class="tile-label"><span>Gebäudeeffizienz</span><strong>PV-Anlage</strong></div>
           </article>
 
         </div>
@@ -308,47 +369,55 @@
     <!-- ====================================================================
          5. Über uns
          ==================================================================== -->
-    <section class="section" id="ueber-uns">
+    <section class="section section--surface" id="ueber-uns">
       <div class="container">
         <div class="split">
 
-          <div class="split-text reveal">
-            <p class="eyebrow">Über uns</p>
-            <h2>Vom Reinigungsbetrieb zum Generaldienstleister.</h2>
-            <p class="muted" style="margin-top: var(--s-3);">
+          <div class="split-media reveal">
+            <div class="ph ph-8" aria-hidden="true"></div>
+            <!-- PLATZHALTER: img/team.jpg (quadratisch, mind. 1200×1200 px) -->
+            <img src="img/team.jpg" alt="Das Team von KYL Facility Management &amp; Services bei der Arbeit" loading="lazy" onerror="this.remove()">
+          </div>
+
+          <div class="split-text reveal reveal-delay-1">
+            <span class="eyebrow">Über uns</span>
+            <h2>Vom Reinigungsbetrieb zum <em class="italic-accent">Generaldienstleister.</em></h2>
+            <p>
               Von 2024 bis 2026 haben wir unter dem Namen KYL Facility Cleaning
               erfolgreich Gebäudereinigung angeboten. Jetzt gehen wir den nächsten
               Schritt: Als KYL Facility Management &amp; Services sind wir Ihr
-              Generaldienstleister rund um die Immobilie – von der Reinigung über
-              Garten- und Grünpflege bis hin zu Hausmeisterservice, Gebäudemanagement
-              und individuellen Zusatzleistungen.
+              Generaldienstleister rund um die Immobilie.
             </p>
-            <p class="muted">
+            <p>
               Geführt von einem jungen, zielstrebigen Team mit dem Willen,
               Ergebnisse zu liefern.
             </p>
 
-            <div class="facts">
-              <div>
-                <strong>2024</strong>
-                <span>Gegründet als KYL Facility Cleaning</span>
-              </div>
-              <div>
-                <strong>6</strong>
-                <span>Leistungsbereiche aus einer Hand</span>
-              </div>
-              <div>
-                <strong>48268</strong>
-                <span>Zuhause in Greven</span>
-              </div>
-            </div>
-          </div>
+            <ul class="check-list">
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="m7 12.5 3.2 3.2L17 9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Ein Ansprechpartner für alle Leistungen, ein Vertrag, eine Rechnung
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="m7 12.5 3.2 3.2L17 9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Angebote nach Objekt, kein Standardpaket von der Stange
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="m7 12.5 3.2 3.2L17 9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Feste Termine und schnelle Rückmeldung, auch kurzfristig
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11"/><path d="m7 12.5 3.2 3.2L17 9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Aus Greven, für Objekte in der Region
+              </li>
+            </ul>
 
-          <div class="split-media reveal reveal-delay-1">
-            <div class="ph ph-8" aria-hidden="true"></div>
-            <!-- PLATZHALTER: img/team.jpg (quadratisch, mind. 1200×1200 px,
-                 z.B. Teamfoto oder Detailaufnahme bei der Arbeit) -->
-            <img src="img/team.jpg" alt="Das Team von KYL Facility Management &amp; Services bei der Arbeit" loading="lazy" onerror="this.remove()">
+            <a href="#kontakt" class="pill pill--outline" style="margin-top: 8px;">
+              Kennenlernen
+              <span class="pill-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </a>
           </div>
 
         </div>
@@ -356,53 +425,64 @@
     </section>
 
     <!-- ====================================================================
-         6. CTA-Band
+         6. CTA-Block
          ==================================================================== -->
-    <section class="cta-band">
-      <div class="container reveal">
-        <h2>Bereit für ein sauberes Ergebnis?</h2>
-        <p>
-          Schildern Sie uns kurz Ihr Objekt und Ihr Anliegen – Sie erhalten ein
-          individuelles Angebot, ohne Standardpaket von der Stange.
-        </p>
-        <a href="#kontakt" class="btn btn-light">Jetzt Kontakt aufnehmen</a>
+    <section class="section">
+      <div class="container">
+        <div class="cta-block reveal">
+          <h2>Bereit für ein <em class="italic-light">sauberes Ergebnis?</em></h2>
+          <p>
+            Schildern Sie uns kurz Ihr Objekt und Ihr Anliegen. Sie erhalten ein
+            individuelles Angebot, ohne Standardpaket von der Stange.
+          </p>
+          <a href="#kontakt" class="pill pill--light">
+            Jetzt Kontakt aufnehmen
+            <span class="pill-circle" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- ====================================================================
          7. Kontakt
          ==================================================================== -->
-    <section class="section" id="kontakt">
+    <section class="section" id="kontakt" style="padding-top: 0;">
       <div class="container">
         <div class="section-head reveal">
-          <p class="eyebrow">Kontakt</p>
-          <h2>Sprechen wir über Ihr Objekt.</h2>
+          <span class="eyebrow">Kontakt</span>
+          <h2>Sprechen wir über <em class="italic-accent">Ihr Objekt.</em></h2>
         </div>
 
         <div class="contact-grid">
 
-          <!-- Formular: Underlined Inputs, Label wandert beim Tippen nach oben.
-               Das placeholder=" " ist notwendig für :not(:placeholder-shown). -->
           <form id="contactForm" class="reveal" novalidate>
             <div class="field">
-              <input type="text" id="name" name="name" placeholder=" " autocomplete="name" required>
               <label for="name">Name</label>
+              <input type="text" id="name" name="name" autocomplete="name" placeholder="Vor- und Nachname" required>
               <span class="field-error" aria-live="polite"></span>
             </div>
 
             <div class="field">
-              <input type="email" id="email" name="email" placeholder=" " autocomplete="email" required>
               <label for="email">E-Mail</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="name@beispiel.de" required>
               <span class="field-error" aria-live="polite"></span>
             </div>
 
             <div class="field">
-              <textarea id="message" name="message" placeholder=" " rows="4" required></textarea>
               <label for="message">Ihre Nachricht</label>
+              <textarea id="message" name="message" rows="5" placeholder="Um welches Objekt geht es, und was steht an?" required></textarea>
               <span class="field-error" aria-live="polite"></span>
             </div>
 
-            <button type="submit" class="btn btn-primary">Anfrage senden</button>
+            <button type="submit" class="pill pill--primary">
+              Anfrage senden
+              <span class="pill-circle" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </button>
+
             <p class="form-note">
               Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben zur
               Bearbeitung der Anfrage zu. Details in der
@@ -411,8 +491,8 @@
             <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
           </form>
 
-          <div class="reveal reveal-delay-1">
-            <dl class="contact-list">
+          <div class="contact-panel reveal reveal-delay-1">
+            <dl>
               <div>
                 <dt>Telefon</dt>
                 <dd><a href="tel:+4917660916450">+49 176 60916450</a></dd>
@@ -454,16 +534,16 @@
     <div class="container">
       <div class="footer-top">
         <a href="#top" class="logo">
-          <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-            <rect x="1" y="1" width="38" height="38" rx="9" fill="none" stroke="currentColor" stroke-width="1.6"/>
-            <path d="M12 11v18M12 20l9-9M12 20l9 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="28" cy="14" r="2.4" fill="currentColor"/>
-          </svg>
-          <span>KYL</span>
+          <span class="logo-mark" aria-hidden="true">KYL</span>
+          <span class="logo-text">
+            <strong>KYL</strong>
+            <span>Facility Management</span>
+          </span>
         </a>
 
         <nav class="footer-nav" aria-label="Footer-Navigation">
-          <a href="#services">Services</a>
+          <a href="#services">Leistungen</a>
+          <a href="#projekte">Arbeiten</a>
           <a href="#ueber-uns">Über uns</a>
           <a href="#kontakt">Kontakt</a>
           <a href="impressum.html">Impressum</a>

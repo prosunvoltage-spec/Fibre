@@ -10,12 +10,12 @@ document.documentElement.classList.remove('no-js');
 document.addEventListener('DOMContentLoaded', function () {
 
   /* ------------------------------------------------------------------------
-     1. Navigation: transparent ueber dem Hero, Glassmorphism beim Scrollen
+     1. Navigation: heller Balken, beim Scrollen Linie und leichter Schatten
      ------------------------------------------------------------------------ */
 
   var header = document.querySelector('.site-header');
 
-  if (header && !header.classList.contains('site-header--solid')) {
+  if (header) {
     var ticking = false;
 
     var updateHeader = function () {
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
       navToggle.setAttribute('aria-expanded', String(open));
       navToggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
       navMobile.classList.toggle('is-open', open);
-      // Solange das Overlay offen ist, bekommt auch die Navi den hellen Hintergrund
+      // Offenes Overlay bekommt dieselbe Abgrenzung wie die gescrollte Navi
       if (header) {
         header.classList.toggle('site-header--scrolled', open || window.scrollY > 40);
       }
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Beim Wechsel auf Desktop-Breite aufraeumen
     window.addEventListener('resize', function () {
-      if (window.innerWidth >= 900) { setMenu(false); }
+      if (window.innerWidth >= 1000) { setMenu(false); }
     });
   }
 
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
           observer.unobserve(entry.target); // nur einmal auslösen
         }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
 
     revealItems.forEach(function (el) { observer.observe(el); });
   }

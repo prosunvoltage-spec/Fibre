@@ -7,33 +7,43 @@
   <meta name="description" content="Impressum und Anbieterkennzeichnung von KYL Facility Management &amp; Services, Greven.">
   <meta name="robots" content="noindex, follow">
   <meta name="theme-color" content="#fafafa">
+  <link rel="preload" href="fonts/hankengrotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <a class="skip-link" href="#main">Zum Hauptinhalt springen</a>
 
-  <!-- Navigation: auf Unterseiten dauerhaft hell hinterlegt -->
-  <header class="site-header site-header--solid">
+  <!-- ======================================================================
+       Navigation — hell, Links mittig, Aktion rechts
+       ====================================================================== -->
+  <header class="site-header">
     <nav class="nav-inner" aria-label="Hauptnavigation">
       <a href="index.html" class="logo">
-        <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-          <rect x="1" y="1" width="38" height="38" rx="9" fill="none" stroke="currentColor" stroke-width="1.6"/>
-          <path d="M12 11v18M12 20l9-9M12 20l9 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="28" cy="14" r="2.4" fill="currentColor"/>
-        </svg>
-        <span>KYL</span>
-        <span class="logo-sub">Facility Management &amp; Services</span>
+        <span class="logo-mark" aria-hidden="true">KYL</span>
+        <span class="logo-text">
+          <strong>KYL</strong>
+          <span>Facility Management</span>
+        </span>
       </a>
 
       <ul class="nav-links">
-        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html">Start</a></li>
+        <li><a href="index.html#services">Leistungen</a></li>
+        <li><a href="index.html#projekte">Arbeiten</a></li>
         <li><a href="index.html#ueber-uns">Über uns</a></li>
-        <li><a href="index.html#projekte">Projekte</a></li>
         <li><a href="index.html#kontakt">Kontakt</a></li>
       </ul>
 
-      <a href="index.html#kontakt" class="btn btn-primary btn-sm nav-cta">Angebot anfragen</a>
+      <div class="nav-actions">
+        <a href="tel:+4917660916450" class="nav-phone">0176 60916450</a>
+        <a href="index.html#kontakt" class="pill pill--primary pill--sm">
+          Angebot anfragen
+          <span class="pill-circle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
 
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navMobile" aria-label="Menü öffnen">
         <span></span><span></span><span></span>
@@ -41,11 +51,17 @@
     </nav>
 
     <div class="nav-mobile" id="navMobile">
-      <a href="index.html#services">Services</a>
+      <a href="index.html#services">Leistungen</a>
+      <a href="index.html#projekte">Arbeiten</a>
       <a href="index.html#ueber-uns">Über uns</a>
-      <a href="index.html#projekte">Projekte</a>
       <a href="index.html#kontakt">Kontakt</a>
-      <a href="index.html#kontakt" class="btn btn-primary">Angebot anfragen</a>
+      <a href="tel:+4917660916450">0176 60916450</a>
+      <a href="index.html#kontakt" class="pill pill--primary">
+        Angebot anfragen
+        <span class="pill-circle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+        </span>
+      </a>
     </div>
   </header>
 
@@ -53,8 +69,8 @@
 
     <section class="page-head">
       <div class="container-narrow">
-        <p class="eyebrow">Rechtliches</p>
-        <h1 style="font-size: clamp(36px, 6vw, 64px);">Impressum</h1>
+        <span class="eyebrow">Rechtliches</span>
+        <h1>Impressum</h1>
       </div>
     </section>
 
@@ -138,7 +154,7 @@
         </p>
 
         <p style="margin-top: var(--s-6);">
-          <a class="link-arrow" href="index.html">Zurück zur Startseite</a>
+          <a class="pill pill--outline" href="index.html">Zurück zur Startseite<span class="pill-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg></span></a>
         </p>
 
       </div>
@@ -146,24 +162,29 @@
 
   </main>
 
+  <!-- ======================================================================
+       Footer
+       ====================================================================== -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top">
         <a href="index.html" class="logo">
-          <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-            <rect x="1" y="1" width="38" height="38" rx="9" fill="none" stroke="currentColor" stroke-width="1.6"/>
-            <path d="M12 11v18M12 20l9-9M12 20l9 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="28" cy="14" r="2.4" fill="currentColor"/>
-          </svg>
-          <span>KYL</span>
+          <span class="logo-mark" aria-hidden="true">KYL</span>
+          <span class="logo-text">
+            <strong>KYL</strong>
+            <span>Facility Management</span>
+          </span>
         </a>
+
         <nav class="footer-nav" aria-label="Footer-Navigation">
-          <a href="index.html#services">Services</a>
+          <a href="index.html#services">Leistungen</a>
+          <a href="index.html#projekte">Arbeiten</a>
           <a href="index.html#ueber-uns">Über uns</a>
           <a href="index.html#kontakt">Kontakt</a>
           <a href="impressum.html">Impressum</a>
           <a href="datenschutz.html">Datenschutz</a>
         </nav>
+
         <a class="footer-social" href="https://www.instagram.com/kyl.fms" target="_blank" rel="noopener noreferrer" aria-label="KYL auf Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="2" y="2" width="20" height="20" rx="5"/>
@@ -172,6 +193,7 @@
           </svg>
         </a>
       </div>
+
       <div class="footer-bottom">
         <p>© <span id="year">2026</span> KYL Facility Management &amp; Services · Koray Emir Köylü</p>
         <p>48268 Greven · <a href="tel:+4917660916450">+49 176 60916450</a></p>
