@@ -3,3 +3,7 @@ kyl/design/kyl-website-richtungen.html
 # Python-Bytecode, entsteht beim Ausfuehren der Skill-Skripte
 __pycache__/
 *.pyc
+
+# Erzeugte Vorschau-Dateien, nicht versionieren
+landingpage/preview.html
+landingpage/preview-artifact.html

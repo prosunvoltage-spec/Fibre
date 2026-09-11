@@ -97,6 +97,26 @@ python3 -m http.server 8000     # im Repository-Wurzelverzeichnis
 # dann http://localhost:8000/landingpage/
 ```
 
+## Vorschau zum Weitergeben
+
+```bash
+python3 landingpage/build-preview.py
+```
+
+Erzeugt zwei Dateien, die nichts nachladen: Stylesheet, Skript und die vier
+Schriftdateien stecken als `data:`-URI in der Datei selbst.
+
+| Datei | Wofür |
+|---|---|
+| `preview.html` | Zum Doppelklicken oder Verschicken. Läuft ohne Server |
+| `preview-artifact.html` | Fassung ohne Dokumentgerüst, für die Veröffentlichung als Artifact |
+
+Beide sind erzeugt und stehen in `.gitignore`. Nach jeder Änderung an der
+Seite das Skript erneut laufen lassen.
+
+Was in der Vorschau fehlt: Impressum und Datenschutz liegen in `../kyl/` und
+sind aus der eigenständigen Datei heraus nicht erreichbar.
+
 ## Verhältnis zur Website in `kyl/`
 
 Zwei getrennte Auftritte für dasselbe Unternehmen. `kyl/` ist die vollständige
