@@ -66,8 +66,11 @@
   --r-hero: 28px;
   --r-pill: 999px;
 
-  /* Bewegung */
+  /* Bewegung: gemeinsame Dauern, damit sich die Seite einheitlich anfuehlt */
   --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --dur-fast: 0.2s;    /* Farbwechsel, Fokus */
+  --dur-base: 0.3s;    /* Menue, Navi-Zustand */
+  --dur-slow: 0.7s;    /* Bildzoom, Hero-Aufbau */
 }
 
 /* --------------------------------------------------------------------------
@@ -117,7 +120,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   padding: var(--s-1) var(--s-2);
   background: var(--c-dark); color: var(--c-text-inverse);
   border-radius: var(--r-field);
-  transition: top 0.2s var(--ease);
+  transition: top var(--dur-fast) var(--ease);
 }
 .skip-link:focus { top: var(--s-2); color: var(--c-text-inverse); }
 
@@ -208,15 +211,15 @@ p { font-size: 17px; line-height: 1.6; }
   border-radius: var(--r-pill);
   font-size: 16px; font-weight: 600; line-height: 1;
   white-space: nowrap;
-  transition: background 0.25s var(--ease), color 0.25s var(--ease),
-              border-color 0.25s var(--ease), transform 0.2s var(--ease);
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
 }
 .pill:active { transform: scale(0.97); }
 
 .pill-circle {
   display: inline-flex; align-items: center; justify-content: center;
   width: 34px; height: 34px; border-radius: 50%; flex: none;
-  transition: transform 0.25s var(--ease);
+  transition: transform var(--dur-fast) var(--ease);
 }
 .pill:hover .pill-circle { transform: translateX(2px); }
 .pill svg { width: 16px; height: 16px; }
@@ -251,7 +254,7 @@ p { font-size: 17px; line-height: 1.6; }
   display: inline-flex; align-items: center; justify-content: center;
   width: 38px; height: 38px; border-radius: 50%;
   background: var(--c-accent);
-  transition: transform 0.35s var(--ease);
+  transition: transform var(--dur-base) var(--ease);
 }
 .badge-arrow svg { width: 17px; height: 17px; stroke: #fff; }
 
@@ -262,7 +265,7 @@ p { font-size: 17px; line-height: 1.6; }
 .site-header {
   position: sticky; top: 0; z-index: 100;
   background: var(--c-white);
-  transition: box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+  transition: box-shadow var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
   border-bottom: 1px solid transparent;
 }
 .site-header--scrolled {
@@ -294,7 +297,7 @@ p { font-size: 17px; line-height: 1.6; }
 .nav-links a {
   font-size: 15px; font-weight: 500; color: var(--c-text);
   padding-bottom: 4px; border-bottom: 2px solid transparent;
-  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+  transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
 }
 .nav-links a:hover,
 .nav-links a.is-active { color: var(--c-accent); border-bottom-color: var(--c-accent); }
@@ -309,7 +312,7 @@ p { font-size: 17px; line-height: 1.6; }
 }
 .nav-toggle span {
   display: block; height: 2px; width: 100%; background: var(--c-text); border-radius: 2px;
-  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+  transition: transform var(--dur-base) var(--ease), opacity var(--dur-base) var(--ease);
 }
 .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
@@ -321,7 +324,7 @@ p { font-size: 17px; line-height: 1.6; }
   border-bottom: 1px solid var(--c-line);
   padding: var(--s-2) var(--s-3) var(--s-4);
   transform: translateY(-12px); opacity: 0; visibility: hidden;
-  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease), visibility 0.3s var(--ease);
+  transition: transform var(--dur-base) var(--ease), opacity var(--dur-base) var(--ease), visibility var(--dur-base) var(--ease);
 }
 .nav-mobile.is-open { transform: translateY(0); opacity: 1; visibility: visible; }
 .nav-mobile a {
@@ -483,7 +486,7 @@ p { font-size: 17px; line-height: 1.6; }
 .tile:hover { color: #fff; }
 .tile:hover .badge-arrow { transform: rotate(45deg); }
 
-.tile-media { position: absolute; inset: 0; transition: transform 0.7s var(--ease); }
+.tile-media { position: absolute; inset: 0; transition: transform var(--dur-slow) var(--ease); }
 .tile-media > * { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .tile:hover .tile-media { transform: scale(1.05); }
 
@@ -578,7 +581,7 @@ p { font-size: 17px; line-height: 1.6; }
   background: var(--c-surface);
   border: 1.5px solid transparent;
   border-radius: var(--r-field);
-  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
 }
 .field textarea { min-height: 140px; resize: vertical; }
 .field input:focus,
@@ -650,6 +653,9 @@ p { font-size: 17px; line-height: 1.6; }
 .site-footer .logo-text span { color: rgba(246, 247, 248, 0.6); }
 
 .footer-nav { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-3); }
+/* Klickflaeche auf mindestens 24 px, sonst sind die Links zu knapp zu treffen */
+.footer-nav a,
+.site-footer address a { display: inline-block; padding-block: 5px; }
 .site-footer a { color: rgba(246, 247, 248, 0.66); }
 .site-footer a:hover { color: #fff; }
 
@@ -673,7 +679,7 @@ p { font-size: 17px; line-height: 1.6; }
   display: inline-flex; align-items: center; justify-content: center;
   width: 38px; height: 38px; border-radius: 50%;
   border: 1px solid var(--c-line-dark);
-  transition: border-color 0.25s var(--ease);
+  transition: border-color var(--dur-fast) var(--ease);
 }
 .footer-social svg { width: 17px; height: 17px; }
 .footer-social:hover { border-color: rgba(255, 255, 255, 0.5); }
@@ -737,7 +743,7 @@ p { font-size: 17px; line-height: 1.6; }
 }
 
 .hero-content > * {
-  animation: hero-enter 0.7s var(--ease) both;
+  animation: hero-enter var(--dur-slow) var(--ease) both;
 }
 .hero-content > :nth-child(1) { animation-delay: 0.05s; }
 .hero-content > :nth-child(2) { animation-delay: 0.14s; }

@@ -28,6 +28,21 @@ in Gestaltungsratgebern als Allerweltslösung gelten:
 | Bewertungszeile „5,0 ★★★★★" | „Gebäudedienstleistungen aus Greven, seit 2024" | Ohne echte Bewertungen wäre das eine erfundene Tatsachenbehauptung und wettbewerbsrechtlich angreifbar |
 | Kennzahlenband mit vier Werten | Drei | „[X] Std. bis zur Rückmeldung" war frei erfunden |
 
+## Durchgang 3: Prüfung mit ui-ux-pro-max
+
+Gegen die UX-Regeln des Skills geprüft. Zwei echte Befunde, beide behoben:
+
+- **Klickflächen in der Fußzeile waren 22 px hoch.** WCAG 2.2 verlangt
+  mindestens 24 px für eigenständige Links. Jetzt 32 px durch Innenabstand.
+  Der Link „Datenschutzerklärung" mitten im Satz bleibt kleiner, für Links
+  im Fließtext sieht die Regel eine Ausnahme vor.
+- **Bewegungsdauern waren über die Datei verstreut** (0.2 bis 0.7 s, frei
+  gegriffen). Jetzt drei Tokens: `--dur-fast`, `--dur-base`, `--dur-slow`.
+
+Nicht übernommen wurde der Farb- und Schriftvorschlag des Skills (Blau mit
+Orange, Poppins mit Open Sans). Das ist die Allerweltslösung für
+Dienstleister-Seiten und würde die Entscheidung des Kunden überschreiben.
+
 ## Offen
 
 - `[ANZAHL]+ Betreute Objekte` ist der letzte Platzhalter im Kennzahlenband.
