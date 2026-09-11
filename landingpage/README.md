@@ -1,40 +1,65 @@
-# Landingpage — Design-System
+# KYL Landingpage
 
-## DESIGN.md
+Einseitige Landingpage, gebaut nach `DESIGN.md`. Reines HTML, CSS und
+JavaScript, keine Abhängigkeiten, kein Build-Schritt, keine externen Requests.
 
-Das Design-System für die geplante Landingpage, geschrieben in dem Format, das
-Google Stitch als Design-System einliest. Neun Abschnitte: Atmosphäre, Farbrollen,
-Typografie, Komponenten, Hero, Layout, Responsivität, Bewegung, verbotene Muster.
+```
+landingpage/
+├── DESIGN.md       Design-System, aus der Primefold-Referenz abgeleitet
+├── index.html      Die Seite
+├── css/style.css   Umsetzung des Design-Systems
+├── js/main.js      Menü, Karussell, Formular
+├── fonts/          Hanken Grotesk, selbst gehostet
+└── img/            Fotos, siehe img/README.md
+```
 
-## Woher die Struktur stammt
+## Lokal ansehen
 
-Referenz war [primefold.ai](https://primefold.ai/). Die Seite ist aus dieser
-Arbeitsumgebung nicht erreichbar, gelesen wurde sie deshalb aus vier Screenshots:
-Hero, Logo-Leiste mit Sektionskopf, Produktraster, Testimonial-Karussell.
+```bash
+python3 -m http.server 8000     # im Repository-Wurzelverzeichnis
+# dann http://localhost:8000/landingpage/
+```
 
-Übernommen wurde ausschließlich die Gestaltung: Typo-Architektur, Abstände,
-Rhythmus der Sektionen, Container-Sprache, Zurückhaltung bei Bewegung. Werte, die
-aus Bildern geschätzt sind, tragen in der Datei ein `~`.
+## Aufbau der Seite
 
-## Was bewusst nicht übernommen wurde
+Die Sektionsformen wechseln durchgehend, keine zwei benachbarten Abschnitte
+sehen gleich aus:
 
-- **Die Farben.** Der Akzent bleibt das Blau von KYL, `#0071E3`. Aus der Referenz
-  stammt nur die Struktur des Farbsystems: genau ein Akzent, nie reines Schwarz,
-  eine einzige Neutralen-Temperatur.
-- **Die Inhalte.** Keine Texte, keine Produktnamen, keine Bildmotive.
+1. **Hero** — Foto als Fläche, gerichteter Verlauf von links, Text auf der
+   dunklen Seite, Leistungs-Chips an der Unterkante
+2. **Versprechenszeile** — vier Aussagen, ruhig gesetzt. Hier stünden bei der
+   Referenz Kundenlogos. KYL hat noch keine, erfundene wären wertlos
+3. **Ablauf** — vier Schritte auf einer großen Fläche. Die Nummern sind
+   zulässig, weil es wirklich eine Abfolge ist
+4. **Leistungen** — sechs Karten, drei Spalten
+5. **Arbeiten** — Karussell, die Nachbarn bleiben angeschnitten sichtbar
+6. **Über uns** — zweispaltig, Bild und Text
+7. **Abschlussband** — dunkle Fläche mit großem Radius
+8. **Kontakt** — Formular und Kontaktdaten
+9. **Fußzeile**
 
-## Offener Punkt
+## Bewegung
 
-Das Scrollverhalten der Referenz war auf Standbildern nicht zu sehen. Der
-Bewegungsabschnitt ist deshalb bewusst ruhiger gehalten, als das Original
-möglicherweise ist. Wer die Seite live sieht, kann das in einem Satz korrigieren.
+Genau zwei Stellen: Der Hero baut sich beim Laden einmal auf, versetzt um
+90 Millisekunden je Element. Alles andere antwortet auf eine Handlung, also
+Karussell, Menü, Fokus, Überfahren. Kein Einblenden beim Scrollen.
+`prefers-reduced-motion` schaltet den Hero-Aufbau ab.
 
-## Verwendung in Stitch
+## Verhältnis zur Website in `kyl/`
 
-1. Projekt anlegen unter [labs.google/stitch](https://labs.google/stitch)
-2. `DESIGN.md` hochladen und als Design-System einlesen lassen
-3. Die Projekt-ID vergibt Stitch
+Zwei getrennte Auftritte für dasselbe Unternehmen. `kyl/` ist die vollständige
+Website mit Impressum und Datenschutz, diese Landingpage ist die verdichtete
+Fassung nach der neuen Referenz. Impressum und Datenschutz verlinken von hier
+nach `../kyl/`.
 
-Die Vorlage für dieses Dateiformat liegt unter
-`.claude/skills/taste-skill/`, sie stammt aus dem `stitch-skill` desselben
-Repositories.
+Soll die Landingpage die Website ersetzen, ist das ein Verschiebe-Vorgang plus
+das Mitnehmen der beiden Rechtsseiten. Sag Bescheid, dann mache ich das.
+
+## Noch zu erledigen
+
+- [ ] **Echte Fotos** nach `img/`, Dateinamen in `img/README.md`. Diese
+      Gestaltung lebt vom Hero-Foto, die Farbfläche ist nur ein Notbehelf
+- [ ] **Formular-Backend** anbinden: `js/main.js`, Block 3, TODO im
+      Submit-Handler
+- [ ] Impressum und Datenschutz verlinken nach `../kyl/`. Wird die
+      Landingpage eigenständig veröffentlicht, brauchen beide eine eigene Kopie
