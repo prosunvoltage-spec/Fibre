@@ -1,24 +1,20 @@
 # Schriften
 
-**Hanken Grotesk** von Alfredo Marco Pradil, lizenziert unter der
-[SIL Open Font License 1.1](https://openfontlicense.org). Die Lizenz erlaubt
-das Selbsthosten ausdrücklich.
+Selbst gehostet, nicht von Google Fonts geladen. Beim Laden von
+`fonts.googleapis.com` ginge die IP-Adresse jedes Besuchers an Google, was
+deutsche Gerichte ohne Einwilligung als Verstoß gegen die DSGVO gewertet haben.
 
-Die Dateien liegen hier lokal, statt sie von Google Fonts zu laden. Zwei Gründe:
+| Datei | Familie | Rolle |
+|---|---|---|
+| `instrumentsans-latin.woff2` | Instrument Sans | Überschriften und Fließtext |
+| `instrumentsans-latin-ext.woff2` | Instrument Sans | Erweiterter Zeichensatz |
+| `jetbrainsmono-latin.woff2` | JetBrains Mono | Zahlen, Turnus, Ordnungsnummern |
+| `jetbrainsmono-latin-ext.woff2` | JetBrains Mono | Erweiterter Zeichensatz |
 
-1. **Datenschutz.** Beim Laden von `fonts.googleapis.com` geht die IP-Adresse
-   jedes Besuchers an Google. Deutsche Gerichte haben das ohne Einwilligung
-   als Verstoß gegen die DSGVO gewertet.
-2. **Tempo.** Kein zusätzlicher DNS-Lookup und keine dritte Verbindung.
+Beides sind variable Schriften: eine Datei deckt alle Gewichte ab. Zusammen
+rund 84 KB.
 
-Es sind variable Schriftdateien: eine Datei deckt alle Gewichte von 100 bis 900
-ab. Vier Dateien, zusammen rund 78 KB.
+Lizenz beider Familien: SIL Open Font License 1.1, das Selbsthosten ist
+ausdrücklich erlaubt.
 
-| Datei | Schnitt |
-|---|---|
-| `hankengrotesk-latin.woff2` | aufrecht, Latin |
-| `hankengrotesk-latin-ext.woff2` | aufrecht, Latin erweitert |
-| `hankengrotesk-italic-latin.woff2` | kursiv, Latin |
-| `hankengrotesk-italic-latin-ext.woff2` | kursiv, Latin erweitert |
-
-Eingebunden werden sie über `fonts/faces.css`, das `css/style.css` importiert.
+Eingebunden über `fonts/faces.css`, das `css/style.css` importiert.
