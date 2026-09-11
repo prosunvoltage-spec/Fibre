@@ -7,6 +7,11 @@ palette below is KYL's own.
 **Reading note:** values marked `~` are measured from screenshots at a ~1900px viewport and
 are proportional targets, not pixel-exact reproductions.
 
+> **Status:** this file stays as written — it is the design system to upload to Stitch.
+> The landing page in this folder does **not** follow it. That first build read as
+> templated, so the page was rebuilt in a different direction ("Serviceheft"), documented
+> in `README.md`. Keep this file for Stitch; read `README.md` for what is actually built.
+
 ---
 
 ## Configuration — Set Your Style

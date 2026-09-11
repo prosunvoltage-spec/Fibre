@@ -1,11 +1,9 @@
 /* ==========================================================================
    KYL Landingpage
-   Vanilla JS, keine Abhaengigkeiten. Vier Bloecke: Menue, Karussell,
-   Formular, Jahreszahl. Bewegung passiert nur auf eine Handlung hin,
-   der Aufbau des Heros steckt komplett in CSS.
+   Vanilla JS, keine Abhaengigkeiten. Drei Bloecke: Menue, Formular,
+   Jahreszahl. Die Seite animiert nichts von selbst. Was reagiert,
+   reagiert auf eine Handlung.
    ========================================================================== */
-
-document.documentElement.classList.remove('no-js');
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -13,15 +11,14 @@ document.addEventListener('DOMContentLoaded', function () {
      1. Mobiles Menue
      ------------------------------------------------------------------------ */
 
-  var toggle = document.querySelector('.nav-toggle');
-  var panel = document.getElementById('navPanel');
+  var toggle = document.querySelector('.menu-btn');
+  var panel = document.getElementById('menuPanel');
 
   if (toggle && panel) {
     var setMenu = function (open) {
       toggle.setAttribute('aria-expanded', String(open));
       toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
       panel.classList.toggle('is-open', open);
-      document.body.style.overflow = open ? 'hidden' : '';
     };
 
     toggle.addEventListener('click', function () {
@@ -40,84 +37,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     window.addEventListener('resize', function () {
-      if (window.innerWidth >= 1000) { setMenu(false); }
+      if (window.innerWidth >= 900) { setMenu(false); }
     });
   }
 
   /* ------------------------------------------------------------------------
-     2. Karussell der Arbeiten
-     Das Scrollen macht der Browser (scroll-snap). Hier haengen nur die
-     Pfeiltasten, die Punkte und der Zustand der Knoepfe dran.
-     ------------------------------------------------------------------------ */
-
-  var rail = document.getElementById('workRail');
-  var dots = document.getElementById('railDots');
-  var prev = document.querySelector('[data-rail-prev]');
-  var next = document.querySelector('[data-rail-next]');
-
-  if (rail && prev && next) {
-    var tiles = Array.prototype.slice.call(rail.children);
-
-    var step = function () {
-      // Eine Kachel plus Abstand, aus dem echten Layout gelesen
-      if (tiles.length < 2) { return rail.clientWidth; }
-      return tiles[1].offsetLeft - tiles[0].offsetLeft;
-    };
-
-    var currentIndex = function () {
-      return Math.round(rail.scrollLeft / step());
-    };
-
-    var scrollToIndex = function (i) {
-      var max = tiles.length - 1;
-      var target = Math.max(0, Math.min(max, i));
-      rail.scrollTo({ left: tiles[target].offsetLeft - rail.offsetLeft, behavior: 'smooth' });
-    };
-
-    prev.addEventListener('click', function () { scrollToIndex(currentIndex() - 1); });
-    next.addEventListener('click', function () { scrollToIndex(currentIndex() + 1); });
-
-    // Punkte aufbauen, einer je Kachel
-    if (dots) {
-      tiles.forEach(function (_, i) {
-        var dot = document.createElement('span');
-        dot.className = 'rail-dot' + (i === 0 ? ' is-current' : '');
-        dots.appendChild(dot);
-      });
-    }
-
-    var sync = function () {
-      var i = currentIndex();
-      // Knoepfe abschalten, wenn es in die Richtung nicht weitergeht
-      prev.disabled = rail.scrollLeft <= 2;
-      next.disabled = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 2;
-      if (dots) {
-        Array.prototype.forEach.call(dots.children, function (dot, index) {
-          dot.classList.toggle('is-current', index === i);
-        });
-      }
-    };
-
-    var ticking = false;
-    rail.addEventListener('scroll', function () {
-      if (!ticking) {
-        window.requestAnimationFrame(function () { sync(); ticking = false; });
-        ticking = true;
-      }
-    }, { passive: true });
-
-    // Pfeiltasten, wenn das Karussell den Fokus hat
-    rail.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { e.preventDefault(); scrollToIndex(currentIndex() + 1); }
-      if (e.key === 'ArrowLeft')  { e.preventDefault(); scrollToIndex(currentIndex() - 1); }
-    });
-
-    window.addEventListener('resize', sync);
-    sync();
-  }
-
-  /* ------------------------------------------------------------------------
-     3. Kontaktformular
+     2. Kontaktformular
      ------------------------------------------------------------------------ */
 
   var form = document.getElementById('contactForm');
@@ -176,13 +101,13 @@ document.addEventListener('DOMContentLoaded', function () {
       // hier ein fetch() an Formspree, Netlify Forms oder ein eigenes Backend
       // ergänzen. Bis dahin läuft die Anfrage über Telefon und E-Mail daneben.
       formMessage.classList.add('is-success');
-      formMessage.textContent = 'Danke, Ihre Anfrage ist notiert. Wir melden uns zeitnah.';
+      formMessage.textContent = 'Anfrage notiert. Wir melden uns zurück, meistens am selben Tag.';
       form.reset();
     });
   }
 
   /* ------------------------------------------------------------------------
-     4. Jahreszahl in der Fusszeile
+     3. Jahreszahl in der Fusszeile
      ------------------------------------------------------------------------ */
 
   var yearEl = document.getElementById('year');

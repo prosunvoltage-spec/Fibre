@@ -1,34 +1,24 @@
-# Bilder für die Landingpage
+# Belegfotos
 
-Dateien mit dem genannten Namen hier ablegen, dann ersetzen sie die Farbfläche
-automatisch. Fehlt ein Foto, bleibt die Fläche stehen und nichts bricht.
+Aufnahmen für den Abschnitt „Arbeiten". Dateien mit dem genannten Namen hier
+ablegen, dann ersetzen sie die Platzhalterfläche automatisch.
 
-Das Hero-Foto trägt diese Gestaltung. Es sollte dunkel und ruhig sein, mit
-Tiefe im Bild, damit der Verlauf von links greift und die Schrift darauf sitzt.
+Die Gestaltung behandelt diese Bilder als Belege, nicht als Werbung: kleines
+Format, Rahmen, Nummer und Bildunterschrift. Aufnahmen von der Abnahme passen
+deshalb besser als inszenierte Stockfotos.
 
-| Dateiname | Wo | Format |
-|---|---|---|
-| `hero.jpg` | Hero | Querformat, mind. 2400×1400 px, dunkles Motiv |
-| `leistung-reinigung.jpg` | Leistungskarte | Querformat, mind. 800×400 px |
-| `leistung-gruenpflege.jpg` | Leistungskarte | Querformat, mind. 800×400 px |
-| `leistung-hausmeister.jpg` | Leistungskarte | Querformat, mind. 800×400 px |
-| `leistung-management.jpg` | Leistungskarte | Querformat, mind. 800×400 px |
-| `leistung-effizienz.jpg` | Leistungskarte | Querformat, mind. 800×400 px |
-| `leistung-sonstiges.jpg` | Leistungskarte | Querformat, mind. 800×400 px |
-| `arbeit-terrassendach.jpg` | Karussell | Querformat 16:11, mind. 1200×825 px |
-| `arbeit-wege.jpg` | Karussell | Querformat 16:11, mind. 1200×825 px |
-| `arbeit-fenster.jpg` | Karussell | Querformat 16:11, mind. 1200×825 px |
-| `arbeit-pv-reinigung.jpg` | Karussell | Querformat 16:11, mind. 1200×825 px |
-| `arbeit-waermepumpe.jpg` | Karussell | Querformat 16:11, mind. 1200×825 px |
-| `arbeit-glas.jpg` | Karussell | Querformat 16:11, mind. 1200×825 px |
-| `arbeit-pv-anlage.jpg` | Karussell | Querformat 16:11, mind. 1200×825 px |
-| `team.jpg` | Über uns | Quadratisch, mind. 1200×1200 px |
+| Dateiname | Unterschrift |
+|---|---|
+| `beleg-01-terrassendach.jpg` | Terrassendach, Reinigung |
+| `beleg-02-wege.jpg` | Wege und Flächen |
+| `beleg-03-fenster.jpg` | Fensterreinigung |
+| `beleg-04-pv-reinigung.jpg` | PV-Anlage, Reinigung |
+| `beleg-05-waermepumpe.jpg` | Wärmepumpe |
+| `beleg-06-glas.jpg` | Glasreinigung |
+| `beleg-07-pv-anlage.jpg` | PV-Anlage, Dach |
+| `beleg-08-aussenanlage.jpg` | Außenanlage, Pflege |
 
-## Empfehlungen
+Format: Querformat 4:3, mindestens 1000×750 px, JPEG mit Qualität 80 bis 85 %,
+unter 200 KB. EXIF-Daten entfernen.
 
-- JPEG mit Qualität 80–85 %, unter 250 KB pro Bild, Hero bis 400 KB
-- EXIF-Daten entfernen
-- Optimieren mit [squoosh.app](https://squoosh.app) oder ImageOptim
-
-Die Alt-Texte stehen in `index.html` neben dem jeweiligen `<img>`. Nach dem
-Einsetzen echter Fotos dort prüfen, ob die Beschreibung noch passt.
+Die Alt-Texte stehen in `index.html` neben dem jeweiligen `<img>`.
