@@ -58,6 +58,24 @@ Nicht übernommen: Dunkelmodus als Pflicht (eine regionale Dienstleisterseite
 braucht kein zweites Farbschema), die Schriftvorschläge und die
 Bewegungsmuster mit GSAP. Begründung in `.claude/skills/taste-skill/HERKUNFT.md`.
 
+## Durchgang 5: Farbbild vereinheitlicht
+
+Website und Landingpage teilen sich jetzt eine Skala. Die Landingpage hatte
+beim Umbau ein eigenes Stempelblau und eine eigene Grauskala bekommen, beides
+ist raus.
+
+Zwei Befunde aus der Kontrastrechnung, die beide Seiten betreffen:
+
+- **Die dritte Grautstufe ist gestrichen.** Ein Ton heller als `#6B6F76`
+  hält auf der abgesetzten Bahn die 4,5:1 nicht. Hierarchie kommt aus Größe
+  und Gewicht.
+- **Formularfelder haben jetzt einen sichtbaren Rahmen** (`#86898F`, 3,5:1).
+  Vorher unterschied nur die Füllung das Feld vom Papier, und die liegt bei
+  1,12:1. Damit war das Feld als Bedienelement nicht erkennbar.
+- Kleine Ziffern und Links laufen im dunklen Blau `#005BB8`. Das helle
+  `#0071E3` erreicht auf der Bahn nur 4,27:1 und bleibt Flächen, Rahmen und
+  Fokusring vorbehalten.
+
 ## Offen
 
 - `[ANZAHL]+ Betreute Objekte` ist der letzte Platzhalter im Kennzahlenband.

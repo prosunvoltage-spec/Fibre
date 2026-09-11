@@ -39,6 +39,7 @@ Alle Werte stehen als Custom Properties oben in `css/style.css` unter `:root`:
 | `--c-accent` | `#0071e3`, dunkler `#005bb8` |
 | Flächen | `--c-white` `#ffffff`, `--c-surface` `#f4f4f5` |
 | Text | `--c-text` `#14161a`, `--c-text-soft` `#6b6f76` |
+| Linien | `--c-line` `#e6e7ea`, `--c-line-strong` `#14161a`, `--c-line-input` `#86898f` |
 | Radien | 10 px Felder, 16 px Karten, 22 px Kacheln, 28 px Hero, Pillen rund |
 | Spacing | 8-Punkt-System `--s-1` bis `--s-12` |
 | Container | `--container` 1360 px |
@@ -72,7 +73,8 @@ Eingepflegt sind Telefon, E-Mail, Ort, Inhaber und der Instagram-Link.
 
 Semantische Landmarks, Skip-Link, sichtbarer Fokus-Ring, Alt-Texte an allen
 Bildern, `aria-expanded` am Menü-Button, Live-Regionen an den Formularfehlern.
-Alle Text-Hintergrund-Paare liegen über 4,5:1.
+Alle Text-Hintergrund-Paare liegen über 4,5:1, Feldrahmen und Fokusring über
+3:1. Die Landingpage in `landingpage/` nutzt dieselbe Skala.
 
 Bewegung gibt es an genau zwei Stellen: der Hero baut sich beim Laden einmal
 auf, und Bedienelemente antworten auf Überfahren und Klick. Kein Einblenden

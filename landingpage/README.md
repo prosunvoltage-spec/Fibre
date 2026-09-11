@@ -35,13 +35,40 @@ ein gepflegtes Serviceheft.
 | Leistungen | Tabelle mit Nummer, Leistung und üblichem Turnus |
 | Zahlen | Tabellenschrift, weil Turnus und Jahreszahlen hier Daten sind |
 | Bilder | Belege mit Nummer und Bildunterschrift, nicht ganzflächig |
-| Farbe | Papierweiß, Tinte, eine Stempelfarbe `#1D3FA0` für Nummern und Status |
+| Farbe | Papierweiß, Tinte, das Markenblau. Dieselbe Skala wie `kyl/` |
 | Schrift | Instrument Sans für Text, JetBrains Mono für Zahlen |
 | Bewegung | Keine. Ein Protokoll bewegt sich nicht beim Lesen |
 
 Zwei Regeln aus den Skills berühren sich hier: Tabellenschrift für kleine
 Beschriftungen gilt als Merkmal generierter Seiten. Sie ist hier trotzdem
 richtig, weil sie ausschließlich auf echten Daten liegt, nie auf Dekoration.
+
+## Farbskala
+
+Beide Auftritte teilen sich eine Skala. Die Werte stehen in
+`css/style.css` unter `:root`.
+
+| Rolle | Wert |
+|---|---|
+| Papier | `#FFFFFF` |
+| Abgesetzte Bahn | `#F4F4F5` |
+| Text | `#14161A` |
+| Beschriftung, Fließtext | `#6B6F76` |
+| Haarlinie | `#E6E7EA` |
+| Starke Linie | `#14161A` |
+| Feldrahmen | `#86898F` |
+| Akzent (Flächen, Fokus) | `#0071E3` |
+| Akzent dunkel (Ziffern, Links) | `#005BB8` |
+| Akzentfläche | `#E9F2FD` |
+
+Zwei Entscheidungen dahinter, beide aus der Kontrastrechnung:
+
+- **Es gibt keine dritte, hellere Textstufe.** Ein Grau, das heller als
+  `#6B6F76` ist, hält auf der abgesetzten Bahn die 4,5:1 nicht mehr. Die
+  Abstufung kommt deshalb aus Größe und Gewicht, nicht aus einem dritten Ton.
+- **Kleine Ziffern und Links laufen im dunklen Blau.** `#0071E3` erreicht auf
+  der Bahn nur 4,27:1. Das helle Blau bleibt Flächen, Rahmen und dem
+  Fokusring vorbehalten, wo 3:1 genügt.
 
 ## Lokal ansehen
 

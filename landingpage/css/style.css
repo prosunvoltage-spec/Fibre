@@ -16,17 +16,22 @@
   --font: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* Papier und Tinte. Ein Akzent, die Stempelfarbe. */
+  /* Papier und Tinte. Eine Skala, die sich die Landingpage mit der
+     Website in kyl/ teilt. Ein Akzent, das Markenblau. */
   --c-paper: #ffffff;
-  --c-paper-2: #f7f7f6;     /* abgesetzte Bahn, minimal waermer als Weiss */
-  --c-ink: #17181a;
-  --c-ink-2: #5e6166;       /* Fliesstext, Nebenangaben */
-  --c-ink-3: #8a8d93;       /* Randspalte, Bildunterschriften */
-  --c-rule: #d9dadd;        /* Haarlinie, tragendes Element */
-  --c-rule-strong: #17181a; /* Linie, die eine Sektion eroeffnet */
-  --c-stamp: #1d3fa0;       /* Stempelblau: Status, Marke, Fokus */
-  --c-stamp-deep: #142d75;
-  --c-stamp-wash: #eef1fa;
+  --c-paper-2: #f4f4f5;     /* abgesetzte Bahn */
+  --c-ink: #14161a;
+  --c-ink-2: #6b6f76;       /* Fliesstext, Nebenangaben, kleine Beschriftungen.
+                               Eine dritte, hellere Textstufe gibt es bewusst
+                               nicht: sie haelt 4.5:1 auf der Bahn nicht mehr.
+                               Die Abstufung kommt aus Groesse und Gewicht. */
+  --c-rule: #e6e7ea;        /* Haarlinie, tragendes Element */
+  --c-rule-strong: #14161a; /* Linie, die eine Sektion eroeffnet */
+  --c-rule-input: #86898f;  /* Feldrahmen. Braucht 3:1, sonst ist das Feld
+                               als Bedienelement nicht erkennbar. */
+  --c-accent: #0071e3;      /* Markenblau: Flaechen, Links, Rahmen, Fokus */
+  --c-accent-deep: #005bb8; /* kleine Ziffern, Hover. Haelt 4.5:1 auf der Bahn */
+  --c-accent-wash: #e9f2fd;
 
   /* Raster: 8 Punkte */
   --s-1: 8px;  --s-2: 16px; --s-3: 24px; --s-4: 32px;
@@ -61,12 +66,12 @@ body {
 img { max-width: 100%; height: auto; display: block; }
 ul, ol { list-style: none; }
 
-a { color: var(--c-stamp); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
-a:hover { color: var(--c-stamp-deep); }
+a { color: var(--c-accent-deep); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { color: #00437f; }
 
 button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
 
-:focus-visible { outline: 2px solid var(--c-stamp); outline-offset: 2px; }
+:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 2px; }
 
 .visually-hidden {
   position: absolute; width: 1px; height: 1px; padding: 0;
@@ -104,7 +109,7 @@ p { line-height: 1.6; }
   letter-spacing: 0;
 }
 
-.caption { font-size: 0.8125rem; color: var(--c-ink-3); }
+.caption { font-size: 0.8125rem; color: var(--c-ink-2); }
 
 /* --------------------------------------------------------------------------
    4. Raster mit Randspalte
@@ -121,10 +126,10 @@ p { line-height: 1.6; }
 
 .row-label {
   display: flex; align-items: baseline; gap: var(--s-1);
-  font-size: 0.8125rem; color: var(--c-ink-3);
+  font-size: 0.8125rem; color: var(--c-ink-2);
   padding-top: 4px;
 }
-.row-label .num { color: var(--c-stamp); font-size: 0.8125rem; }
+.row-label .num { color: var(--c-accent-deep); font-size: 0.8125rem; }
 
 /* Sektion: kraeftige Linie oben, dann Luft */
 .section { border-top: 1px solid var(--c-rule-strong); padding-block: var(--s-8) var(--s-10); }
@@ -157,7 +162,7 @@ p { line-height: 1.6; }
   color: var(--c-ink); text-decoration: none;
 }
 .wordmark strong { font-size: 1.0625rem; font-weight: 700; letter-spacing: -0.02em; }
-.wordmark span { font-size: 0.75rem; color: var(--c-ink-3); }
+.wordmark span { font-size: 0.75rem; color: var(--c-ink-2); }
 
 .masthead-nav { display: none; align-items: center; gap: var(--s-3); }
 .masthead-nav a {
@@ -169,7 +174,7 @@ p { line-height: 1.6; }
 
 .masthead-contact { display: none; align-items: center; gap: var(--s-2); font-size: 0.875rem; }
 .masthead-contact a:not(.btn) { display: inline-block; padding-block: 5px; color: var(--c-ink); text-decoration: none; }
-.masthead-contact a:not(.btn):hover { color: var(--c-stamp); }
+.masthead-contact a:not(.btn):hover { color: var(--c-accent); }
 
 .menu-btn {
   display: inline-flex; flex-direction: column; justify-content: center; gap: 4px;
@@ -210,7 +215,7 @@ p { line-height: 1.6; }
   transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .btn--solid { background: var(--c-ink); color: var(--c-paper); }
-.btn--solid:hover { background: var(--c-stamp); border-color: var(--c-stamp); color: var(--c-paper); }
+.btn--solid:hover { background: var(--c-accent); border-color: var(--c-accent); color: var(--c-paper); }
 .btn--line { background: transparent; color: var(--c-ink); }
 .btn--line:hover { background: var(--c-ink); color: var(--c-paper); }
 .btn--sm { min-height: 38px; padding: 0 var(--s-2); font-size: 0.875rem; }
@@ -226,7 +231,7 @@ p { line-height: 1.6; }
   display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-4);
   padding-bottom: var(--s-2); margin-bottom: var(--s-6);
   border-bottom: 1px solid var(--c-rule);
-  font-size: 0.8125rem; color: var(--c-ink-3);
+  font-size: 0.8125rem; color: var(--c-ink-2);
 }
 .cover-meta b { font-weight: 500; color: var(--c-ink); }
 
@@ -238,10 +243,10 @@ p { line-height: 1.6; }
 .stamp {
   display: inline-flex; align-items: center; gap: var(--s-1);
   padding: 6px 12px;
-  border: 1px solid var(--c-stamp);
-  color: var(--c-stamp);
+  border: 1px solid var(--c-accent);
+  color: var(--c-accent-deep);
   font-size: 0.75rem; font-weight: 500;
-  background: var(--c-stamp-wash);
+  background: var(--c-accent-wash);
 }
 .stamp .num { font-size: 0.75rem; }
 
@@ -251,10 +256,10 @@ p { line-height: 1.6; }
 
 .register { width: 100%; border-collapse: collapse; text-align: left; }
 
-.register caption { text-align: left; font-size: 0.8125rem; color: var(--c-ink-3); padding-bottom: var(--s-2); }
+.register caption { text-align: left; font-size: 0.8125rem; color: var(--c-ink-2); padding-bottom: var(--s-2); }
 
 .register th {
-  font-size: 0.75rem; font-weight: 500; color: var(--c-ink-3);
+  font-size: 0.75rem; font-weight: 500; color: var(--c-ink-2);
   text-transform: none; letter-spacing: 0.02em;
   padding: 0 var(--s-2) var(--s-1) 0;
   border-bottom: 1px solid var(--c-rule-strong);
@@ -267,7 +272,7 @@ p { line-height: 1.6; }
 }
 .register tr:last-child td { border-bottom: 1px solid var(--c-rule-strong); }
 
-.register .col-no { width: 46px; color: var(--c-stamp); }
+.register .col-no { width: 46px; color: var(--c-accent-deep); }
 .register .col-turnus { width: 150px; white-space: nowrap; color: var(--c-ink-2); }
 .register .col-umfang { color: var(--c-ink-2); }
 
@@ -298,7 +303,7 @@ p { line-height: 1.6; }
 @media (min-width: 1024px) {
   .step { border-top: 2px solid var(--c-ink); padding-right: var(--s-4); }
 }
-.step .num { display: block; color: var(--c-stamp); margin-bottom: var(--s-1); }
+.step .num { display: block; color: var(--c-accent-deep); margin-bottom: var(--s-1); }
 .step h3 { margin-bottom: 6px; }
 .step p { font-size: 0.9375rem; color: var(--c-ink-2); }
 
@@ -321,7 +326,7 @@ p { line-height: 1.6; }
   display: flex; gap: var(--s-1); align-items: baseline;
   margin-top: var(--s-1); font-size: 0.8125rem; color: var(--c-ink-2);
 }
-.plate figcaption .num { color: var(--c-ink-3); }
+.plate figcaption .num { color: var(--c-ink-2); }
 
 /* --------------------------------------------------------------------------
    11. Angaben zum Betrieb
@@ -333,31 +338,31 @@ p { line-height: 1.6; }
   padding: 11px 0; border-bottom: 1px solid var(--c-rule);
   font-size: 0.9375rem;
 }
-.facts dt { color: var(--c-ink-3); }
+.facts dt { color: var(--c-ink-2); }
 .facts dd { text-align: right; }
 .facts dd a { display: inline-block; padding-block: 5px; color: var(--c-ink); text-decoration: none; }
-.facts dd a:hover { color: var(--c-stamp); }
+.facts dd a:hover { color: var(--c-accent); }
 
 /* --------------------------------------------------------------------------
    12. Formular
    -------------------------------------------------------------------------- */
 
 .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: var(--s-3); }
-.field label { font-size: 0.8125rem; color: var(--c-ink-3); }
+.field label { font-size: 0.8125rem; color: var(--c-ink-2); }
 .field input, .field textarea {
   width: 100%; padding: 12px 14px; font: inherit; color: var(--c-ink);
-  background: var(--c-paper); border: 1px solid var(--c-rule);
+  background: var(--c-paper); border: 1px solid var(--c-rule-input);
   transition: border-color var(--dur-fast) var(--ease);
 }
 .field textarea { min-height: 132px; resize: vertical; }
-.field input:focus, .field textarea:focus { outline: none; border-color: var(--c-stamp); }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--c-accent); }
 .field.has-error input, .field.has-error textarea { border-color: #a4231c; }
 .field-error { font-size: 0.8125rem; color: #a4231c; min-height: 1em; }
 
-.form-note { font-size: 0.8125rem; color: var(--c-ink-3); margin-top: var(--s-2); }
+.form-note { font-size: 0.8125rem; color: var(--c-ink-2); margin-top: var(--s-2); }
 .form-message { margin-top: var(--s-3); padding: 12px 14px; font-size: 0.9375rem; border: 1px solid; }
 .form-message:empty { display: none; }
-.form-message.is-success { border-color: var(--c-stamp); background: var(--c-stamp-wash); color: var(--c-stamp-deep); }
+.form-message.is-success { border-color: var(--c-accent); background: var(--c-accent-wash); color: var(--c-accent-deep); }
 .form-message.is-error { border-color: #a4231c; background: #fdf0ef; color: #8a1d17; }
 
 /* --------------------------------------------------------------------------
@@ -372,7 +377,7 @@ p { line-height: 1.6; }
 .colophon-grid { display: grid; grid-template-columns: 1fr; gap: var(--s-3); }
 @media (min-width: 700px) { .colophon-grid { grid-template-columns: repeat(3, 1fr); gap: var(--s-6); } }
 
-.colophon h2 { font-size: 0.75rem; font-weight: 500; color: var(--c-ink-3); margin-bottom: var(--s-1); }
+.colophon h2 { font-size: 0.75rem; font-weight: 500; color: var(--c-ink-2); margin-bottom: var(--s-1); }
 .colophon a { color: var(--c-ink-2); text-decoration: none; display: inline-block; padding-block: 5px; }
 .colophon a:hover { color: var(--c-ink); text-decoration: underline; }
 .colophon ul { display: flex; flex-direction: column; }
@@ -381,7 +386,7 @@ p { line-height: 1.6; }
   display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-4);
   margin-top: var(--s-6); padding-top: var(--s-3);
   border-top: 1px solid var(--c-rule);
-  font-size: 0.8125rem; color: var(--c-ink-3);
+  font-size: 0.8125rem; color: var(--c-ink-2);
 }
 .colophon address { font-style: normal; }
 

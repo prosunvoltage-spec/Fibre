@@ -32,6 +32,9 @@
 
   /* Linien */
   --c-line: #e6e7ea;
+  --c-line-strong: #14161a;  /* Linie, die einen Abschnitt eroeffnet */
+  --c-line-input: #86898f;   /* Feldrahmen. Braucht 3:1, sonst ist das Feld
+                                als Bedienelement nicht erkennbar. */
   --c-line-dark: rgba(255, 255, 255, 0.14);
 
   /* 8-Punkt-Spacing */
@@ -579,7 +582,7 @@ p { font-size: 17px; line-height: 1.6; }
   font: inherit;
   color: var(--c-text);
   background: var(--c-surface);
-  border: 1.5px solid transparent;
+  border: 1.5px solid var(--c-line-input);
   border-radius: var(--r-field);
   transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
 }
