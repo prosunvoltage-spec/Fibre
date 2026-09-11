@@ -77,14 +77,83 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ------------------------------------------------------------------------
-     3. Bewegung
+     3. Lesestand
+     Der Kopf nennt den Abschnitt, in dem man steht, und zeigt an seiner
+     Unterkante den Lesefortschritt. Beides Orientierung, keine Zierde.
+     ------------------------------------------------------------------------ */
+
+  var kolumnentitel = document.getElementById('runningHead');
+  var balken = document.getElementById('readBar');
+
+  if (kolumnentitel && 'IntersectionObserver' in window) {
+    var benennung = {
+      services: 'Leistungen',
+      projekte: 'Arbeiten',
+      'ueber-uns': 'Über uns',
+      kontakt: 'Kontakt'
+    };
+
+    var offen = {};
+
+    var navLinks = document.querySelectorAll('.nav-links a');
+
+    var setzeTitel = function () {
+      var id = Object.keys(benennung).filter(function (k) { return offen[k]; })[0];
+      kolumnentitel.textContent = id ? benennung[id] : '';
+      kolumnentitel.classList.toggle('is-visible', Boolean(id));
+
+      // Die Navigation zeigt denselben Abschnitt, sonst widersprechen
+      // sich zwei Anzeigen auf demselben Balken.
+      var ziel = id ? '#' + id : '#top';
+      navLinks.forEach(function (a) {
+        var ist = a.getAttribute('href') === ziel;
+        a.classList.toggle('is-active', ist);
+        if (ist) { a.setAttribute('aria-current', 'true'); }
+        else { a.removeAttribute('aria-current'); }
+      });
+    };
+
+    var titelBeobachter = new IntersectionObserver(function (eintraege) {
+      eintraege.forEach(function (e) { offen[e.target.id] = e.isIntersecting; });
+      setzeTitel();
+    }, { rootMargin: '-25% 0px -65% 0px' });
+
+    Object.keys(benennung).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) { titelBeobachter.observe(el); }
+    });
+  }
+
+  if (balken) {
+    var balkenLaeuft = false;
+
+    var zeichneBalken = function () {
+      var hoehe = document.documentElement.scrollHeight - window.innerHeight;
+      var anteil = hoehe > 0 ? Math.min(1, Math.max(0, window.scrollY / hoehe)) : 0;
+      balken.style.transform = 'scaleX(' + anteil.toFixed(4) + ')';
+      balkenLaeuft = false;
+    };
+
+    window.addEventListener('scroll', function () {
+      if (!balkenLaeuft) {
+        window.requestAnimationFrame(zeichneBalken);
+        balkenLaeuft = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('resize', zeichneBalken);
+    zeichneBalken();
+  }
+
+  /* ------------------------------------------------------------------------
+     4. Bewegung
      Die einzige nicht ausgeloeste Bewegung ist der Aufbau des Heros beim
      Laden. Sie steckt komplett in CSS, hier ist nichts zu steuern —
      prefers-reduced-motion schaltet sie im Stylesheet ab.
      ------------------------------------------------------------------------ */
 
   /* ------------------------------------------------------------------------
-     4. Kontaktformular
+     5. Kontaktformular
      ------------------------------------------------------------------------ */
 
   var form = document.getElementById('contactForm');
@@ -160,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ------------------------------------------------------------------------
-     5. Jahreszahl im Footer aktuell halten
+     6. Jahreszahl im Footer aktuell halten
      ------------------------------------------------------------------------ */
 
   var yearEl = document.getElementById('year');

@@ -76,6 +76,30 @@ Zwei Befunde aus der Kontrastrechnung, die beide Seiten betreffen:
   `#0071E3` erreicht auf der Bahn nur 4,27:1 und bleibt Flächen, Rahmen und
   Fokusring vorbehalten.
 
+## Durchgang 6: Scrolleffekte
+
+Gewünscht waren interessante Scrolleffekte. Das übliche Einblenden pro
+Abschnitt kam nicht in Frage, es wurde in Durchgang 2 aus guten Gründen
+entfernt. Stattdessen sagt die Bewegung jetzt, an welcher Stelle des Dokuments
+man steht.
+
+**Landingpage:** mitlaufende Randspalte, Registermarken am rechten Rand,
+abgehakte Zeilen im Leistungsverzeichnis. Dazu der Aktenkopf auf dem
+Deckblatt, der ohne Bewegung auskommt.
+
+**Website:** laufender Kolumnentitel im Kopf und eine Fortschrittslinie an
+dessen Unterkante. Die Navigation markiert denselben Abschnitt wie der
+Kolumnentitel.
+
+Zwei Befunde beim Prüfen:
+
+- Die Registermarken überlappten unterhalb von 1400 px den Textblock. Sie sind
+  jetzt nach verfügbarem Rand gestaffelt: unter 1200 px aus, bis 1400 px nur
+  die Nummer.
+- Die Navigation der Website markierte fest „Start", während der
+  Kolumnentitel bereits einen anderen Abschnitt nannte. Beides hängt jetzt am
+  selben Beobachter.
+
 ## Offen
 
 - `[ANZAHL]+ Betreute Objekte` ist der letzte Platzhalter im Kennzahlenband.

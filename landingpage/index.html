@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="no-js">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,18 +58,40 @@
     </div>
   </header>
 
+  <!-- Registermarken: zeigen den aktuellen Abschnitt und springen dorthin.
+       Ohne JavaScript bleiben es gewoehnliche Ankerlinks. -->
+  <nav class="register-tabs" aria-label="Abschnitte">
+    <a href="#leistungen"><span class="num">01</span><span>Leistungen</span></a>
+    <a href="#ablauf"><span class="num">02</span><span>Ablauf</span></a>
+    <a href="#belege"><span class="num">03</span><span>Arbeiten</span></a>
+    <a href="#betrieb"><span class="num">04</span><span>Betrieb</span></a>
+    <a href="#anfrage"><span class="num">05</span><span>Anfrage</span></a>
+  </nav>
+
   <main id="main">
 
     <!-- ====================================================================
          Deckblatt
          ==================================================================== -->
     <section class="cover sheet" id="top">
-      <div class="cover-meta">
-        <span>Objektbetreuung</span>
-        <span>Greven und Umgebung</span>
-        <span>Tätig seit <b class="num">2024</b></span>
-        <span>Inhaber <b>Koray Emir Köylü</b></span>
-      </div>
+      <dl class="filehead">
+        <div>
+          <dt>Gegenstand</dt>
+          <dd>Objektbetreuung</dd>
+        </div>
+        <div>
+          <dt>Gebiet</dt>
+          <dd>Greven und Umgebung</dd>
+        </div>
+        <div>
+          <dt>Tätig seit</dt>
+          <dd class="num">2024</dd>
+        </div>
+        <div>
+          <dt>Inhaber</dt>
+          <dd>Koray Emir Köylü</dd>
+        </div>
+      </dl>
 
       <h1>Ein Betrieb für alles, was an Ihrer Immobilie anfällt.</h1>
 
@@ -115,7 +137,7 @@
                   <h3>Reinigungsdienstleistungen</h3>
                   <p>Unterhalts-, Glas- und Sonderreinigung für Privat- und Gewerbeobjekte.</p>
                 </td>
-                <td class="col-turnus num">wöchentlich bis täglich</td>
+                <td class="col-turnus num"><span class="tick" aria-hidden="true"></span>wöchentlich bis täglich</td>
               </tr>
               <tr>
                 <td class="col-no num">02</td>
@@ -123,7 +145,7 @@
                   <h3>Garten- und Grünpflege</h3>
                   <p>Rasen, Hecken, Beete, Laub. Außenanlagen über das ganze Jahr.</p>
                 </td>
-                <td class="col-turnus num">14-täglich, saisonal</td>
+                <td class="col-turnus num"><span class="tick" aria-hidden="true"></span>14-täglich, saisonal</td>
               </tr>
               <tr>
                 <td class="col-no num">03</td>
@@ -131,7 +153,7 @@
                   <h3>Hausmeisterservice</h3>
                   <p>Kontrollgänge, kleine Reparaturen, Winterdienst, Schlüsseldienst am Objekt.</p>
                 </td>
-                <td class="col-turnus num">wöchentlich</td>
+                <td class="col-turnus num"><span class="tick" aria-hidden="true"></span>wöchentlich</td>
               </tr>
               <tr>
                 <td class="col-no num">04</td>
@@ -139,7 +161,7 @@
                   <h3>Gebäudemanagement</h3>
                   <p>Fristen, Wartungen, Fremdfirmen. Sie bekommen einen Bericht statt Rückfragen.</p>
                 </td>
-                <td class="col-turnus num">laufend, Bericht quartalsweise</td>
+                <td class="col-turnus num"><span class="tick" aria-hidden="true"></span>laufend, Bericht quartalsweise</td>
               </tr>
               <tr>
                 <td class="col-no num">05</td>
@@ -147,7 +169,7 @@
                   <h3>Gebäudeeffizienz</h3>
                   <p>Wärmepumpe, Photovoltaik, Verbrauch. Betriebskosten senken, ohne Studium.</p>
                 </td>
-                <td class="col-turnus num">nach Prüfung</td>
+                <td class="col-turnus num"><span class="tick" aria-hidden="true"></span>nach Prüfung</td>
               </tr>
               <tr>
                 <td class="col-no num">06</td>
@@ -155,7 +177,7 @@
                   <h3>Sonstige Leistungen</h3>
                   <p>Entrümpelung, Umzugsreinigung, Sonderaufträge rund ums Objekt.</p>
                 </td>
-                <td class="col-turnus num">auf Abruf</td>
+                <td class="col-turnus num"><span class="tick" aria-hidden="true"></span>auf Abruf</td>
               </tr>
             </tbody>
           </table>

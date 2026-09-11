@@ -267,6 +267,7 @@ p { font-size: 17px; line-height: 1.6; }
 
 .site-header {
   position: sticky; top: 0; z-index: 100;
+  /* Bezugspunkt fuer die Fortschrittslinie */
   background: var(--c-white);
   transition: box-shadow var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
   border-bottom: 1px solid transparent;
@@ -341,6 +342,34 @@ p { font-size: 17px; line-height: 1.6; }
 @media (min-width: 1000px) {
   .nav-links, .nav-actions { display: flex; }
   .nav-toggle, .nav-mobile { display: none; }
+}
+
+/* Laufender Kolumnentitel. Feste Hoehe, damit der Wechsel des Textes
+   nichts verschiebt. Unter 1000 px uebernimmt das Menue die Orientierung. */
+.running-head {
+  display: none;
+  flex: 1 1 auto;
+  min-width: 0; height: 20px; line-height: 20px;
+  margin-inline: var(--s-3);
+  font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+  color: var(--c-text-soft);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+.running-head.is-visible { opacity: 1; }
+
+@media (min-width: 1000px) { .running-head { display: block; } }
+
+/* Lesefortschritt: eine Haarlinie an der Unterkante des Kopfes */
+.read-progress {
+  position: absolute; left: 0; right: 0; bottom: -1px;
+  height: 2px; background: transparent; overflow: hidden;
+}
+.read-progress span {
+  display: block; height: 100%; width: 100%;
+  background: var(--c-accent);
+  transform: scaleX(0); transform-origin: left center;
 }
 
 /* --------------------------------------------------------------------------

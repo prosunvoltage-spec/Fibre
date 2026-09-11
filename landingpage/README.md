@@ -37,7 +37,7 @@ ein gepflegtes Serviceheft.
 | Bilder | Belege mit Nummer und Bildunterschrift, nicht ganzflächig |
 | Farbe | Papierweiß, Tinte, das Markenblau. Dieselbe Skala wie `kyl/` |
 | Schrift | Instrument Sans für Text, JetBrains Mono für Zahlen |
-| Bewegung | Keine. Ein Protokoll bewegt sich nicht beim Lesen |
+| Bewegung | Nur Lesestand: mitlaufende Randspalte, Registermarken, abgehakte Zeilen |
 
 Zwei Regeln aus den Skills berühren sich hier: Tabellenschrift für kleine
 Beschriftungen gilt als Merkmal generierter Seiten. Sie ist hier trotzdem
@@ -69,6 +69,26 @@ Zwei Entscheidungen dahinter, beide aus der Kontrastrechnung:
 - **Kleine Ziffern und Links laufen im dunklen Blau.** `#0071E3` erreicht auf
   der Bahn nur 4,27:1. Das helle Blau bleibt Flächen, Rahmen und dem
   Fokusring vorbehalten, wo 3:1 genügt.
+
+## Scrolleffekte
+
+Vier Stück, alle aus der Dokument-Metapher heraus. Keines ist das übliche
+Einblenden von unten, das in allen drei Skills als Merkmal generierter Seiten
+gilt.
+
+| Effekt | Was passiert | Technik |
+|---|---|---|
+| Mitlaufende Randspalte | Nummer und Bezeichnung des Abschnitts bleiben neben dem Inhalt stehen, bis der nächste sie wegschiebt | `position: sticky`, reines CSS |
+| Registermarken | Reiter am rechten Rand wie bei einer Mappe, der aktuelle färbt sich und zeigt seine Bezeichnung | `IntersectionObserver` |
+| Abgehakte Zeilen | Jede Zeile des Leistungsverzeichnisses bekommt beim Vorbeiscrollen einmalig ein Häkchen, leicht versetzt | `IntersectionObserver`, `opacity` und `transform` |
+| Aktenkopf | Keine Bewegung, aber der Punkt, der den Charakter am deutlichsten hebt: Feldbezeichnung über dem Wert, Haarlinien als Zellgrenzen | CSS-Raster |
+
+Die Registermarken brauchen freien Seitenrand. Unter 1200 px sind sie
+ausgeblendet, zwischen 1200 und 1400 px zeigen sie nur die Nummer.
+
+Bei `prefers-reduced-motion` entfallen die Übergänge, die Zustände bleiben:
+sie tragen Information, keine Dekoration. Ohne JavaScript sind alle Häkchen
+sofort sichtbar und die Reiter funktionieren als gewöhnliche Ankerlinks.
 
 ## Lokal ansehen
 

@@ -76,9 +76,15 @@ Bildern, `aria-expanded` am Menü-Button, Live-Regionen an den Formularfehlern.
 Alle Text-Hintergrund-Paare liegen über 4,5:1, Feldrahmen und Fokusring über
 3:1. Die Landingpage in `landingpage/` nutzt dieselbe Skala.
 
-Bewegung gibt es an genau zwei Stellen: der Hero baut sich beim Laden einmal
-auf, und Bedienelemente antworten auf Überfahren und Klick. Kein Einblenden
-beim Scrollen. `prefers-reduced-motion` schaltet den Hero-Aufbau ab. Die
+Bewegung gibt es an drei Stellen: der Hero baut sich beim Laden einmal auf,
+Bedienelemente antworten auf Überfahren und Klick, und der Kopf zeigt den
+Lesestand. Kein Einblenden beim Scrollen.
+
+Der Lesestand besteht aus zwei Teilen: einem laufenden Kolumnentitel neben dem
+Logo, der den aktuellen Abschnitt nennt, und einer Haarlinie an der Unterkante
+des Kopfes, die den Fortschritt der Seite zeigt. Die Navigation markiert
+denselben Abschnitt, damit sich nicht zwei Anzeigen widersprechen. Unter
+1000 px übernimmt das Menü die Orientierung. `prefers-reduced-motion` schaltet den Hero-Aufbau ab. Die
 Begründungen für diese und weitere Entscheidungen stehen in
 `design/NOTIZEN.md`.
 

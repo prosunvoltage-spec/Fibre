@@ -1,9 +1,13 @@
 /* ==========================================================================
    KYL Landingpage
-   Vanilla JS, keine Abhaengigkeiten. Drei Bloecke: Menue, Formular,
-   Jahreszahl. Die Seite animiert nichts von selbst. Was reagiert,
-   reagiert auf eine Handlung.
+   Vanilla JS, keine Abhaengigkeiten. Vier Bloecke: Menue, Lesestand,
+   Formular, Jahreszahl. Bewegung gibt es nur dort, wo sie sagt, an
+   welcher Stelle des Dokuments man steht.
    ========================================================================== */
+
+// Signalisiert dem Stylesheet, dass Skripte laufen. Ohne diese Zeile
+// bleiben die Haekchen dauerhaft sichtbar, was ohne JS richtig ist.
+document.documentElement.classList.remove('no-js');
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -42,7 +46,67 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ------------------------------------------------------------------------
-     2. Kontaktformular
+     2. Lesestand
+     Zwei Beobachter: einer setzt den aktiven Registerreiter, der andere
+     hakt die Zeilen des Leistungsverzeichnisses ab, sobald sie die
+     Lesemarke passiert haben. Beides einmalig und ohne Layoutverschiebung.
+     ------------------------------------------------------------------------ */
+
+  var hatBeobachter = 'IntersectionObserver' in window;
+
+  // 2a. Aktiver Reiter
+  var reiter = document.querySelectorAll('.register-tabs a');
+
+  if (hatBeobachter && reiter.length) {
+    var zuReiter = {};
+    reiter.forEach(function (a) { zuReiter[a.getAttribute('href').slice(1)] = a; });
+
+    var abschnitte = Object.keys(zuReiter)
+      .map(function (id) { return document.getElementById(id); })
+      .filter(Boolean);
+
+    var sichtbar = {};
+
+    var aktualisiere = function () {
+      // Der oberste sichtbare Abschnitt gewinnt
+      var aktiv = abschnitte.filter(function (s) { return sichtbar[s.id]; })[0];
+      reiter.forEach(function (a) {
+        var ist = aktiv && a.getAttribute('href') === '#' + aktiv.id;
+        a.classList.toggle('is-current', Boolean(ist));
+        if (ist) { a.setAttribute('aria-current', 'true'); }
+        else { a.removeAttribute('aria-current'); }
+      });
+    };
+
+    var abschnittBeobachter = new IntersectionObserver(function (eintraege) {
+      eintraege.forEach(function (e) { sichtbar[e.target.id] = e.isIntersecting; });
+      aktualisiere();
+    }, { rootMargin: '-30% 0px -60% 0px' });
+
+    abschnitte.forEach(function (s) { abschnittBeobachter.observe(s); });
+  }
+
+  // 2b. Zeilen abhaken
+  var zeilen = document.querySelectorAll('.register tbody tr');
+
+  if (hatBeobachter && zeilen.length) {
+    var zeilenBeobachter = new IntersectionObserver(function (eintraege, beobachter) {
+      eintraege.forEach(function (e) {
+        if (!e.isIntersecting) { return; }
+        var i = Array.prototype.indexOf.call(zeilen, e.target);
+        // Leichter Versatz, damit es wie ein Durchgehen der Liste wirkt
+        setTimeout(function () { e.target.classList.add('is-checked'); }, (i % 3) * 70);
+        beobachter.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -25% 0px', threshold: 0.6 });
+
+    zeilen.forEach(function (tr) { zeilenBeobachter.observe(tr); });
+  } else {
+    zeilen.forEach(function (tr) { tr.classList.add('is-checked'); });
+  }
+
+  /* ------------------------------------------------------------------------
+     3. Kontaktformular
      ------------------------------------------------------------------------ */
 
   var form = document.getElementById('contactForm');
@@ -107,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ------------------------------------------------------------------------
-     3. Jahreszahl in der Fusszeile
+     4. Jahreszahl in der Fusszeile
      ------------------------------------------------------------------------ */
 
   var yearEl = document.getElementById('year');

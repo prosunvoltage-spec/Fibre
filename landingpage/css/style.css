@@ -129,6 +129,11 @@ p { line-height: 1.6; }
   font-size: 0.8125rem; color: var(--c-ink-2);
   padding-top: 4px;
 }
+/* Die Randspalte laeuft neben dem Abschnitt mit, wie ein Kolumnentitel.
+   Reines CSS, kein Skript noetig. */
+@media (min-width: 900px) {
+  .row-label { position: sticky; top: 84px; align-self: start; }
+}
 .row-label .num { color: var(--c-accent-deep); font-size: 0.8125rem; }
 
 /* Sektion: kraeftige Linie oben, dann Luft */
@@ -239,6 +244,71 @@ p { line-height: 1.6; }
 .cover .lead { margin-bottom: var(--s-6); }
 .cover-actions { display: flex; flex-wrap: wrap; gap: var(--s-2); }
 
+/* Aktenkopf: Feldbezeichnung ueber dem Wert, Haarlinien als Zellgrenzen.
+   Das ist der Kopf eines Formblatts, keine Aufzaehlung. */
+.filehead {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--c-rule-strong);
+  border-left: 1px solid var(--c-rule);
+  margin-bottom: var(--s-6);
+}
+@media (min-width: 700px) { .filehead { grid-template-columns: repeat(4, 1fr); } }
+
+.filehead > div {
+  padding: 10px var(--s-2) 12px;
+  border-right: 1px solid var(--c-rule);
+  border-bottom: 1px solid var(--c-rule);
+}
+.filehead dt { font-size: 0.6875rem; color: var(--c-ink-2); margin-bottom: 3px; }
+.filehead dd { font-size: 0.9375rem; font-weight: 500; }
+
+/* Registermarken am rechten Rand, wie die Reiter einer Mappe.
+   Sie brauchen freien Seitenrand. Unter 1200 px gibt es den nicht, dort
+   traegt die mitlaufende Randspalte die Orientierung allein. Zwischen
+   1200 und 1400 px zeigen sie nur die Nummer, darueber auch die
+   Bezeichnung. */
+.register-tabs { display: none; }
+
+@media (min-width: 1200px) {
+  .register-tabs {
+    position: fixed; top: 50%; right: 0; z-index: 90;
+    transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .register-tabs a {
+    display: flex; align-items: center; gap: var(--s-1);
+    min-height: 28px; padding: 0 6px;
+    background: var(--c-paper);
+    border: 1px solid var(--c-rule);
+    border-right: none;
+    font-size: 0.75rem; color: var(--c-ink-2); text-decoration: none;
+    transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+  }
+  .register-tabs a .num { font-size: 0.6875rem; }
+  .register-tabs a > span:last-child { display: none; }
+
+  .register-tabs a:hover { color: var(--c-ink); }
+  .register-tabs a.is-current {
+    border-color: var(--c-accent);
+    box-shadow: inset 3px 0 0 var(--c-accent);
+    color: var(--c-accent-deep);
+  }
+}
+
+/* Ab hier ist genug Rand fuer die Bezeichnung */
+@media (min-width: 1400px) {
+  .register-tabs a { padding: 0 var(--s-1) 0 10px; }
+  .register-tabs a > span:last-child {
+    display: block;
+    max-width: 0; overflow: hidden; white-space: nowrap; opacity: 0;
+    transition: max-width var(--dur-base) var(--ease), opacity var(--dur-fast) var(--ease);
+  }
+  .register-tabs a:hover,
+  .register-tabs a.is-current { padding-right: var(--s-2); }
+  .register-tabs a:hover > span:last-child,
+  .register-tabs a.is-current > span:last-child { max-width: 120px; opacity: 1; }
+}
+
 /* Stempel: die einzige Stelle, an der die Akzentfarbe Flaeche bekommt */
 .stamp {
   display: inline-flex; align-items: center; gap: var(--s-1);
@@ -273,7 +343,26 @@ p { line-height: 1.6; }
 .register tr:last-child td { border-bottom: 1px solid var(--c-rule-strong); }
 
 .register .col-no { width: 46px; color: var(--c-accent-deep); }
-.register .col-turnus { width: 150px; white-space: nowrap; color: var(--c-ink-2); }
+.register .col-turnus { position: relative; width: 190px; white-space: nowrap; color: var(--c-ink-2); }
+
+/* Abgehakte Zeile: das Haekchen erscheint, wenn die Zeile die Lesemarke
+   passiert hat. Einmalig, wie ein Abzeichnen im Protokoll. */
+.tick {
+  position: absolute; top: 29px; right: 0;
+  width: 15px; height: 15px;
+  opacity: 0; transform: scale(0.7) rotate(-12deg);
+  transition: opacity 320ms var(--ease), transform 320ms var(--ease);
+}
+.tick::before, .tick::after {
+  content: ""; position: absolute; background: var(--c-accent);
+}
+.tick::before { left: 1px; bottom: 3px; width: 6px; height: 1.5px; transform: rotate(45deg); transform-origin: left bottom; }
+.tick::after  { left: 5px; bottom: 3px; width: 11px; height: 1.5px; transform: rotate(-52deg); transform-origin: left bottom; }
+
+tr.is-checked .tick { opacity: 1; transform: none; }
+
+/* Ohne Skript sind alle Haekchen sofort da */
+.no-js .tick { opacity: 1; transform: none; }
 .register .col-umfang { color: var(--c-ink-2); }
 
 .register h3 { margin-bottom: 2px; }
@@ -415,6 +504,8 @@ p { line-height: 1.6; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
+  /* Die Zustaende bleiben, sie tragen Information. Nur die Bewegung geht. */
+  .tick { transform: none; }
 }
 
 /* Abstand zum vorangehenden Text, frueher als Inline-Stil gesetzt */
