@@ -77,27 +77,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ------------------------------------------------------------------------
-     3. Scroll-Reveal via IntersectionObserver
+     3. Bewegung
+     Die einzige nicht ausgeloeste Bewegung ist der Aufbau des Heros beim
+     Laden. Sie steckt komplett in CSS, hier ist nichts zu steuern —
+     prefers-reduced-motion schaltet sie im Stylesheet ab.
      ------------------------------------------------------------------------ */
-
-  var revealItems = document.querySelectorAll('.reveal');
-  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (!('IntersectionObserver' in window) || prefersReducedMotion) {
-    // Fallback: alles sofort sichtbar, niemand sieht eine leere Seite
-    revealItems.forEach(function (el) { el.classList.add('is-visible'); });
-  } else {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target); // nur einmal auslösen
-        }
-      });
-    }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
-
-    revealItems.forEach(function (el) { observer.observe(el); });
-  }
 
   /* ------------------------------------------------------------------------
      4. Kontaktformular
