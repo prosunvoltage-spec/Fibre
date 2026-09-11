@@ -43,6 +43,21 @@ Nicht übernommen wurde der Farb- und Schriftvorschlag des Skills (Blau mit
 Orange, Poppins mit Open Sans). Das ist die Allerweltslösung für
 Dienstleister-Seiten und würde die Entscheidung des Kunden überschreiben.
 
+## Durchgang 4: Prüfung mit taste-skill
+
+Ein Regelwerk gegen schablonenhafte Oberflächen. Es setzt React, Next.js und
+Tailwind voraus, deshalb greift nur der Gestaltungsteil. Die Seite erfüllt ihn
+bis auf einen Punkt:
+
+- **Geviertstriche `—` im Fließtext.** Sieben Stellen ersetzt, je nach Satz
+  durch Doppelpunkt, Komma oder einen eigenen Satz. Im Deutschen wäre ohnehin
+  der Halbgeviertstrich `–` richtig, der Geviertstrich ist englische
+  Typografie. Die Änderung ist also unabhängig vom Skill korrekt.
+
+Nicht übernommen: Dunkelmodus als Pflicht (eine regionale Dienstleisterseite
+braucht kein zweites Farbschema), die Schriftvorschläge und die
+Bewegungsmuster mit GSAP. Begründung in `.claude/skills/taste-skill/HERKUNFT.md`.
+
 ## Offen
 
 - `[ANZAHL]+ Betreute Objekte` ist der letzte Platzhalter im Kennzahlenband.
