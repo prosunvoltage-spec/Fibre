@@ -34,24 +34,45 @@ Datei automatisch. Die Blanko-Vorlage steckt bereits in der HTML-Datei.
 
 ## Tätigkeitskatalog
 
-| Tätigkeit | Position | Einheit | Spalte im PDF |
+Die Positionsnummern folgen dem **Leistungsverzeichnis**.
+
+| Tätigkeit | Position | Einheit | Spalte im Blatt |
 |---|---|---|---|
 | Einblasen HK 24F | 02.02.01.02 | m | 1 |
 | Einblasen HK 96F | 02.02.01.01 | m | 2 |
-| GF-Kabel vorb. & Spleißen (bis 24F.) | 02.05.01.01 | St | 3 |
-| GF-Kabel vorb. & Spleißen (bis 96F.) | 02.05.01.02 | St | 4 |
-| Montage und Spleißen von Kopplern | 02.05.01.03 | St | 5 |
-| Zusätzliches Spleißen weiterer Fasern | 02.05.01.04 | St | 6 |
+| Glasfaserkabel vorbereiten und spleißen | 02.05.01.01 | St | 3 |
+| Montage und Spleißen von Kopplern | 02.05.01.02 | St | 5 |
+| Zusätzliches Spleißen weiterer Fasern | 02.05.01.03 | St | 6 |
 | GF ungespleißt ablegen | 02.03.01.03 | m | 7 |
 | Montieren EZA 12mm | 02.04.01.02 | St | 8 |
 | Stunden Monteur | 02.07.01.03 | h | 9 |
 
 Die Tätigkeit steuert, **in welche Mengenspalte** des PDFs der Wert wandert.
 
+### Das Blanko-Blatt ist bei 02.05.01 veraltet
+
+Spalte 4 des gelieferten Blattes heißt „GF-Kabel vorb. & Spleißen (bis
+96F.)“. Diese Position gibt es im Leistungsverzeichnis nicht; es existiert
+nur **eine** Position fürs Vorbereiten und Spleißen. Dadurch sind die
+aufgedruckten Nummern der drei folgenden Spalten um eins zu hoch:
+
+| Spalte | aufgedruckt | laut LV |
+|---|---|---|
+| 3 – GF-Kabel vorb. & Spleißen (bis 24F.) | 02.05.01.01 | 02.05.01.01 ✓ |
+| 4 – GF-Kabel vorb. & Spleißen (bis 96F.) | 02.05.01.02 | entfällt |
+| 5 – Montage und Spleißen von Kopplern | 02.05.01.03 | 02.05.01.02 |
+| 6 – Zusätzliches Spleißen weiterer Fasern | 02.05.01.04 | 02.05.01.03 |
+
+Das Werkzeug ordnet die Mengen deshalb nach der **Spaltenüberschrift** zu,
+nicht nach der aufgedruckten Nummer. Spalte 4 bleibt dauerhaft leer. Die
+aufgedruckten Nummern werden nicht überschrieben – das Layout bleibt
+unangetastet. Sauber wird das erst, wenn der Auftraggeber ein aktualisiertes
+Blanko-Blatt liefert.
+
 Katalog erweitern: in `index.html` die Liste `TAETIGKEITEN` ergänzen und
-`spalte` auf die passende Mengenspalte setzen (0–8). Kommen im PDF **neue
-Spalten** hinzu, müssen zusätzlich die Koordinaten in `SPALTEN` angepasst
-werden.
+`spalte` auf die passende Mengenspalte setzen (0–8, also Spalte im Blatt
+minus 1). Kommen im PDF **neue Spalten** hinzu, müssen zusätzlich die
+Koordinaten in `SPALTEN` angepasst werden.
 
 ## Dateien
 
