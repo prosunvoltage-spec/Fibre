@@ -350,7 +350,7 @@
       {key:"zus",  name:"Zusätzliches Spleißen weiterer Fasern", pos:"02.05.01.03",    einheit:"St", spalte:[494.2,554.6]},
       {key:"able", name:"GF ungespleißt ablegen",                pos:"02.03.01.03",    einheit:"m",  spalte:[554.6,611.9]},
       {key:"eza",  name:"Montieren EZA 12mm",                    pos:"02.04.01.02",    einheit:"St", spalte:[611.9,660.5]},
-      {key:"std",  name:"Stunden Monteur",                       pos:"02.07.01.03",    einheit:"h",  spalte:[660.5,717.3]}
+      {key:"std",  name:"Normalstunde Monteur Glasfaser",        pos:"02.07.01.03",    einheit:"h",  spalte:[660.5,717.3]}
     ],
     kopf:[
       {id:"ort",           label:"Ort",                   vorgabe:"Münster"},
@@ -393,7 +393,7 @@
          Platz der Monteurstunden ein; die Stunden wandern in eine rechts neu
          gezeichnete Spalte (siehe "umbau"). */
       {key:"ezat",  name:"Montieren EZA-t 7 / 2,0-4,0", kurz:"EZA-t 7",   pos:"02.04.01.01",    einheit:"Stk", spalte:[565.1,643.9]},
-      {key:"std",   name:"Stunde Monteur Glasfaser", kurz:"Stunden",      pos:"02.07.01.03",    einheit:"h",   spalte:[645.2,723.9]}
+      {key:"std",   name:"Normalstunde Monteur Glasfaser", kurz:"Normalstunde", pos:"02.07.01.03", einheit:"h",  spalte:[645.2,723.9]}
     ],
     umbau:{
       /* Alten Kopf der Stundenspalte leeren - dort steht kuenftig EZA-t 7. */
@@ -412,10 +412,10 @@
       kopfzeilen:[{text:"Montieren EZA-t 7",  x:604.5,  y:171.7, groesse:6.0},
                   {text:"2,0-4,0 (Stk)",      x:604.5,  y:180.1, groesse:6.0},
                   {text:"02.04.01.01",        x:604.5,  y:188.5, groesse:6.0},
-                  {text:"02.07.01.03  Stunde",x:684.56, y:166.7, groesse:6.0},
-                  {text:"Monteur Glasfaser",  x:684.56, y:175.1, groesse:6.0},
-                  {text:"(bei Problemen, in", x:684.56, y:183.5, groesse:6.0},
-                  {text:"Absprache)",         x:684.56, y:191.9, groesse:6.0},
+                  {text:"02.07.01.03",        x:684.56, y:166.7, groesse:6.0},
+                  {text:"Normalstunde Monteur",x:684.56, y:175.1, groesse:6.0},
+                  {text:"Glasfaser (bei Problemen,", x:684.56, y:183.5, groesse:6.0},
+                  {text:"in Absprache)",      x:684.56, y:191.9, groesse:6.0},
                   /* aufgedruckt 02.01.01.01 (Nummer der Kabellaenge) bzw. 04.02.01.01.03 */
                   {text:"02.01.01.02", x:417.18, y:169.992, groesse:6.2},
                   {text:"02.01.01.03", x:537.59, y:169.884, groesse:6.2}]
@@ -442,7 +442,8 @@
      Zeile fällt dadurch sichtbar in die Prüfung statt still zu verschwinden. */
   const ALTNAMEN = {
     "GF-Kabel vorb. & Spleißen (bis 24F.)": "Glasfaserkabel vorbereiten und spleißen",
-    "GF-Kabel vorb. & Spleißen (bis 96F.)": ""
+    "GF-Kabel vorb. & Spleißen (bis 96F.)": "",
+    "Stunden Monteur": "Normalstunde Monteur Glasfaser"
   };
 
   /* ===================== Zustand ===================== */

@@ -71,7 +71,7 @@ Deshalb gibt es dort kein Tätigkeits-Auswahlfeld, sondern sechs Mengenfelder.
 | Zusätzliches Spleißen weiterer Fasern | 02.05.01.03 | St | 6 |
 | GF ungespleißt ablegen | 02.03.01.03 | m | 7 |
 | Montieren EZA 12mm | 02.04.01.02 | St | 8 |
-| Stunden Monteur | 02.07.01.03 | h | 9 |
+| Normalstunde Monteur Glasfaser | 02.07.01.03 | h | 9 |
 
 ### Katalog Hausanschlüsse
 
@@ -82,14 +82,18 @@ Deshalb gibt es dort kein Tätigkeits-Auswahlfeld, sondern sechs Mengenfelder.
 | Installation Gf-TA EFH | 02.01.01.04 | Stk | 7 |
 | Zusätzlicher Spleiß | 02.01.01.03 | Stk | 8 |
 | Montieren EZA-t 7 / 2,0-4,0 | 02.04.01.01 | Stk | 9 (neu) |
-| Stunde Monteur Glasfaser | 02.07.01.03 | h | 10 (neu gezeichnet) |
+| Normalstunde Monteur Glasfaser | 02.07.01.03 | h | 10 (neu gezeichnet) |
 
 Die Bezeichnungen sind hier die der **Spaltenüberschriften**, nicht die des
 Leistungsverzeichnisses – so ist beim Eintragen sichtbar, in welche Spalte
-ein Wert wandert. Im LV heißen sie „Hausanschluss Gf-Kabel in Mikrorohr…“,
-„Montage Gf-AP“, „Zusätzliches Spleißen einer Faser“ und „Installation
-Gf-TA EFH“. Beim HK-Blatt ist es umgekehrt: dort wird der Name in die
-Spalte „Tätigkeit“ gedruckt, deshalb stehen dort die LV-Bezeichnungen.
+ein Wert wandert. Im LV heißen die ersten vier „Hausanschluss Gf-Kabel in
+Mikrorohr…“, „Montage Gf-AP“, „Zusätzliches Spleißen einer Faser“ und
+„Installation Gf-TA EFH“.
+
+Ausnahme sind die beiden Spalten, deren Kopf das Werkzeug ohnehin selbst
+setzt – dort steht der LV-Wortlaut. Beim HK-Blatt ist es durchgehend so:
+der Name wird in die Spalte „Tätigkeit“ gedruckt, deshalb stehen dort die
+LV-Bezeichnungen.
 
 ## Falsche Positionsnummern in den Vorlagen
 
@@ -121,7 +125,7 @@ laut LV aber in denselben Block:
 | 6 – Montage Gf-AP EFH + MFH (Stk) | 02.01.01.01 | **02.01.01.02**, wird überschrieben |
 | 7 – Installation Gf-TA EFH (Stk) | 02.01.01.04 | 02.01.01.04 ✓ |
 | 8 – Zusätzlicher Spleiß (Stk) | 04.02.01.01.03 | **02.01.01.03**, wird überschrieben |
-| 9 – Stunde Monteur Glasfaser | 02.07.01.03 | unbestätigt |
+| 9 – Stunde Monteur Glasfaser | 02.07.01.03 | 02.07.01.03 ✓ |
 
 Das exportierte Aufmaß stimmt damit mit dem LV überein. Die **Vorlagen
 selbst** bleiben falsch – sauber wird das erst mit aktualisierten
@@ -145,7 +149,9 @@ verbliebene Position alle Faserzahlen abdeckt.
 02.04.01.01“ fehlt im Blatt. Sie nimmt den Platz der Monteurstunden ein;
 die Stunden wandern in eine rechts neu gezeichnete Spalte gleicher Breite.
 Damit steht die neue Spalte zwischen „Zusätzlicher Spleiß“ und den Stunden,
-und beide behalten die volle Breite.
+und beide behalten die volle Breite. Der neu gesetzte Kopf der Stundenspalte
+trägt den LV-Wortlaut „Normalstunde Monteur Glasfaser“; der Zusatz „(bei
+Problemen, in Absprache)“ aus dem Original bleibt erhalten.
 
 Die dafür nötigen Linienmaße sind aus den Vorlagen bei 2000 dpi abgenommen
 (Zeilentrenner 0,504 bzw. 0,612 pt, Ränder 0,972 bzw. 1,224 pt), damit die
