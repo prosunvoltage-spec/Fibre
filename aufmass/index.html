@@ -71,6 +71,9 @@
     padding:7px 12px; font-size:13px;
   }
   .btn-ghost:hover{border-color:var(--accent); color:var(--accent)}
+  .btn-ghost.btn-warn, .btn-ghost.btn-warn:hover{
+    color:var(--danger); border-color:var(--danger); font-weight:600;
+  }
   .btn-icon{
     background:none; border:none; color:var(--muted); padding:4px;
     line-height:1; border-radius:6px; font-size:18px;
@@ -709,9 +712,29 @@
     if(feld) feld.focus();
   });
 
-  document.getElementById("btn-leer").addEventListener("click", () => {
-    if(!confirm("Alle Positionen und Kopfdaten zurücksetzen?")) return;
-    grundzustand(); sichern(); kopfAufbauen(); zeichnen(); melden("", "");
+  /* Zweistufig statt confirm(): eingebettete Ansichten blockieren Dialoge,
+     der Klick liefe dann ins Leere. */
+  const btnLeer = document.getElementById("btn-leer");
+  let leerenScharf = 0;
+  function leerenZuruecksetzen(){
+    leerenScharf = 0;
+    btnLeer.textContent = "Alles leeren";
+    btnLeer.classList.remove("btn-warn");
+  }
+  btnLeer.addEventListener("click", () => {
+    if(!leerenScharf){
+      leerenScharf = window.setTimeout(leerenZuruecksetzen, 5000);
+      btnLeer.textContent = "Wirklich leeren?";
+      btnLeer.classList.add("btn-warn");
+      return;
+    }
+    window.clearTimeout(leerenScharf);
+    leerenZuruecksetzen();
+    grundzustand(); sichern(); kopfAufbauen(); zeichnen();
+    melden("gut", "Alle Positionen und Kopfdaten zurückgesetzt.");
+  });
+  btnLeer.addEventListener("blur", () => {
+    if(leerenScharf){ window.clearTimeout(leerenScharf); leerenZuruecksetzen(); }
   });
 
   laden();
