@@ -19,18 +19,31 @@ Anmeldung – läuft auf Handy, Tablet und PC.
 **Öffnen:** Datei doppelklicken, oder unter `…/aufmass/` auf der Website
 aufrufen und auf dem Handy zum Startbildschirm hinzufügen.
 
-1. Oben das **Blatt wählen**: HK-Arbeiten oder Hausanschlüsse.
+1. Oben das **Blatt wählen**: HK-Arbeiten, Hausanschlüsse oder HA Tiefbau.
 2. Kopfdaten ausfüllen. Ort, Unternehmen und das heutige Datum sind
    vorbelegt, beim HA-Blatt zusätzlich Projektstatus und die Prozentwerte.
 3. Zeilen füllen – was in eine Zeile gehört, unterscheidet sich je Blatt
    (siehe unten). Position und Einheit erscheinen automatisch.
 4. Optional **Unterschrift und Stempel** ankreuzen.
 5. **PDF erstellen** – die Datei heißt
-   `Aufmass_<HK|HA>_<NVT-Gebiet>_<Datum>.pdf`.
+   `Aufmass_<Blatt>_<Kennung>_<Datum>.pdf`.
+
+Die **Kennung** macht das PDF im Ordner wiedererkennbar. Sie kommt je nach
+Blatt aus unterschiedlichen Feldern:
+
+| Blatt | Kennung | Beispiel |
+|---|---|---|
+| HK-Arbeiten | NVT Gebiet | `Aufmass_HK_NVT_12_22_09_2026.pdf` |
+| Hausanschlüsse | erste Adresse (Straße + HA Nr.) | `Aufmass_HA_Roxeler_Strasse-HA-101_22_09_2026.pdf` |
+| HA Tiefbau | erste Adresse (Straße + Nr.) | `Aufmass_TB_Kleine_Breikamp-152_22_09_2026.pdf` |
+
+Ist keine Adresse eingetragen, greift ersatzweise das NVT Gebiet; fehlt auch
+das, steht `ohne-Angabe` im Namen. Umlaute werden umgeschrieben
+(`Straße` → `Strasse`), damit der Name auf jedem System gleich aussieht.
 
 Unter den Zeilen stehen die **Summen je Position** – zur Kontrolle vor der
 Unterschrift. Der Entwurf wird je Blatt laufend im Browser gespeichert und
-ist nach dem Schließen noch da. Jedes Blatt fasst 30 Zeilen.
+ist nach dem Schließen noch da. Die Blätter fassen 30 bzw. 31 Zeilen.
 
 ### Offline
 
@@ -38,7 +51,7 @@ Die PDF-Bibliothek (`pdf-lib`) wird von einem CDN geladen; nach dem ersten
 Aufruf liegt sie im Browser-Cache. Für echten Offline-Betrieb einmalig
 [`pdf-lib.min.js`](https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js)
 herunterladen und neben `index.html` legen – die Seite bevorzugt die lokale
-Datei automatisch. Beide Blanko-Vorlagen stecken bereits in der HTML-Datei.
+Datei automatisch. Alle drei Blanko-Vorlagen stecken bereits in der HTML-Datei.
 
 ## Die drei Blätter
 
