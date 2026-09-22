@@ -7,9 +7,9 @@ Das Blanko-Blatt wird dabei **nicht nachgebaut**: die Originalseite wird
 übernommen und die Werte werden in die vorhandenen Zellen gesetzt. Logo,
 Kopfbereich und Unterschriftsfelder bleiben unangetastet.
 
-Am Spaltenraster gibt es **zwei bewusste Eingriffe**, weil die gelieferten
-Blätter nicht zum Leistungsverzeichnis passen: im HK-Blatt entfällt eine
-Spalte, im HA-Blatt kommt eine dazu. Siehe unten.
+Wo die gelieferten Blätter nicht zum Leistungsverzeichnis passen, wird beim
+Export nachgebessert: eine Spalte entfällt, eine kommt dazu, vier falsche
+Positionsnummern werden überschrieben. Siehe unten.
 
 ## Benutzen
 
@@ -91,13 +91,12 @@ ein Wert wandert. Im LV heißen sie „Hausanschluss Gf-Kabel in Mikrorohr…“
 Gf-TA EFH“. Beim HK-Blatt ist es umgekehrt: dort wird der Name in die
 Spalte „Tätigkeit“ gedruckt, deshalb stehen dort die LV-Bezeichnungen.
 
-## Zwei Fehler in den gelieferten Blanko-Blättern
+## Falsche Positionsnummern in den Vorlagen
 
-Beide Vorlagen tragen Positionsnummern, die nicht aufgehen. Das Werkzeug
-ordnet die Mengen deshalb nach der **Spaltenüberschrift** zu, nie nach der
-aufgedruckten Nummer. Die falschen Nummern werden bisher **nicht**
-überschrieben – im Blatt steht also weiter die alte, während die App die
-richtige zeigt.
+Beide Vorlagen tragen Nummern, die nicht aufgehen. Das Werkzeug ordnet die
+Mengen nach der **Spaltenüberschrift** zu, nie nach der aufgedruckten
+Nummer, und **überschreibt die vier falschen Nummern beim Export** – jeweils
+an derselben Stelle, in derselben Größe und Strichstärke wie gedruckt.
 
 **HK-Blatt, 02.05.01:** Spalte 4 heißt „GF-Kabel vorb. & Spleißen (bis
 96F.)“. Diese Position gibt es im Leistungsverzeichnis nicht; es existiert
@@ -108,8 +107,8 @@ Nummern der folgenden Spalten um eins zu hoch:
 |---|---|---|
 | 3 – GF-Kabel vorb. & Spleißen (bis 24F.) | 02.05.01.01 | 02.05.01.01 ✓ |
 | 4 – GF-Kabel vorb. & Spleißen (bis 96F.) | 02.05.01.02 | entfällt, Spalte wird entfernt |
-| 5 – Montage und Spleißen von Kopplern | 02.05.01.03 | 02.05.01.02 |
-| 6 – Zusätzliches Spleißen weiterer Fasern | 02.05.01.04 | 02.05.01.03 |
+| 5 – Montage und Spleißen von Kopplern | 02.05.01.03 | **02.05.01.02**, wird überschrieben |
+| 6 – Zusätzliches Spleißen weiterer Fasern | 02.05.01.04 | **02.05.01.03**, wird überschrieben |
 
 **HA-Blatt, zwei falsche Nummern:** „Montage Gf-AP“ trägt aufgedruckt
 02.01.01.01 – das ist die Nummer der Kabellänge, dieselbe Nummer stand also
@@ -119,12 +118,14 @@ laut LV aber in denselben Block:
 | Spalte | aufgedruckt | laut LV |
 |---|---|---|
 | 5 – Eingeblasene Kabellänge (m) | 02.01.01.01 | 02.01.01.01 ✓ |
-| 6 – Montage Gf-AP EFH + MFH (Stk) | 02.01.01.01 | 02.01.01.02 |
+| 6 – Montage Gf-AP EFH + MFH (Stk) | 02.01.01.01 | **02.01.01.02**, wird überschrieben |
 | 7 – Installation Gf-TA EFH (Stk) | 02.01.01.04 | 02.01.01.04 ✓ |
-| 8 – Zusätzlicher Spleiß (Stk) | 04.02.01.01.03 | 02.01.01.03 |
+| 8 – Zusätzlicher Spleiß (Stk) | 04.02.01.01.03 | **02.01.01.03**, wird überschrieben |
 | 9 – Stunde Monteur Glasfaser | 02.07.01.03 | unbestätigt |
 
-Sauber wird beides erst mit aktualisierten Blanko-Blättern vom Auftraggeber.
+Das exportierte Aufmaß stimmt damit mit dem LV überein. Die **Vorlagen
+selbst** bleiben falsch – sauber wird das erst mit aktualisierten
+Blanko-Blättern vom Auftraggeber.
 
 ## Eingriffe am Spaltenraster
 
@@ -148,7 +149,10 @@ und beide behalten die volle Breite.
 
 Die dafür nötigen Linienmaße sind aus den Vorlagen bei 2000 dpi abgenommen
 (Zeilentrenner 0,504 bzw. 0,612 pt, Ränder 0,972 bzw. 1,224 pt), damit die
-neu gezogenen Linien nicht von den gedruckten abweichen.
+neu gezogenen Linien nicht von den gedruckten abweichen. Genauso wurden die
+vier überschriebenen Positionsnummern vermessen: Grundlinie, Mitte und
+Schriftgröße stammen aus der Tinte der gedruckten Nummer, damit die neue
+exakt an ihrer Stelle sitzt.
 
 ## Unterschrift und Stempel
 

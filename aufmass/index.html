@@ -323,7 +323,10 @@
       /* Kopffeld beider Spalten leeren, dann die beiden Senkrechten der Naht
          (x 381,47 und 382,43) ueber die ganze Tabellenhoehe wegnehmen. */
       weissen:[{x0:309.0, y0:166.4, x1:436.0, y1:194.85},
-               {x0:380.9, y0:195.87, x1:383.0, y1:480.55}],
+               {x0:380.9, y0:195.87, x1:383.0, y1:480.55},
+               /* aufgedruckte Nummern, die nicht zum LV passen */
+               {x0:449.0, y0:188.9, x1:482.5, y1:194.3},
+               {x0:508.3, y0:189.1, x1:541.9, y1:194.5}],
       /* Die Linie unter dem Tabellenkopf (194,88-195,84) und der untere
          Tabellenrand laufen durch und bleiben unberuehrt. Die Zeilentrenner
          dagegen enden an der Naht - ihr fehlendes Stueck wird neu gesetzt. */
@@ -332,7 +335,10 @@
       balken:[{x0:380.8, x1:383.1, y:479.268, h:0.972}],
       trenner:{x0:380.8, x1:383.1, y0:204.62, schritt:9.48, anzahl:29, h:0.504},
       kopfzeilen:[{text:"Glasfaserkabel vorbereiten und spleißen", x:372.3, y:179.9, groesse:5.9},
-                  {text:"02.05.01.01",                            x:372.3, y:187.4, groesse:5.9}]
+                  {text:"02.05.01.01",                            x:372.3, y:187.4, groesse:5.9},
+                  /* aufgedruckt 02.05.01.03 bzw. 02.05.01.04 */
+                  {text:"02.05.01.02", x:465.74, y:193.668, groesse:5.8},
+                  {text:"02.05.01.03", x:525.08, y:193.884, groesse:5.8}]
     },
     bemerkung:true,
     felder:[{key:"nvt", label:"NVT", spalte:[30.5, 68.3], weite:"78px"}],
@@ -391,7 +397,10 @@
     ],
     umbau:{
       /* Alten Kopf der Stundenspalte leeren - dort steht kuenftig EZA-t 7. */
-      weissen:[{x0:565.3, y0:156.3, x1:643.8, y1:195.6}],
+      weissen:[{x0:565.3, y0:156.3, x1:643.8, y1:195.6},
+               /* aufgedruckte Nummern, die nicht zum LV passen */
+               {x0:399.2, y0:164.6, x1:435.1, y1:170.6},
+               {x0:514.8, y0:164.5, x1:560.4, y1:170.5}],
       /* Rechts eine Spalte in gleicher Breite anlegen: Ober- und Unterkante,
          Linie unter dem Kopf und die rechte Senkrechte. Masse aus dem
          gerasterten Original abgenommen. */
@@ -406,7 +415,10 @@
                   {text:"02.07.01.03  Stunde",x:684.56, y:166.7, groesse:6.0},
                   {text:"Monteur Glasfaser",  x:684.56, y:175.1, groesse:6.0},
                   {text:"(bei Problemen, in", x:684.56, y:183.5, groesse:6.0},
-                  {text:"Absprache)",         x:684.56, y:191.9, groesse:6.0}]
+                  {text:"Absprache)",         x:684.56, y:191.9, groesse:6.0},
+                  /* aufgedruckt 02.01.01.01 (Nummer der Kabellaenge) bzw. 04.02.01.01.03 */
+                  {text:"02.01.01.02", x:417.18, y:169.992, groesse:6.2},
+                  {text:"02.01.01.03", x:537.59, y:169.884, groesse:6.2}]
     },
     kopf:[
       {id:"ort",           label:"Ort",            vorgabe:"Münster"},
