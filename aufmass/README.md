@@ -1,42 +1,38 @@
 # Digitales Aufmaßsystem – HK Albachten / HK Hiltrup West
 
-Eingabe in Excel → ein Klick → fertig ausgefülltes Aufmaß im Original-PDF.
+Aufmaß im Browser erfassen → ein Klick → fertig ausgefülltes Original-PDF.
 
 Das Blanko-Blatt wird dabei **nicht nachgebaut**: die Originalseite bleibt
 unverändert (Logo, Tabelle, Überschriften, Unterschriftsbereiche) und die
 eingegebenen Werte werden exakt in die vorhandenen Zellen gesetzt.
 
-## Dateien
+## Das Werkzeug: `index.html`
 
-| Datei | Zweck |
-|---|---|
-| `Aufmassblatt.xlsx` | Eingabemaske mit Dropdowns – hier wird gearbeitet |
-| `PDF erstellen.bat` | Windows: doppelklicken → PDF entsteht im selben Ordner |
-| `vorlage/Blanko_Aufmassblatt.pdf` | Das Original-Aufmaßblatt (nicht ändern) |
-| `aufmass_pdf.py` | Liest die Excel-Datei und startet die PDF-Erstellung |
-| `pdf_fill.py` | Trägt die Werte in das Original-PDF ein |
-| `layout.py` | Tätigkeitskatalog und vermessene Zellkoordinaten |
-| `make_template.py` | Erzeugt `Aufmassblatt.xlsx` neu (nach Katalogänderungen) |
-| `vba/PDFErstellen.bas` | Optional: Button „PDF erstellen“ direkt in Excel |
+Eine einzige Datei. Nichts zu installieren, kein Server, keine Anmeldung –
+läuft auf Handy, Tablet und PC.
 
-## Bedienung
+**Öffnen:** Datei doppelklicken, oder unter `…/aufmass/` auf der Website
+aufrufen und auf dem Handy zum Startbildschirm hinzufügen.
 
-1. `Aufmassblatt.xlsx` öffnen.
-2. Kopfbereich ausfüllen: Ort, Datum, NVT Gebiet, Unternehmen, BV, Projekt,
-   Betriebsnetz. Ort, Unternehmen und BV sind vorbelegt.
-3. Pro Zeile eintragen:
-   - **NVT** – frei
-   - **Tätigkeit** – Auswahl aus dem Dropdown
-   - **Menge** – Zahl
-   - **Bemerkung** – optional, erscheint im PDF hinter der Tätigkeit
-   
-   **Position** und **Einheit** füllen sich automatisch (grau hinterlegt,
-   nicht ausfüllen).
-4. `PDF erstellen.bat` doppelklicken. Das Ergebnis heißt
-   `Aufmass_<NVT-Gebiet>_<Datum>.pdf` und liegt im selben Ordner.
+**Bedienen:**
 
-Das Blatt hat 30 Zeilen. Werden mehr Positionen gebraucht, auf mehrere
-Blätter aufteilen.
+1. Kopfdaten ausfüllen. Ort, Unternehmen, BV und das heutige Datum sind
+   vorbelegt.
+2. Pro Zeile: **NVT**, **Tätigkeit** (Auswahlliste), **Menge**, optional
+   **Bemerkung**. Position und Einheit erscheinen automatisch.
+3. **PDF erstellen** – die Datei heißt `Aufmass_<NVT-Gebiet>_<Datum>.pdf`.
+
+Unter den Positionen stehen die **Summen je Tätigkeit** – zur Kontrolle vor
+der Unterschrift. Der Entwurf wird laufend im Browser gespeichert und ist
+nach dem Schließen noch da. Das Blatt fasst 30 Zeilen.
+
+### Offline
+
+Die PDF-Bibliothek (`pdf-lib`) wird von einem CDN geladen; nach dem ersten
+Aufruf liegt sie im Browser-Cache. Für echten Offline-Betrieb einmalig
+[`pdf-lib.min.js`](https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js)
+herunterladen und neben `index.html` legen – die Seite bevorzugt die lokale
+Datei automatisch. Die Blanko-Vorlage steckt bereits in der HTML-Datei.
 
 ## Tätigkeitskatalog
 
@@ -54,36 +50,45 @@ Blätter aufteilen.
 
 Die Tätigkeit steuert, **in welche Mengenspalte** des PDFs der Wert wandert.
 
-## Einrichtung (einmalig, pro Rechner)
+Katalog erweitern: in `index.html` die Liste `TAETIGKEITEN` ergänzen und
+`spalte` auf die passende Mengenspalte setzen (0–8). Kommen im PDF **neue
+Spalten** hinzu, müssen zusätzlich die Koordinaten in `SPALTEN` angepasst
+werden – und in `layout.py`, falls der Excel-Weg weiter genutzt wird.
 
-Benötigt wird Python 3 – bei der Installation **„Add Python to PATH"**
-ankreuzen. Die erforderlichen Bibliotheken (`openpyxl`, `pymupdf`) installiert
-`PDF erstellen.bat` beim ersten Lauf selbst.
+## Dateien
 
-Ohne Batch-Datei geht es auch direkt:
+| Datei | Zweck |
+|---|---|
+| `index.html` | Das Werkzeug – Eingabe und PDF-Erstellung in einem |
+| `vorlage/Blanko_Aufmassblatt.pdf` | Das Original, wie geliefert |
+| `vorlage/Blanko_quer.pdf` | Dasselbe Blatt ohne Seitendrehung (steckt in `index.html`) |
+
+### Alternativer Weg über Excel
+
+Vor dem Browser-Werkzeug entstanden; funktioniert weiterhin, braucht aber
+Python auf dem Rechner.
+
+| Datei | Zweck |
+|---|---|
+| `Aufmassblatt.xlsx` | Eingabemaske mit Dropdowns |
+| `PDF erstellen.bat` | Windows: doppelklicken → PDF im selben Ordner |
+| `aufmass_pdf.py` | Liest die Excel-Datei, startet die PDF-Erstellung |
+| `pdf_fill.py` | Trägt die Werte in das Original-PDF ein |
+| `layout.py` | Tätigkeitskatalog und vermessene Zellkoordinaten |
+| `make_template.py` | Erzeugt `Aufmassblatt.xlsx` neu |
+| `vba/PDFErstellen.bas` | Optional: Button „PDF erstellen“ in Excel |
 
 ```bash
 pip install openpyxl pymupdf
-python aufmass_pdf.py Aufmassblatt.xlsx            # Ziel wird automatisch benannt
-python aufmass_pdf.py Aufmassblatt.xlsx Ziel.pdf   # oder Ziel selbst festlegen
+python aufmass_pdf.py Aufmassblatt.xlsx
 ```
 
-### Optional: Button in Excel
+## Zur Technik
 
-`vba/PDFErstellen.bas` enthält ein Makro. Einbau ist im Kopf der Datei
-beschrieben: Mappe als `.xlsm` speichern, Modul importieren, eine Form
-einfügen und ihr das Makro `PDFErstellen` zuweisen. Damit liegt der
-„PDF erstellen“-Button direkt im Tabellenblatt.
-
-## Katalog erweitern
-
-Neue Tätigkeiten in `layout.py` unter `TAETIGKEITEN` ergänzen – dabei `col`
-auf die passende Mengenspalte des PDFs setzen (0–8) – und danach die
-Eingabemaske neu erzeugen:
-
-```bash
-python make_template.py Aufmassblatt.xlsx
-```
-
-Kommen im PDF **neue Spalten** hinzu, müssen zusätzlich die Koordinaten in
-`layout.py` (`COLS`) angepasst werden.
+Die Vorlage ist eine um 90° gedrehte Seite. Für das Browser-Werkzeug wurde
+sie einmalig auf echtes Querformat normalisiert (`vorlage/Blanko_quer.pdf`):
+Seitendrehung entfernt, MediaBox getauscht und die Transformation
+`0 -1 1 0 0 595.22 cm` in den Inhaltsstrom gestellt. Der Inhalt ist
+unverändert – „Albachten“ liegt vorher wie nachher auf (184,0 | 83,7).
+Dadurch entsprechen die gemessenen Zellkoordinaten direkt den
+PDF-Koordinaten, und im Browser genügt `y_pdf = 595,22 − y_gemessen`.
