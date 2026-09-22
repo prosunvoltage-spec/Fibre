@@ -57,6 +57,67 @@ Aufruf liegt sie im Browser-Cache. Für echten Offline-Betrieb einmalig
 herunterladen und neben `index.html` legen – die Seite bevorzugt die lokale
 Datei automatisch. Alle drei Blanko-Vorlagen stecken bereits in der HTML-Datei.
 
+## Als App bereitstellen
+
+Das Werkzeug ist eine **Progressive Web App**: `manifest.webmanifest`,
+`sw.js` und die beiden Symbole liegen daneben. Sobald es unter einer
+richtigen Adresse liegt (nicht `file://`), lässt es sich installieren –
+auf dem Handy über „Teilen → Zum Home-Bildschirm“, am PC über das
+Installieren-Symbol in der Adresszeile. Es öffnet dann im Vollbild ohne
+Browserleiste, mit eigenem Symbol, und läuft **ohne Empfang** weiter.
+
+### Wo es liegen kann
+
+| | Kosten | Zugriffsschutz | Aufwand |
+|---|---|---|---|
+| **Cloudflare Pages + Access** | kostenlos bis 50 Nutzer | Login, Nutzer einzeln freigegeben | ~30 Min einmalig |
+| Netlify / Vercel | kostenlos | Passwortschutz erst im Bezahltarif | gering |
+| GitHub Pages | kostenlos | **keiner** – öffentlich für jeden | gering |
+
+Für ein Aufmaß mit Firmenstempel und den Vorlagen des Auftraggebers ist
+**Cloudflare Pages mit Access** die passende Wahl: nur wer auf der Liste
+steht, kann die Seite überhaupt laden.
+
+### Einrichten
+
+1. Bei Cloudflare anmelden, unter **Workers & Pages → Pages** das
+   GitHub-Repo verbinden.
+2. Als **Build output directory** `aufmass` eintragen, kein Build-Befehl –
+   es sind nur statische Dateien.
+3. Deployen. Es entsteht eine Adresse wie `aufmass-gb.pages.dev`; eine
+   eigene Subdomain (`aufmass.govanni-bau.de`) lässt sich dort zuordnen.
+4. Unter **Zero Trust → Access → Applications** eine Anwendung für diese
+   Adresse anlegen. Als Richtlinie die **E-Mail-Adressen** eintragen, die
+   hineindürfen – oder die ganze Firmendomain.
+5. Als Anmeldung reicht **One-Time-PIN**: der Nutzer gibt seine Adresse
+   ein und bekommt eine Zahl per Mail. Google- oder Microsoft-Konten gehen
+   genauso.
+
+Ab dann ist die Seite ohne Anmeldung nicht erreichbar. Jemanden entfernen
+heißt: Adresse aus der Richtlinie löschen – der Zugang ist sofort zu.
+
+### Was nicht als Schutz taugt
+
+- **Ein geheimer Link.** Wer ihn hat, kommt rein, und er wandert über
+  Weiterleitungen, Verlauf und Lesezeichen weiter. Entziehen lässt er sich
+  nicht.
+- **Ein Passwort im JavaScript.** Es steht im Quelltext der Seite und ist
+  mit einem Rechtsklick zu lesen.
+
+HTTPS verschlüsselt die Übertragung ohnehin, auf jedem der genannten
+Hoster. Das ist aber Transportsicherheit, keine Zugriffskontrolle.
+
+### Zwei Dinge zum Merken
+
+- **Die Blanko-Vorlagen stecken in `index.html`.** Wer die Seite laden
+  darf, kann sie herauslösen. Genau deshalb der Login davor.
+- **Nach jeder Änderung an `index.html` die `VERSION` in `sw.js`
+  hochzählen.** Sonst liefern bereits installierte Geräte weiter den alten
+  Stand aus ihrem Cache aus.
+
+Unterschrift und Entwürfe bleiben unberührt davon – sie liegen im Browser
+des jeweiligen Geräts, nicht auf dem Server.
+
 ## Die drei Blätter
 
 Oben in der Kopfleiste wird gewählt, welches Blatt gefüllt wird. Tätigkeiten,
@@ -231,7 +292,10 @@ Blatt braucht zusätzlich seine normalisierte Vorlage als base64 (siehe
 
 | Datei | Zweck |
 |---|---|
-| `index.html` | Das Werkzeug – beide Blätter, Eingabe und PDF-Erstellung |
+| `index.html` | Das Werkzeug – alle drei Blätter, Eingabe und PDF-Erstellung |
+| `manifest.webmanifest` | Macht die Seite installierbar (Name, Symbol, Farben) |
+| `sw.js` | Service Worker – hält die App offline verfügbar |
+| `icon-192.png`, `icon-512.png` | App-Symbol |
 | `vorlage/Blanko_Aufmassblatt.pdf` | HK-Blatt, wie geliefert |
 | `vorlage/Blanko_quer.pdf` | HK-Blatt entdreht (steckt in `index.html`) |
 | `vorlage/Blanko_HA.pdf` | HA-Blatt, wie geliefert |

@@ -1,4 +1,7 @@
 <title>Aufmaß Glasfaser Münster</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#0E6E78">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -1316,5 +1319,14 @@
   unterschriftZeichnen();
   kopfAufbauen();
   zeichnen();
+
+  /* Macht die Seite installierbar und offline lauffaehig. Nur auf einer
+     echten Adresse - in einer eingebetteten Vorschau gibt es kein sw.js. */
+  if("serviceWorker" in navigator && location.protocol.indexOf("http") === 0
+     && window.top === window.self){
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js").catch(() => {});
+    });
+  }
 })();
 </script>
