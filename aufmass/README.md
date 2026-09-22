@@ -33,13 +33,17 @@ Blatt aus unterschiedlichen Feldern:
 
 | Blatt | Kennung | Beispiel |
 |---|---|---|
-| HK-Arbeiten | NVT Gebiet | `Aufmass_HK_NVT_12_22_09_2026.pdf` |
-| Hausanschlüsse | erste Adresse (Straße + HA Nr.) | `Aufmass_HA_Roxeler_Strasse-HA-101_22_09_2026.pdf` |
-| HA Tiefbau | erste Adresse (Straße + Nr.) | `Aufmass_TB_Kleine_Breikamp-152_22_09_2026.pdf` |
+| HK-Arbeiten | NVT Gebiet | `Aufmass_HK_NVT_12_2026-09-22.pdf` |
+| Hausanschlüsse | erste Adresse (Straße + HA Nr.) | `Aufmass_HA_Roxeler_Strasse-HA-101_2026-09-22.pdf` |
+| HA Tiefbau | erste Adresse (Straße + Nr.) | `Aufmass_TB_Kleine_Breikamp-152_2026-09-22.pdf` |
 
 Ist keine Adresse eingetragen, greift ersatzweise das NVT Gebiet; fehlt auch
 das, steht `ohne-Angabe` im Namen. Umlaute werden umgeschrieben
 (`Straße` → `Strasse`), damit der Name auf jedem System gleich aussieht.
+
+Das **Datum steht als `2026-09-22`** am Ende. Dadurch sortieren sich die
+Blätter eines NVT-Gebiets bzw. einer Adresse im Ordner von selbst nach
+Datum.
 
 Unter den Zeilen stehen die **Summen je Position** – zur Kontrolle vor der
 Unterschrift. Der Entwurf wird je Blatt laufend im Browser gespeichert und
