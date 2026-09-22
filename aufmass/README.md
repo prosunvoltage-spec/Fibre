@@ -74,10 +74,17 @@ Deshalb gibt es dort kein Tätigkeits-Auswahlfeld, sondern fünf Mengenfelder.
 | Menge | Position | Einheit | Spalte im Blatt |
 |---|---|---|---|
 | Eingeblasene Kabellänge | 02.01.01.01 | m | 5 |
-| Montage Gf-AP EFH + MFH | 02.01.01.01 | Stk | 6 |
+| Montage Gf-AP EFH + MFH | 02.01.01.02 | Stk | 6 |
 | Installation Gf-TA EFH | 02.01.01.04 | Stk | 7 |
-| Zusätzlicher Spleiß | 04.02.01.01.03 | Stk | 8 |
+| Zusätzlicher Spleiß | 02.01.01.03 | Stk | 8 |
 | Stunde Monteur Glasfaser | 02.07.01.03 | h | 9 |
+
+Die Bezeichnungen sind hier die der **Spaltenüberschriften**, nicht die des
+Leistungsverzeichnisses – so ist beim Eintragen sichtbar, in welche Spalte
+ein Wert wandert. Im LV heißen sie „Hausanschluss Gf-Kabel in Mikrorohr…“,
+„Montage Gf-AP“, „Zusätzliches Spleißen einer Faser“ und „Installation
+Gf-TA EFH“. Beim HK-Blatt ist es umgekehrt: dort wird der Name in die
+Spalte „Tätigkeit“ gedruckt, deshalb stehen dort die LV-Bezeichnungen.
 
 ## Zwei Fehler in den gelieferten Blanko-Blättern
 
@@ -98,12 +105,18 @@ Nummern der folgenden Spalten um eins zu hoch:
 | 5 – Montage und Spleißen von Kopplern | 02.05.01.03 | 02.05.01.02 |
 | 6 – Zusätzliches Spleißen weiterer Fasern | 02.05.01.04 | 02.05.01.03 |
 
-**HA-Blatt, 02.01.01.01:** Diese Nummer steht auf **zwei** Spalten –
-„Eingeblasene Kabellänge (m)“ und „Montage Gf-AP EFH + MFH (Stk)“. Zwei
-Positionen mit derselben Nummer und verschiedenen Einheiten kann es nicht
-geben; eine der beiden ist falsch. Welche, ist ungeklärt – bis das aus dem
-Leistungsverzeichnis bestätigt ist, steht in beiden Spalten die
-aufgedruckte Nummer.
+**HA-Blatt, zwei falsche Nummern:** „Montage Gf-AP“ trägt aufgedruckt
+02.01.01.01 – das ist die Nummer der Kabellänge, dieselbe Nummer stand also
+auf zwei Spalten. Und „Zusätzlicher Spleiß“ trägt 04.02.01.01.03, gehört
+laut LV aber in denselben Block:
+
+| Spalte | aufgedruckt | laut LV |
+|---|---|---|
+| 5 – Eingeblasene Kabellänge (m) | 02.01.01.01 | 02.01.01.01 ✓ |
+| 6 – Montage Gf-AP EFH + MFH (Stk) | 02.01.01.01 | 02.01.01.02 |
+| 7 – Installation Gf-TA EFH (Stk) | 02.01.01.04 | 02.01.01.04 ✓ |
+| 8 – Zusätzlicher Spleiß (Stk) | 04.02.01.01.03 | 02.01.01.03 |
+| 9 – Stunde Monteur Glasfaser | 02.07.01.03 | unbestätigt |
 
 Sauber wird beides erst mit aktualisierten Blanko-Blättern vom Auftraggeber.
 
