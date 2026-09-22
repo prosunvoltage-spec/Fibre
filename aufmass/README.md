@@ -6,15 +6,13 @@ Das Blanko-Blatt wird dabei **nicht nachgebaut**: die Originalseite bleibt
 unverändert (Logo, Tabelle, Überschriften, Unterschriftsbereiche) und die
 eingegebenen Werte werden exakt in die vorhandenen Zellen gesetzt.
 
-## Das Werkzeug: `index.html`
+## Benutzen
 
-Eine einzige Datei. Nichts zu installieren, kein Server, keine Anmeldung –
-läuft auf Handy, Tablet und PC.
+Eine einzige Datei: `index.html`. Nichts zu installieren, kein Server, keine
+Anmeldung – läuft auf Handy, Tablet und PC.
 
 **Öffnen:** Datei doppelklicken, oder unter `…/aufmass/` auf der Website
 aufrufen und auf dem Handy zum Startbildschirm hinzufügen.
-
-**Bedienen:**
 
 1. Kopfdaten ausfüllen. Ort, Unternehmen, BV und das heutige Datum sind
    vorbelegt.
@@ -53,7 +51,7 @@ Die Tätigkeit steuert, **in welche Mengenspalte** des PDFs der Wert wandert.
 Katalog erweitern: in `index.html` die Liste `TAETIGKEITEN` ergänzen und
 `spalte` auf die passende Mengenspalte setzen (0–8). Kommen im PDF **neue
 Spalten** hinzu, müssen zusätzlich die Koordinaten in `SPALTEN` angepasst
-werden – und in `layout.py`, falls der Excel-Weg weiter genutzt wird.
+werden.
 
 ## Dateien
 
@@ -63,32 +61,19 @@ werden – und in `layout.py`, falls der Excel-Weg weiter genutzt wird.
 | `vorlage/Blanko_Aufmassblatt.pdf` | Das Original, wie geliefert |
 | `vorlage/Blanko_quer.pdf` | Dasselbe Blatt ohne Seitendrehung (steckt in `index.html`) |
 
-### Alternativer Weg über Excel
-
-Vor dem Browser-Werkzeug entstanden; funktioniert weiterhin, braucht aber
-Python auf dem Rechner.
-
-| Datei | Zweck |
-|---|---|
-| `Aufmassblatt.xlsx` | Eingabemaske mit Dropdowns |
-| `PDF erstellen.bat` | Windows: doppelklicken → PDF im selben Ordner |
-| `aufmass_pdf.py` | Liest die Excel-Datei, startet die PDF-Erstellung |
-| `pdf_fill.py` | Trägt die Werte in das Original-PDF ein |
-| `layout.py` | Tätigkeitskatalog und vermessene Zellkoordinaten |
-| `make_template.py` | Erzeugt `Aufmassblatt.xlsx` neu |
-| `vba/PDFErstellen.bas` | Optional: Button „PDF erstellen“ in Excel |
-
-```bash
-pip install openpyxl pymupdf
-python aufmass_pdf.py Aufmassblatt.xlsx
-```
-
 ## Zur Technik
 
-Die Vorlage ist eine um 90° gedrehte Seite. Für das Browser-Werkzeug wurde
-sie einmalig auf echtes Querformat normalisiert (`vorlage/Blanko_quer.pdf`):
-Seitendrehung entfernt, MediaBox getauscht und die Transformation
-`0 -1 1 0 0 595.22 cm` in den Inhaltsstrom gestellt. Der Inhalt ist
-unverändert – „Albachten“ liegt vorher wie nachher auf (184,0 | 83,7).
-Dadurch entsprechen die gemessenen Zellkoordinaten direkt den
-PDF-Koordinaten, und im Browser genügt `y_pdf = 595,22 − y_gemessen`.
+Die Werte werden nicht in Formularfelder geschrieben – das Blatt hat keine.
+Sie werden als Text auf die Originalseite gesetzt, an aus den Gitterlinien
+gemessenen Koordinaten. Nur die drei vorgedruckten Angaben Ort/Datum,
+Unternehmen und BV werden vorher weiß überdeckt; die Linien darunter bleiben
+stehen.
+
+Die gelieferte Vorlage ist eine um 90° gedrehte Seite. Für das Werkzeug
+wurde sie einmalig auf echtes Querformat normalisiert
+(`vorlage/Blanko_quer.pdf`): Seitendrehung entfernt, MediaBox getauscht und
+die Transformation `0 -1 1 0 0 595.22 cm` an den Anfang des Inhaltsstroms
+gestellt. Der Inhalt ist unverändert – „Albachten“ liegt vorher wie nachher
+auf (184,0 | 83,7). Dadurch entsprechen die gemessenen Zellkoordinaten
+direkt den PDF-Koordinaten, und im Browser genügt
+`y_pdf = 595,22 − y_gemessen` ohne Rotationsmatrix.
