@@ -3,9 +3,13 @@
 Aufmaß im Browser erfassen → ein Klick → fertig ausgefülltes Original-PDF.
 Zwei Blätter: **HK-Arbeiten** und **Hausanschlüsse (NE3)**.
 
-Das Blanko-Blatt wird dabei **nicht nachgebaut**: die Originalseite bleibt
-unverändert (Logo, Tabelle, Überschriften, Unterschriftsbereiche) und die
-eingegebenen Werte werden exakt in die vorhandenen Zellen gesetzt.
+Das Blanko-Blatt wird dabei **nicht nachgebaut**: die Originalseite wird
+übernommen und die Werte werden in die vorhandenen Zellen gesetzt. Logo,
+Kopfbereich und Unterschriftsfelder bleiben unangetastet.
+
+Am Spaltenraster gibt es **zwei bewusste Eingriffe**, weil die gelieferten
+Blätter nicht zum Leistungsverzeichnis passen: im HK-Blatt entfällt eine
+Spalte, im HA-Blatt kommt eine dazu. Siehe unten.
 
 ## Benutzen
 
@@ -48,13 +52,13 @@ Die beiden Blätter sind unterschiedlich gebaut:
 |---|---|---|
 | Eine Zeile ist … | eine Tätigkeit | ein Hausanschluss |
 | Zeilenfelder | NVT | Straße, HA Nr., Anzahl WE |
-| Mengen je Zeile | eine, Spalte per Auswahl | fünf, feste Spalten |
+| Mengen je Zeile | eine, Spalte per Auswahl | sechs, feste Spalten |
 | Bemerkung | ja | nein (kein Platz im Blatt) |
 
 Beim HK-Blatt bestimmt die gewählte Tätigkeit, in welche Mengenspalte der
 Wert wandert. Das HA-Blatt hat je Zeile „Anzahl WE“ – es ist erkennbar für
 **einen Hausanschluss pro Zeile** gedacht, mit mehreren Mengen nebeneinander.
-Deshalb gibt es dort kein Tätigkeits-Auswahlfeld, sondern fünf Mengenfelder.
+Deshalb gibt es dort kein Tätigkeits-Auswahlfeld, sondern sechs Mengenfelder.
 
 ### Katalog HK-Arbeiten
 
@@ -77,7 +81,8 @@ Deshalb gibt es dort kein Tätigkeits-Auswahlfeld, sondern fünf Mengenfelder.
 | Montage Gf-AP EFH + MFH | 02.01.01.02 | Stk | 6 |
 | Installation Gf-TA EFH | 02.01.01.04 | Stk | 7 |
 | Zusätzlicher Spleiß | 02.01.01.03 | Stk | 8 |
-| Stunde Monteur Glasfaser | 02.07.01.03 | h | 9 |
+| Montieren EZA-t 7 / 2,0-4,0 | 02.04.01.01 | Stk | 9 (neu) |
+| Stunde Monteur Glasfaser | 02.07.01.03 | h | 10 (neu gezeichnet) |
 
 Die Bezeichnungen sind hier die der **Spaltenüberschriften**, nicht die des
 Leistungsverzeichnisses – so ist beim Eintragen sichtbar, in welche Spalte
@@ -89,9 +94,10 @@ Spalte „Tätigkeit“ gedruckt, deshalb stehen dort die LV-Bezeichnungen.
 ## Zwei Fehler in den gelieferten Blanko-Blättern
 
 Beide Vorlagen tragen Positionsnummern, die nicht aufgehen. Das Werkzeug
-ordnet die Mengen deshalb grundsätzlich nach der **Spaltenüberschrift** zu,
-nie nach der aufgedruckten Nummer. Die aufgedruckten Nummern werden nicht
-überschrieben – das Layout bleibt unangetastet.
+ordnet die Mengen deshalb nach der **Spaltenüberschrift** zu, nie nach der
+aufgedruckten Nummer. Die falschen Nummern werden bisher **nicht**
+überschrieben – im Blatt steht also weiter die alte, während die App die
+richtige zeigt.
 
 **HK-Blatt, 02.05.01:** Spalte 4 heißt „GF-Kabel vorb. & Spleißen (bis
 96F.)“. Diese Position gibt es im Leistungsverzeichnis nicht; es existiert
@@ -101,7 +107,7 @@ Nummern der folgenden Spalten um eins zu hoch:
 | Spalte | aufgedruckt | laut LV |
 |---|---|---|
 | 3 – GF-Kabel vorb. & Spleißen (bis 24F.) | 02.05.01.01 | 02.05.01.01 ✓ |
-| 4 – GF-Kabel vorb. & Spleißen (bis 96F.) | 02.05.01.02 | entfällt, bleibt leer |
+| 4 – GF-Kabel vorb. & Spleißen (bis 96F.) | 02.05.01.02 | entfällt, Spalte wird entfernt |
 | 5 – Montage und Spleißen von Kopplern | 02.05.01.03 | 02.05.01.02 |
 | 6 – Zusätzliches Spleißen weiterer Fasern | 02.05.01.04 | 02.05.01.03 |
 
@@ -119,6 +125,30 @@ laut LV aber in denselben Block:
 | 9 – Stunde Monteur Glasfaser | 02.07.01.03 | unbestätigt |
 
 Sauber wird beides erst mit aktualisierten Blanko-Blättern vom Auftraggeber.
+
+## Eingriffe am Spaltenraster
+
+Zwei Spalten passen nicht zum Leistungsverzeichnis und werden beim Export
+verändert. Alles andere – Logo, Kopfbereich, Zeilenraster,
+Unterschriftsfelder – bleibt unberührt.
+
+**HK-Blatt: eine Spalte weniger.** „GF-Kabel vorb. & Spleißen (bis 96F.)“
+gibt es nicht. Die Spalte wird entfernt und geht in die linke Nachbarspalte
+auf: Kopf und Trennlinie werden weiß überdeckt, die Zeilentrenner an der
+Nahtstelle in Originalstärke neu gezogen, der Kopf der zusammengefassten
+Spalte mittig neu gesetzt. Er lautet jetzt „Glasfaserkabel vorbereiten und
+spleißen / 02.05.01.01“ – der Zusatz „(bis 24F.)“ wäre falsch, weil die
+verbliebene Position alle Faserzahlen abdeckt.
+
+**HA-Blatt: eine Spalte mehr.** „Montieren EZA-t 7 / 2,0-4,0 (Stk),
+02.04.01.01“ fehlt im Blatt. Sie nimmt den Platz der Monteurstunden ein;
+die Stunden wandern in eine rechts neu gezeichnete Spalte gleicher Breite.
+Damit steht die neue Spalte zwischen „Zusätzlicher Spleiß“ und den Stunden,
+und beide behalten die volle Breite.
+
+Die dafür nötigen Linienmaße sind aus den Vorlagen bei 2000 dpi abgenommen
+(Zeilentrenner 0,504 bzw. 0,612 pt, Ränder 0,972 bzw. 1,224 pt), damit die
+neu gezogenen Linien nicht von den gedruckten abweichen.
 
 ## Unterschrift und Stempel
 
