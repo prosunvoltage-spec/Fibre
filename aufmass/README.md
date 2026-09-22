@@ -1,7 +1,7 @@
 # Digitales Aufmaßsystem – Albachten / Hiltrup West
 
 Aufmaß im Browser erfassen → ein Klick → fertig ausgefülltes Original-PDF.
-Zwei Blätter: **HK-Arbeiten** und **Hausanschlüsse (NE3)**.
+Drei Blätter: **HK-Arbeiten**, **Hausanschlüsse (NE3)** und **HA Tiefbau**.
 
 Das Blanko-Blatt wird dabei **nicht nachgebaut**: die Originalseite wird
 übernommen und die Werte werden in die vorhandenen Zellen gesetzt. Logo,
@@ -40,25 +40,50 @@ Aufruf liegt sie im Browser-Cache. Für echten Offline-Betrieb einmalig
 herunterladen und neben `index.html` legen – die Seite bevorzugt die lokale
 Datei automatisch. Beide Blanko-Vorlagen stecken bereits in der HTML-Datei.
 
-## Die zwei Blätter
+## Die drei Blätter
 
 Oben in der Kopfleiste wird gewählt, welches Blatt gefüllt wird. Tätigkeiten,
 Kopffelder und Zielvorlage wechseln mit. **Die Entwürfe bleiben getrennt** –
 zwischen den Blättern hin- und herspringen verliert nichts.
 
-Die beiden Blätter sind unterschiedlich gebaut:
+Die Blätter sind unterschiedlich gebaut:
 
-| | HK-Arbeiten | Hausanschlüsse (NE3) |
-|---|---|---|
-| Eine Zeile ist … | eine Tätigkeit | ein Hausanschluss |
-| Zeilenfelder | NVT | Straße, HA Nr., Anzahl WE |
-| Mengen je Zeile | eine, Spalte per Auswahl | sechs, feste Spalten |
-| Bemerkung | ja | nein (kein Platz im Blatt) |
+| | HK-Arbeiten | Hausanschlüsse (NE3) | HA Tiefbau |
+|---|---|---|---|
+| Format | A4 quer | A4 quer | A4 hoch |
+| Zeilen | 30 | 30 | 31, in zwei Blöcken |
+| Eine Zeile ist … | eine Tätigkeit | ein Hausanschluss | eine Adresse |
+| Zeilenfelder | NVT | Straße, HA Nr., Anzahl WE | Straße, Nr., Fotodoku |
+| Mengen je Zeile | eine, Spalte per Auswahl | sechs, feste Spalten | keine |
+| Bemerkung | ja | nein (kein Platz im Blatt) | nein |
 
 Beim HK-Blatt bestimmt die gewählte Tätigkeit, in welche Mengenspalte der
 Wert wandert. Das HA-Blatt hat je Zeile „Anzahl WE“ – es ist erkennbar für
 **einen Hausanschluss pro Zeile** gedacht, mit mehreren Mengen nebeneinander.
 Deshalb gibt es dort kein Tätigkeits-Auswahlfeld, sondern sechs Mengenfelder.
+
+### HA Tiefbau
+
+Dieses Blatt erfasst keine Mengen, sondern Adressen. Die Zeilen stehen in
+**zwei Blöcken nebeneinander**: 1–15 links, 16–31 rechts. Das Werkzeug
+verteilt sie automatisch.
+
+Je Zeile: **Straße**, **Nr.** und **Fotodoku** – letzteres als Auswahl
+zwischen `Share` und `Dimamap`.
+
+Dazu zwei Angaben, die für das ganze Blatt gelten:
+
+- **Konnektiert** – Auswahl `JA` / `NEIN`. Erscheint groß in der
+  Skizzenfläche, so wie im gelieferten Muster („Konnektiert!“ bzw.
+  „Nicht konnektiert!“).
+- **Zusatzaufwand** – Freitext. Läuft im Band „Sonstige“ über bis zu drei
+  Zeilen um; was nicht mehr passt, wird abgeschnitten.
+
+Die **Skizzenfläche bleibt frei** – sie ist zum Zeichnen von Hand gedacht.
+
+Die Vorlage kam als **ausgefülltes** Blatt einer anderen Baustelle. Die
+Werte wurden einmalig entfernt – nicht nur weiß überdeckt, sondern aus dem
+PDF gelöscht, damit keine fremden Daten mitlaufen.
 
 ### Katalog HK-Arbeiten
 
@@ -187,6 +212,8 @@ Blatt braucht zusätzlich seine normalisierte Vorlage als base64 (siehe
 | `vorlage/Blanko_quer.pdf` | HK-Blatt entdreht (steckt in `index.html`) |
 | `vorlage/Blanko_HA.pdf` | HA-Blatt, wie geliefert |
 | `vorlage/Blanko_HA_quer.pdf` | HA-Blatt entdreht (steckt in `index.html`) |
+| `vorlage/Muster_TB.pdf` | Tiefbau-Blatt, wie geliefert (ausgefüllt) |
+| `vorlage/Blanko_TB.pdf` | Tiefbau-Blatt geleert (steckt in `index.html`) |
 
 ## Zur Technik
 
@@ -196,8 +223,10 @@ gemessenen Koordinaten. Nur die drei vorgedruckten Angaben Ort/Datum,
 Unternehmen und BV werden vorher weiß überdeckt; die Linien darunter bleiben
 stehen.
 
-Beide gelieferten Vorlagen sind um 90° gedrehte Seiten. Für das Werkzeug
-wurden sie einmalig auf echtes Querformat normalisiert
+Das Tiefbau-Blatt ist A4 hoch ohne Seitendrehung und braucht keine
+Umrechnung. Die beiden Querformat-Vorlagen dagegen sind um 90° gedrehte
+Seiten; für das Werkzeug wurden sie einmalig auf echtes Querformat
+normalisiert
 (`vorlage/*_quer.pdf`): Seitendrehung entfernt, MediaBox getauscht und
 die Transformation `0 -1 1 0 0 595.22 cm` an den Anfang des Inhaltsstroms
 gestellt. Der Inhalt ist unverändert – „Albachten“ liegt vorher wie nachher
