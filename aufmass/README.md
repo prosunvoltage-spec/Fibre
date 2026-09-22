@@ -51,9 +51,9 @@ Die Blätter sind unterschiedlich gebaut:
 | | HK-Arbeiten | Hausanschlüsse (NE3) | HA Tiefbau |
 |---|---|---|---|
 | Format | A4 quer | A4 quer | A4 hoch |
-| Zeilen | 30 | 30 | 31, in zwei Blöcken |
+| Zeilen | 30 | 30 | 31 |
 | Eine Zeile ist … | eine Tätigkeit | ein Hausanschluss | eine Adresse |
-| Zeilenfelder | NVT | Straße, HA Nr., Anzahl WE | Straße, Nr., Fotodoku |
+| Zeilenfelder | NVT | Straße, HA Nr., Anzahl WE | Straße, Nr., Fotodoku, Konnektiert, Zusatzaufwand |
 | Mengen je Zeile | eine, Spalte per Auswahl | sechs, feste Spalten | keine |
 | Bemerkung | ja | nein (kein Platz im Blatt) | nein |
 
@@ -64,26 +64,33 @@ Deshalb gibt es dort kein Tätigkeits-Auswahlfeld, sondern sechs Mengenfelder.
 
 ### HA Tiefbau
 
-Dieses Blatt erfasst keine Mengen, sondern Adressen. Die Zeilen stehen in
-**zwei Blöcken nebeneinander**: 1–15 links, 16–31 rechts. Das Werkzeug
-verteilt sie automatisch.
+Dieses Blatt erfasst keine Mengen, sondern Adressen. Je Zeile:
 
-Je Zeile: **Straße**, **Nr.** und **Fotodoku** – letzteres als Auswahl
-zwischen `Share` und `Dimamap`.
-
-Dazu zwei Angaben, die für das ganze Blatt gelten:
-
-- **Konnektiert** – Auswahl `JA` / `NEIN`. Erscheint groß in der
-  Skizzenfläche, so wie im gelieferten Muster („Konnektiert!“ bzw.
-  „Nicht konnektiert!“).
-- **Zusatzaufwand** – Freitext. Läuft im Band „Sonstige“ über bis zu drei
-  Zeilen um; was nicht mehr passt, wird abgeschnitten.
+| Spalte | Eingabe |
+|---|---|
+| Straße | frei |
+| Nr. | frei |
+| Fotodoku | Auswahl `Share` / `Dimamap` |
+| Konnektiert | Auswahl `JA` / `NEIN` |
+| Zusatzaufwand | Freitext |
 
 Die **Skizzenfläche bleibt frei** – sie ist zum Zeichnen von Hand gedacht.
 
 Die Vorlage kam als **ausgefülltes** Blatt einer anderen Baustelle. Die
 Werte wurden einmalig entfernt – nicht nur weiß überdeckt, sondern aus dem
 PDF gelöscht, damit keine fremden Daten mitlaufen.
+
+**Die Tabelle wird beim Export neu gezogen.** Das gelieferte Blatt setzt die
+Zeilen in zwei Blöcken nebeneinander (1–15 links, 16–31 rechts) und hat dort
+keinen Platz für „Konnektiert“ und „Zusatzaufwand“ – die beiden bräuchten je
+Block rund 125 pt, die es nicht gibt. Das Werkzeug zieht die Tabelle deshalb
+als **einen Block mit 31 Zeilen und fünf Spalten** über die volle Breite.
+Dafür entfällt das Band „Sonstige“ – der Zusatzaufwand steht jetzt je Zeile –
+und die Skizzenfläche beginnt tiefer; sie bleibt rund 210 pt hoch.
+
+Die Strichstärken stammen aus der Vorlage (Rahmen 1,332 pt, Zeilentrenner
+0,72 pt, Kopfschrift 6,9 pt), damit die neue Tabelle nicht von den
+gedruckten Linien abweicht.
 
 ### Katalog HK-Arbeiten
 

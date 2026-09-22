@@ -450,19 +450,21 @@
        ueberdeckt), siehe vorlage/Blanko_TB.pdf. */
     hoehe:841.9199829101562,
     maxZeilen:31,
-    raster:{oben:184.22, hoehe:10.8},
-    /* Die Zeilen stehen in zwei Bloecken nebeneinander: 1-15 links,
-       16-31 rechts. Jeder Block hat eigene Spaltenkanten. */
-    bloecke:[
-      {zeilen:15, spalten:{strasse:[31.56,198.65], hnr:[198.65,245.09], foto:[245.09,301.85]}},
-      {zeilen:16, spalten:{strasse:[317.35,487.78], hnr:[487.78,534.22], foto:[534.22,577.20]}}
-    ],
+    /* Zeilenmitte aus der Vorlage: Zeile 1 laeuft innen von 185,55 bis
+       195,27, Abstand der Trenner 10,8. */
+    raster:{oben:185.01, hoehe:10.8},
     textspalte:null,
     bemerkung:false,
     felder:[
-      {key:"strasse", label:"Straße",   weite:"minmax(140px,1fr)", breit:true},
-      {key:"hnr",     label:"Nr.",      weite:"80px"},
-      {key:"foto",    label:"Fotodoku", weite:"128px", auswahl:["Share","Dimamap"]}
+      {key:"strasse",     label:"Straße",        weite:"minmax(130px,1fr)", breit:true,
+       spalte:[32.90, 220.00]},
+      {key:"hnr",         label:"Nr.",           weite:"70px",  spalte:[221.32, 262.00]},
+      {key:"foto",        label:"Fotodoku",      weite:"118px", spalte:[263.32, 320.00],
+       auswahl:["Share","Dimamap"]},
+      {key:"konnektiert", label:"Konnektiert",   weite:"108px", spalte:[321.32, 378.00],
+       auswahl:["JA","NEIN"]},
+      {key:"zusatz",      label:"Zusatzaufwand", weite:"minmax(140px,1fr)", breit:true,
+       spalte:[379.32, 577.21]}
     ],
     mengen:[],
     kopf:[
@@ -478,15 +480,36 @@
       {id:"projekt",       label:"Projekt",      vorgabe:"", box:[271.49,349.03,152.06]},
       {id:"projekt_zusatz",label:"Projekt (Zusatz)", vorgabe:"100,00%", box:[364.39,400.75,152.06]},
       {id:"betriebsnetz",  label:"Betriebsnetz", vorgabe:"", box:[271.49,349.03,162.60]},
-      {id:"betriebsnetz_zusatz", label:"Betriebsnetz (Zusatz)", vorgabe:"0,00%", box:[364.39,400.75,162.60]},
-      /* Steht gross in der Skizzenflaeche, so wie im gelieferten Muster. */
-      {id:"konnektiert",   label:"Konnektiert",  vorgabe:"", auswahl:["JA","NEIN"],
-       werte:{JA:"Konnektiert!", NEIN:"Nicht konnektiert!"},
-       box:[180.0,430.0,571.36], groesse:15},
-      /* Freitext, laeuft im Band "Sonstige" ueber bis zu drei Zeilen um. */
-      {id:"zusatzaufwand", label:"Zusatzaufwand", vorgabe:"",
-       kasten:{x0:35.5, y0:359.0, x1:573.0, y1:388.5, groesse:7.6, zeilenhoehe:9.2}}
+      {id:"betriebsnetz_zusatz", label:"Betriebsnetz (Zusatz)", vorgabe:"0,00%", box:[364.39,400.75,162.60]}
     ],
+    /* Das gelieferte Blatt setzt die Zeilen in zwei Bloecke nebeneinander und
+       hat keinen Platz fuer "Konnektiert" und "Zusatzaufwand". Die Tabelle
+       wird deshalb als ein Block mit 31 Zeilen und fuenf Spalten neu gezogen.
+       Das Band "Sonstige" entfaellt - der Zusatzaufwand steht jetzt je Zeile -
+       und die Skizzenflaeche beginnt entsprechend tiefer.
+       Strichstaerken aus der Vorlage: Rahmen 1,332 pt, Zeilentrenner 0,72 pt,
+       Kopfschrift 6,9 pt. */
+    umbau:{
+      weissen:[{x0:17.45, y0:174.76, x1:577.21, y1:520.40}],
+      balken:[
+        {x0:31.60,  x1:32.90,  y:173.42, h:346.93},
+        {x0:220.00, x1:221.32, y:173.42, h:346.93},
+        {x0:262.00, x1:263.32, y:173.42, h:346.93},
+        {x0:320.00, x1:321.32, y:173.42, h:346.93},
+        {x0:378.00, x1:379.32, y:173.42, h:346.93},
+        {x0:17.45,  x1:577.21, y:184.22, h:1.332},
+        {x0:17.45,  x1:577.21, y:519.02, h:1.332}
+      ],
+      trenner:{x0:17.45, x1:577.21, y0:195.272, schritt:10.8, anzahl:30, h:0.72},
+      nummern:{x0:17.44, x1:31.60, oben:185.01, hoehe:10.8, anzahl:31, groesse:6.5},
+      kopfzeilen:[
+        {text:"Straße",        x:126.45, y:181.9, groesse:6.9},
+        {text:"Nr.",           x:241.66, y:181.9, groesse:6.9},
+        {text:"Fotodoku",      x:291.66, y:181.9, groesse:6.9},
+        {text:"Konnektiert",   x:349.66, y:181.9, groesse:6.9},
+        {text:"Zusatzaufwand", x:478.27, y:181.9, groesse:6.9}
+      ]
+    },
     ortDatumBox:[83.18,199.36,108.86],
     unterschrift:{x0:63.86, x1:245.8, oben:752.5, unten:830}
   }];
@@ -1030,41 +1053,7 @@
     return [spalte[0], oben, spalte[1], oben + blatt.raster.hoehe];
   }
 
-  /* Manche Blaetter setzen die Zeilen in mehrere Bloecke nebeneinander.
-     Liefert fuer Zeile n die Zeilennummer im Block und dessen Spalten. */
-  function blockFuer(n){
-    if(!blatt.bloecke) return null;
-    let start = 1;
-    for(const b of blatt.bloecke){
-      if(n < start + b.zeilen) return {zeile:n - start + 1, spalten:b.spalten};
-      start += b.zeilen;
-    }
-    return null;
-  }
 
-  /* Freitext ueber mehrere Zeilen in einen Kasten setzen. */
-  function schreibenBlock(seite, k, text, schrift){
-    const roh = winAnsi(text).trim();
-    if(!roh) return;
-    const breite = k.x1 - k.x0;
-    const worte = roh.split(/\s+/);
-    const zeilen = [];
-    let aktuell = "";
-    worte.forEach(w => {
-      const versuch = aktuell ? aktuell + " " + w : w;
-      if(schrift.widthOfTextAtSize(versuch, k.groesse) <= breite || !aktuell){
-        aktuell = versuch;
-      }else{
-        zeilen.push(aktuell); aktuell = w;
-      }
-    });
-    if(aktuell) zeilen.push(aktuell);
-    const platz = Math.max(1, Math.floor((k.y1 - k.y0) / k.zeilenhoehe));
-    zeilen.slice(0, platz).forEach((z, i) => {
-      seite.drawText(z, {x:k.x0, y:SEITE_H - (k.y0 + k.zeilenhoehe * (i + 0.78)),
-                         size:k.groesse, font:schrift});
-    });
-  }
 
   function schreiben(seite, kasten, text, groesse, schrift){
     const t = winAnsi(text).trim();
@@ -1113,6 +1102,14 @@
           balken(tr.x0, tr.x1, tr.y0 + k * tr.schritt, tr.h);
         }
       }
+      if(u.nummern){
+        const nu = u.nummern;
+        for(let k = 0; k < nu.anzahl; k++){
+          schreiben(seite, [nu.x0, nu.oben + k * nu.hoehe,
+                            nu.x1, nu.oben + (k + 1) * nu.hoehe],
+                    String(k + 1), nu.groesse, fett);
+        }
+      }
       (u.kopfzeilen || []).forEach(z => {
         const t = winAnsi(z.text);
         const b = fett.widthOfTextAtSize(t, z.groesse);
@@ -1129,12 +1126,10 @@
       /* Auswahlfelder koennen einen anderen Text ins Blatt schreiben als in
          der Maske steht ("JA" -> "Konnektiert!"). */
       const wert = f.werte ? (f.werte[roh] || "") : roh;
-      if(f.kasten){ felder.push({kasten:f.kasten, wert:wert}); return; }
       if(f.box) felder.push({box:f.box, leeren:Boolean(f.leeren),
                              groesse:f.groesse, wert:wert});
     });
     felder.forEach(f => {
-      if(f.kasten){ schreibenBlock(seite, f.kasten, f.wert, normal); return; }
       const [x0, x1, linie] = f.box;
       const g = f.groesse || 6.8;
       const oben = linie - (f.groesse ? g * 1.32 : 9.0), unten = linie - 0.6;
@@ -1149,13 +1144,8 @@
     daten.zeilen.forEach(z => {
       if(!zeileBelegt(z) || n >= MAX(blatt)) return;
       n++;
-      const bl = blockFuer(n);
-      if(bl === null && blatt.bloecke) return;
-      blatt.felder.forEach(f => {
-        const spalte = bl ? bl.spalten[f.key] : f.spalte;
-        if(!spalte) return;
-        schreiben(seite, zelle(bl ? bl.zeile : n, spalte), z.f[f.key], 6.2, normal);
-      });
+      blatt.felder.forEach(f =>
+        schreiben(seite, zelle(n, f.spalte), z.f[f.key], 6.2, normal));
       if(blatt.modus === "auswahl"){
         const t = blatt.mengen.find(m => m.name === z.taetigkeit);
         if(!t) return;
