@@ -1,0 +1,20 @@
+{
+  "nvt_number": "7117",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 33,
+  "address": {
+    "street": "Buchenweg",
+    "house_number": "22",
+    "postal_code": "48161",
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": "VZP1",
+  "special_case": null,
+  "notes": "Wohnstraße, Firmenwasserzeichen im Foto",
+  "lageplan_pages": [
+    34
+  ],
+  "extracted_at": "2026-08-13T21:36:11.848870+00:00",
+  "kind": "reference"
+}

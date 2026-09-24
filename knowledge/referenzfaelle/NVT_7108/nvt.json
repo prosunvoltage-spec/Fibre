@@ -1,0 +1,21 @@
+{
+  "nvt_number": "7108",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 14,
+  "address": {
+    "street": "Schulze-Hermann-Straße",
+    "house_number": "7",
+    "postal_code": "48161",
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": "B2/2",
+  "special_case": null,
+  "notes": "Streetview-Zusatzfoto zur Fußgängerführung über K&K-Ladefläche",
+  "lageplan_pages": [
+    15,
+    16
+  ],
+  "extracted_at": "2026-08-13T21:36:10.046962+00:00",
+  "kind": "reference"
+}

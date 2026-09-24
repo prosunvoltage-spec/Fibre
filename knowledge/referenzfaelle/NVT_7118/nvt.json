@@ -1,0 +1,20 @@
+{
+  "nvt_number": "7118",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 35,
+  "address": {
+    "street": "Schelmenstiege",
+    "house_number": "34-38",
+    "postal_code": "48161",
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": "VZP1",
+  "special_case": null,
+  "notes": "Wohnstraße-Kurve",
+  "lageplan_pages": [
+    36
+  ],
+  "extracted_at": "2026-08-13T21:36:12.066235+00:00",
+  "kind": "reference"
+}

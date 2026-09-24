@@ -1,0 +1,20 @@
+{
+  "nvt_number": "7126",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 51,
+  "address": {
+    "street": "Stellmacherweg",
+    "house_number": "212A",
+    "postal_code": "48161",
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": "VZP1",
+  "special_case": null,
+  "notes": "Wohnstraßen-Kurve",
+  "lageplan_pages": [
+    52
+  ],
+  "extracted_at": "2026-08-13T21:36:13.415350+00:00",
+  "kind": "reference"
+}

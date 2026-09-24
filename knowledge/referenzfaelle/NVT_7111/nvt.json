@@ -1,0 +1,20 @@
+{
+  "nvt_number": "7111",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 21,
+  "address": {
+    "street": "Schutte-Bern-Straße",
+    "house_number": "28",
+    "postal_code": "48161",
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": "VZP1",
+  "special_case": null,
+  "notes": "Aufnahme im Grünbereich",
+  "lageplan_pages": [
+    22
+  ],
+  "extracted_at": "2026-08-13T21:36:10.610891+00:00",
+  "kind": "reference"
+}

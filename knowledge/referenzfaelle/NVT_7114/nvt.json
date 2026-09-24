@@ -1,0 +1,20 @@
+{
+  "nvt_number": "7114",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 27,
+  "address": {
+    "street": "Kösters Kämpken",
+    "house_number": "36a",
+    "postal_code": "48161",
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": null,
+  "special_case": "Privatgelände der Stadtnetze",
+  "notes": "keine öffentliche VRA",
+  "lageplan_pages": [
+    28
+  ],
+  "extracted_at": "2026-08-13T21:36:11.219713+00:00",
+  "kind": "reference"
+}

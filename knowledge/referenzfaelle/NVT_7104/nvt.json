@@ -1,0 +1,20 @@
+{
+  "nvt_number": "7104",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 6,
+  "address": {
+    "street": "Brockkamp",
+    "house_number": "76",
+    "postal_code": "48161",
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": "B1/2",
+  "special_case": null,
+  "notes": "Sackgassen-Ende, NVT an Zufahrt",
+  "lageplan_pages": [
+    8
+  ],
+  "extracted_at": "2026-08-13T21:36:09.144659+00:00",
+  "kind": "reference"
+}

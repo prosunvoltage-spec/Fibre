@@ -1,0 +1,20 @@
+{
+  "nvt_number": "7110",
+  "source_file": "Roxel_alle_NVT_Einblasarbeiten_weiterer_Durchfuehrungszeitraum_02072026.pdf",
+  "source_page": 19,
+  "address": {
+    "street": null,
+    "house_number": null,
+    "postal_code": null,
+    "city": "Münster",
+    "country": "DE"
+  },
+  "ruleplan_label": "B1/2",
+  "special_case": null,
+  "notes": "NVT in Grundstückszufahrt/Wohnstraße; Straßenname im Overlay nicht lesbar",
+  "lageplan_pages": [
+    20
+  ],
+  "extracted_at": "2026-08-13T21:36:10.451141+00:00",
+  "kind": "reference"
+}
